@@ -1,0 +1,28 @@
+<Project>
+	<PropertyGroup>
+		<LangVersion>7.0</LangVersion>
+	</PropertyGroup>
+	<Import Project="build\version.props" />
+  
+  <PropertyGroup>
+	<PackageId>$(AssemblyName)</PackageId>
+    <Authors>zhenlei520</Authors>
+    <Copyright>© zhenlei520 Corporation. All rights reserved.</Copyright>
+	<PackageProjectUrl>https://www.nuget.org/packages/$(PackageId)</PackageProjectUrl>
+	<PackageIconUrl>packageIcon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/zhenlei520/Wolf.Systems</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    <RepoRelativeProjectDir>$([MSBuild]::MakeRelative($(RepositoryRoot), $(MSBuildProjectDirectory)))</RepoRelativeProjectDir>
+    <IsProductComponent>false</IsProductComponent>
+    <IsTestProject Condition="$(MSBuildProjectName.EndsWith('Tests')) OR $(MSBuildProjectName.EndsWith('.Test'))">true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+	<None Include="$(RepositoryRoot)packageIcon.png">
+	  <Pack>True</Pack>
+	  <PackagePath></PackagePath>
+	</None>
+  </ItemGroup>
+</Project>
