@@ -3,6 +3,7 @@
 
 using System;
 using System.ComponentModel;
+using Wolf.Systems.Core.Common;
 
 namespace Wolf.Systems.Core
 {
@@ -37,7 +38,6 @@ namespace Wolf.Systems.Core
         {
             return CustomAttributeCommon.GetCustomAttribute<DescriptionAttribute, string>(
                 value.GetType(), x => x.Description, value.ToString());
-            // return value.GetCustomerObj<DescriptionAttribute>()?.Description.SafeString();
         }
 
         #endregion

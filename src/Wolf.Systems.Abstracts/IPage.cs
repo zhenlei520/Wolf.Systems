@@ -7,21 +7,21 @@ namespace Wolf.Systems.Abstracts
     /// <summary>
     /// 分页数据集合
     /// </summary>
-    public abstract class Page<T>
+    public interface IPage<T>
     {
         /// <summary>
         /// 总条数
         /// </summary>
-        public virtual int RowCount { get; set; }
+        int RowCount { get; set; }
 
         /// <summary>
         /// 当前页数据集合
         /// </summary>
-        public virtual IEnumerable<T> Data { get; set; }
+        IEnumerable<T> Data { get; set; }
 
         /// <summary>
         /// 扩展Data
         /// </summary>
-        public virtual object ExtendedData { get; set; }
+        object ExtendedData { get; set; }
     }
 }

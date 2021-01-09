@@ -1,7 +1,7 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using Wolf.Systems.ComponentModel;
+using System.ComponentModel;
 
 namespace Wolf.Systems.Enum
 {
@@ -10,7 +10,7 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum Gender
     {
-        [EDescribe("男")] Boy = 1,
-        [EDescribe("女")] Girl = 2
+        [Description("男")] Boy = 1,
+        [Description("女")] Girl = 2
     }
 }

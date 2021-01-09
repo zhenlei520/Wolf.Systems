@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Wolf.Systems.Core.InternalConfiguration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
@@ -221,7 +222,7 @@ namespace Wolf.Systems.Core
         public static bool IsChinese(this char value, bool isAll = false)
         {
             string str = value.ToString();
-            var regex = GetRegexConfigurations().GetRegex(RegexDefault.Chinese, RegexOptions.IgnoreCase);
+            var regex = new Regex(RegexConst.Chinese, RegexOptions.IgnoreCase);
             if (!isAll)
             {
                 return regex.IsMatch(str);

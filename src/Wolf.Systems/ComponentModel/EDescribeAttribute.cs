@@ -9,7 +9,7 @@ namespace Wolf.Systems.ComponentModel
     /// 描述信息
     /// </summary>
     [AttributeUsage(AttributeTargets.All)]
-    public class EDescribeAttribute : Attribute
+    public class DescriptionAttribute : Attribute
     {
         private readonly string _describe;
 
@@ -22,7 +22,7 @@ namespace Wolf.Systems.ComponentModel
         /// 自定义描述信息
         /// </summary>
         /// <param name="describe"></param>
-        public EDescribeAttribute(string describe)
+        public DescriptionAttribute(string describe)
         {
             _describe = describe;
         }

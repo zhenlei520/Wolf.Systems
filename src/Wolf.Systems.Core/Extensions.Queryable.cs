@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Wolf.Systems.Core.Configuration;
 
 namespace Wolf.Systems.Core
 {
@@ -178,9 +179,9 @@ namespace Wolf.Systems.Core
         /// <param name="pageIndex">当前页</param>
         /// <param name="isTotal">是否统计总行数</param>
         /// <returns></returns>
-        public static PageData<T> ListPager<T>(this IQueryable<T> query, int pageSize, int pageIndex, bool isTotal)
+        public static Page<T> ListPager<T>(this IQueryable<T> query, int pageSize, int pageIndex, bool isTotal)
         {
-            PageData<T> list = new PageData<T>();
+            Page<T> list = new Page<T>();
 
             if (isTotal)
             {

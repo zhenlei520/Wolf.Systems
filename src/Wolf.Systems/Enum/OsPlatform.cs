@@ -14,8 +14,8 @@ namespace Wolf.Systems.Enum
         /// <summary>
         /// Windows
         /// </summary>
-        [EDescribe("Windows")] Windows = 1,
-        [EDescribe("Linux")] Linux = 2,
-        [EDescribe("OSX")] Osx = 3
+        [Description("Windows")] Windows = 1,
+        [Description("Linux")] Linux = 2,
+        [Description("OSX")] Osx = 3
     }
 }

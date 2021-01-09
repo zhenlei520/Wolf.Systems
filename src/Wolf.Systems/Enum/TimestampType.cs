@@ -9,7 +9,7 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum TimestampType
     {
-        [EDescribe("10 bit timestamp")]Second = 1,
-        [EDescribe("13 bit timestamp")]MilliSecond = 2
+        [Description("10 bit timestamp")]Second = 1,
+        [Description("13 bit timestamp")]MilliSecond = 2
     }
 }

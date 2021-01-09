@@ -7,6 +7,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
+using Wolf.Systems.Core.InternalConfiguration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
@@ -891,7 +893,7 @@ namespace Wolf.Systems.Core
                 }
             }
 
-            throw new BusinessException("无效的链接", HttpStatus.Err.Id);
+            throw new BusinessException("无效的链接", ErrorCode.ParamError);
         }
 
         #endregion
@@ -969,7 +971,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static string HtmlEncode(this string target)
         {
-            return HttpUtility.HtmlEncode(target);
+            return HttpUtility.HtmlDecode(target);
         }
 
         #endregion
@@ -1504,7 +1506,7 @@ namespace Wolf.Systems.Core
         {
             if (string.IsNullOrEmpty(str))
                 return false;
-            return _regexConfigurations.GetRegex(RegexDefault.Email, RegexOptions.IgnoreCase).IsMatch(str);
+            return new Regex(RegexConst.Email, RegexOptions.IgnoreCase).IsMatch(str);
         }
 
         #endregion
@@ -1515,15 +1517,10 @@ namespace Wolf.Systems.Core
         /// 是否是纯数字（支持正负数，默认不验证正负数）
         /// </summary>
         /// <param name="str"></param>
-        /// <param name="numericType">类型，当为null时指的是不限制大小写</param>
+        /// <param name="numericType">类型，默认不限制正负数</param>
         /// <returns></returns>
-        public static bool IsNumber(this string str, NumericType numericType = null)
+        public static bool IsNumber(this string str, NumericType numericType = NumericType.All)
         {
-            if (numericType == null)
-            {
-                numericType = NumericType.Nolimit;
-            }
-
             if (string.IsNullOrEmpty(str)) //验证这个参数是否为空
                 return false; //是，就返回False
             ASCIIEncoding ascii = new ASCIIEncoding(); //new ASCIIEncoding 的实例
@@ -1531,7 +1528,7 @@ namespace Wolf.Systems.Core
             List<int> asciiList = new List<int>();
             foreach (byte c in byteStr) //遍历这个数组里的内容
             {
-                if (numericType.Equals(NumericType.Nolimit))
+                if (numericType.Equals(NumericType.All))
                 {
                     if ((c < 48 || c > 57) && c != 45 && c != 43 ||
                         (c == 45 || c == 43) && asciiList.Any(x => x == 45 || x == 43)) //判断是否为数字
@@ -1539,7 +1536,7 @@ namespace Wolf.Systems.Core
                         return false; //不是，就返回False
                     }
                 }
-                else if (numericType.Equals(NumericType.Plus))
+                else if (numericType == NumericType.Plus)
                 {
                     if ((c < 48 || c > 57) && c != 43 ||
                         c == 43 && asciiList.Any(x => x == 43))
@@ -1547,7 +1544,7 @@ namespace Wolf.Systems.Core
                         return false; //不是，就返回False
                     }
                 }
-                else if (numericType.Equals(NumericType.Minus))
+                else if (numericType == NumericType.Minus)
                 {
                     if ((c < 48 || c > 57) && c != 45 ||
                         c == 45 && asciiList.Any(x => x == 45))
@@ -1563,7 +1560,7 @@ namespace Wolf.Systems.Core
                 asciiList.Add(c);
             }
 
-            if (numericType.Equals(NumericType.Minus) && asciiList.All(x => x != 45))
+            if (numericType == NumericType.Minus && asciiList.All(x => x != 45))
             {
                 return false;
             }
@@ -1580,7 +1577,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         public static bool IsIp(this string str)
         {
-            return GetRegexConfigurations().GetRegex(RegexDefault.Ip).IsMatch(str);
+            return new Regex(RegexConst.Ip, RegexOptions.IgnoreCase).IsMatch(str);
         }
 
         #endregion
@@ -1596,7 +1593,7 @@ namespace Wolf.Systems.Core
         {
             if (string.IsNullOrEmpty(webUrl))
                 return false;
-            return GetRegexConfigurations().GetRegex(RegexDefault.WebSite, RegexOptions.IgnoreCase).IsMatch(webUrl);
+            return new Regex(RegexConst.WebSite, RegexOptions.IgnoreCase).IsMatch(webUrl);
         }
 
         #endregion
@@ -1611,9 +1608,8 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static bool IsChinese(this string str, bool isAll = false)
         {
-            if (string.IsNullOrEmpty(str))
-                return false;
-            var regex = GetRegexConfigurations().GetRegex(RegexDefault.Chinese, RegexOptions.IgnoreCase);
+            if (string.IsNullOrEmpty(str)) return false;
+            var regex = new Regex(RegexConst.Chinese, RegexOptions.IgnoreCase);
             if (!isAll)
             {
                 return regex.IsMatch(str);

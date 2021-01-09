@@ -4,8 +4,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using Wolf.Systems.Core.Common;
 using Wolf.Systems.Core.InternalConfiguration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
@@ -166,24 +168,6 @@ namespace Wolf.Systems.Core
 
         #endregion
 
-        #region 初始化提供者
-
-        private static IEnumerable<DateTimeProvider> _dateTimeProviders;
-
-        private static IEnumerable<SpecifiedTimeAfterProvider> _specifiedTimeAfterProviders;
-
-        /// <summary>
-        /// 初始化提供者
-        /// </summary>
-        private static void InitDateTimeProvider()
-        {
-            _dateTimeProviders = ServiceProvider.GetServiceProvider().GetServicesByAbstract<DateTimeProvider>();
-            _specifiedTimeAfterProviders =
-                ServiceProvider.GetServiceProvider().GetServicesByAbstract<SpecifiedTimeAfterProvider>();
-        }
-
-        #endregion
-
         #endregion
 
         #region 获得两个日期的间隔
@@ -220,14 +204,14 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">日期时间</param>
         /// <param name="dateMode">显示模式</param>
         /// <returns>0-9种模式的日期</returns>
-        public static string FormatDate(this DateTime dateTime, FormatDateType dateMode = null)
+        public static string FormatDate(this DateTime dateTime, FormatDateType dateMode = FormatDateType.Full)
         {
-            if (dateMode == null)
+            if (!((int) dateMode).IsExist<FormatDateType>())
             {
-                dateMode = FormatDateType.One;
+                throw new BusinessException("unsupported mode", ErrorCode.ParamError);
             }
 
-            return dateTime.ToString(dateMode.Name);
+            return dateTime.ToString(dateMode.GetDescription());
         }
 
         /// <summary>
@@ -236,14 +220,9 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">日期时间</param>
         /// <param name="dateMode">显示模式</param>
         /// <returns>0-9种模式的日期</returns>
-        public static string FormatDate(this DateTimeOffset dateTime, FormatDateType dateMode = null)
+        public static string FormatDate(this DateTimeOffset dateTime, FormatDateType dateMode = FormatDateType.Full)
         {
-            if (dateMode == null)
-            {
-                dateMode = FormatDateType.One;
-            }
-
-            return dateTime.ToString(dateMode.Name);
+            return dateTime.Date.FormatDate(dateMode);
         }
 
         #endregion
@@ -392,15 +371,8 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static DateTime Get(this DateTime dateTime, TimeType timeKey)
         {
-            var provider = _dateTimeProviders
-                .FirstOrDefault(x => x.Type.Equals(timeKey));
-
-            if (provider != null)
-            {
-                return provider.GetResult(dateTime);
-            }
-
-            throw new NotSupportedException(nameof(timeKey));
+            var provider = GlobalConfigurations.Instance.GetDateTimeProvider(timeKey);
+            return provider?.GetResult(dateTime) ?? throw new BusinessException("unsupported timeType");
         }
 
         /// <summary>
@@ -411,15 +383,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static DateTimeOffset Get(this DateTimeOffset dateTime, TimeType timeKey)
         {
-            var provider = _dateTimeProviders
-                .FirstOrDefault(x => x.Type.Equals(timeKey));
-
-            if (provider != null)
-            {
-                return provider.GetResult(dateTime);
-            }
-
-            throw new NotSupportedException(nameof(timeKey));
+            return dateTime.DateTime.Get(timeKey);
         }
 
         #endregion
@@ -430,19 +394,13 @@ namespace Wolf.Systems.Core
         /// 得到指定的时间后
         /// </summary>
         /// <param name="dateTime">时间</param>
-        /// <param name="timeType">时间类型</param>
+        /// <param name="timeUnit">时间类型</param>
         /// <param name="duration">时长，允许为负数,为正时：指定时间后持续时间，为负时：指定时间前持续时间</param>
         /// <returns></returns>
-        public static DateTime GetSpecifiedTimeAfter(this DateTime dateTime, DurationType timeType, int duration)
+        public static DateTime GetSpecifiedTimeAfter(this DateTime dateTime, TimeUnit timeUnit, int duration)
         {
-            var provider = _specifiedTimeAfterProviders.FirstOrDefault(x => x.Type.Equals(timeType));
-            if (provider != null)
-            {
-                var res = provider.GetResult(dateTime, duration);
-                return res;
-            }
-
-            throw new NotSupportedException(nameof(timeType));
+            var provider = GlobalConfigurations.Instance.GetSpecifiedTimeAfterProvider(timeUnit);
+            return provider?.GetResult(dateTime, duration) ?? throw new BusinessException("unsupported timeUnit");
         }
 
         /// <summary>
@@ -452,7 +410,7 @@ namespace Wolf.Systems.Core
         /// <param name="timeType">时间类型</param>
         /// <param name="duration">时长，允许为负数,为正时：指定时间后持续时间，为负时：指定时间前持续时间</param>
         /// <returns></returns>
-        public static DateTime GetSpecifiedTimeAfter(this DateTime? dateTime, DurationType timeType, int duration)
+        public static DateTime GetSpecifiedTimeAfter(this DateTime? dateTime, TimeUnit timeType, int duration)
         {
             return (dateTime ?? DateTime.Now).GetSpecifiedTimeAfter(timeType, duration);
         }
@@ -461,33 +419,27 @@ namespace Wolf.Systems.Core
         /// 得到指定的时间后
         /// </summary>
         /// <param name="dateTimeOffset">时间</param>
-        /// <param name="timeType">时间类型</param>
+        /// <param name="timeUnit">时间类型</param>
         /// <param name="duration">时长，允许为负数,为正时：指定时间后持续时间，为负时：指定时间前持续时间</param>
         /// <returns></returns>
-        public static DateTimeOffset GetSpecifiedTimeAfter(this DateTimeOffset? dateTimeOffset, DurationType timeType,
+        public static DateTimeOffset GetSpecifiedTimeAfter(this DateTimeOffset? dateTimeOffset, TimeUnit timeUnit,
             int duration)
         {
-            return (dateTimeOffset ?? DateTimeOffset.Now).GetSpecifiedTimeAfter(timeType, duration);
+            return (dateTimeOffset ?? DateTimeOffset.Now).GetSpecifiedTimeAfter(timeUnit, duration);
         }
 
         /// <summary>
         /// 得到指定的时间后
         /// </summary>
         /// <param name="dateTimeOffset">时间</param>
-        /// <param name="timeType">时间类型</param>
+        /// <param name="timeUnit">时间类型</param>
         /// <param name="duration">时长，允许为负数,为正时：指定时间后持续时间，为负时：指定时间前持续时间</param>
         /// <returns></returns>
-        public static DateTimeOffset GetSpecifiedTimeAfter(this DateTimeOffset dateTimeOffset, DurationType timeType,
+        public static DateTimeOffset GetSpecifiedTimeAfter(this DateTimeOffset dateTimeOffset, TimeUnit timeUnit,
             int duration)
         {
-            var provider = _specifiedTimeAfterProviders.FirstOrDefault(x => x.Type.Equals(timeType));
-            if (provider != null)
-            {
-                var res = provider.GetResult(dateTimeOffset, duration);
-                return res;
-            }
-
-            throw new NotSupportedException(nameof(timeType));
+            var provider = GlobalConfigurations.Instance.GetSpecifiedTimeAfterProvider(timeUnit);
+            return provider?.GetResult(dateTimeOffset, duration) ?? throw new BusinessException("unsupported timeUnit");
         }
 
         #endregion
@@ -1097,7 +1049,7 @@ namespace Wolf.Systems.Core
         public static long ToUnixTimestamp(this DateTime target, TimestampType timestampType,
             DateTimeKind dateTimeKind = DateTimeKind.Utc)
         {
-            if (timestampType== TimestampType.MilliSecond)
+            if (timestampType == TimestampType.MilliSecond)
             {
                 return (TimeZoneInfo.ConvertTimeToUtc(target).Ticks - TimeZoneInfo
                            .ConvertTimeToUtc(new DateTime(1970, 1, 1, 0, 0, 0, 0, dateTimeKind)).Ticks) /
@@ -1153,7 +1105,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTimeOffset">时间</param>
         /// <param name="nationality">国家，默认为美国</param>
         /// <returns></returns>
-        public static int GetWeekIndexOfMonth(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.Usa)
+        public static int GetWeekIndexOfMonth(this DateTimeOffset dateTimeOffset,
+            Nationality nationality = Nationality.Usa)
         {
             return dateTimeOffset.DateTime.GetWeekIndexOfMonth(nationality);
         }

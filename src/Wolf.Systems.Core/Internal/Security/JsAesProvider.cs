@@ -14,12 +14,12 @@ namespace Wolf.Systems.Core.Internal.Security
     /// <summary>
     /// Js 加解密
     /// </summary>
-    public class JsAesProvider : SecurityProvider
+    public class JsAesProvider : ISecurityProvider
     {
         /// <summary>
         /// 加密方式
         /// </summary>
-        public override int Type => (int) SecurityType.JsAes;
+        public int Type => (int) SecurityType.JsAes;
 
         #region JsAes加密
 
@@ -31,7 +31,7 @@ namespace Wolf.Systems.Core.Internal.Security
         /// <param name="iv">向量</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>返回加密后的字符串</returns>
-        public override string Encrypt(string str, string key, string iv, Encoding encoding)
+        public string Encrypt(string str, string key, string iv, Encoding encoding)
         {
             Check(key, iv);
             var cryptoTransform = GetCryptoTransform(key, iv,
@@ -66,7 +66,7 @@ namespace Wolf.Systems.Core.Internal.Security
         /// <param name="iv">向量</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>返回解密后的字符串</returns>
-        public override string Decrypt(string str, string key, string iv, Encoding encoding)
+        public string Decrypt(string str, string key, string iv, Encoding encoding)
         {
             Check(key, iv);
             var cryptoTransform = GetCryptoTransform(key, iv,

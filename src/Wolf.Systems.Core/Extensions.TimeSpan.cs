@@ -2,7 +2,6 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
-using Wolf.Systems.ComponentModel;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
@@ -29,21 +28,20 @@ namespace Wolf.Systems.Core
                 throw new BusinessException("不支持的类型", ErrorCode.ParamError);
             }
 
-            string name = timeSpanFormatDateType.GetCustomerObj<EDescribeAttribute>()?.Describe.SafeString();
+            string name = timeSpanFormatDateType.GetDescription().SafeString();
             if (timeSpanFormatDateType == TimeSpanFormatDateType.Minutes)
             {
                 return string.Format(name, timeSpan.Days, timeSpan.Hours, timeSpan.Minutes);
             }
-            else if (timeSpanFormatDateType == TimeSpanFormatDateType.Second)
+
+            if (timeSpanFormatDateType == TimeSpanFormatDateType.Second)
             {
                 return string.Format(name, timeSpan.Days, timeSpan.Hours, timeSpan.Minutes,
                     timeSpan.Seconds);
             }
-            else
-            {
-                return string.Format(name, timeSpan.Days, timeSpan.Hours, timeSpan.Minutes,
-                    timeSpan.Seconds,timeSpan.Milliseconds);
-            }
+
+            return string.Format(name, timeSpan.Days, timeSpan.Hours, timeSpan.Minutes,
+                timeSpan.Seconds,timeSpan.Milliseconds);
         }
 
         #endregion

@@ -9,13 +9,13 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum FormatDateType
     {
-        [EDescribe("yyyy-MM-dd")] Date = 1,
-        [EDescribe("yyyy-MM-dd HH:mm:ss")] Full = 2,
-        [EDescribe("yyyy-MM-dd HH:mm:ss fff")] FullMillsecond = 3,
-        [EDescribe("yyyyMMdd")] DateFormat = 4,
-        [EDescribe("yyyyMMddHHmmss")] FullFormat = 5,
-        [EDescribe("yyyyMMddHHmmssfff")] FullMillsecondFormat = 6,
-        [EDescribe("HH:mm")] Time = 7,
-        [EDescribe("HH:mm:ss")] TimeSecond = 8
+        [Description("yyyy-MM-dd")] Date = 1,
+        [Description("yyyy-MM-dd HH:mm:ss")] Full = 2,
+        [Description("yyyy-MM-dd HH:mm:ss fff")] FullMillsecond = 3,
+        [Description("yyyyMMdd")] DateFormat = 4,
+        [Description("yyyyMMddHHmmss")] FullFormat = 5,
+        [Description("yyyyMMddHHmmssfff")] FullMillsecondFormat = 6,
+        [Description("HH:mm")] Time = 7,
+        [Description("HH:mm:ss")] TimeSecond = 8
     }
 }

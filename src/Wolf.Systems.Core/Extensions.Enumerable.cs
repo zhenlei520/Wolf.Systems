@@ -10,6 +10,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Wolf.Systems.Core.Common;
+using Wolf.Systems.Core.Configuration;
+using Wolf.Systems.Core.InternalConfiguration;
+using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
@@ -154,7 +157,7 @@ namespace Wolf.Systems.Core
             StringBuilder csvrowText = new StringBuilder();
 
             Type entityType = typeof(T);
-            string name = ObjectCommon.SafeObject(tableName.IsNullOrEmpty(),entityType.Name, tableName);
+            string name = ObjectCommon.SafeObject(tableName.IsNullOrEmpty(), entityType.Name, tableName);
             DataTable table = new DataTable(name);
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
 
@@ -342,7 +345,7 @@ namespace Wolf.Systems.Core
         {
             if (pageSize <= 0 && pageSize != -1)
             {
-                throw new BusinessException("页大小必须为正数", errCode ?? HttpStatus.Err.Id);
+                throw new BusinessException("页大小必须为正数", errCode ?? (int) ErrorCode.ParamError);
             }
 
             if (query == null)
@@ -429,7 +432,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static T[] SafeArray<T>(this IEnumerable<T> param)
         {
-            return ObjectCommon.SafeObject(!param.IsNullOrDbNull(),()=>param.ToArray(),()=>new T[0]);
+            return ObjectCommon.SafeObject(!param.IsNullOrDbNull(), () => param.ToArray(), () => new T[0]);
         }
 
         #endregion
@@ -494,19 +497,19 @@ namespace Wolf.Systems.Core
             {
                 return default(T);
             }
+
             var md = new T();
             foreach (var d in keyValuePairs)
             {
                 try
                 {
                     var value = d.Value;
-                    var property=md.GetType().GetProperty(d.Key);
+                    var property = md.GetType().GetProperty(d.Key);
                     if (property != null && property.CanWrite)
                     {
-                        var res=Convert.ChangeType(value, property.PropertyType);
+                        var res = Convert.ChangeType(value, property.PropertyType);
                         property.SetValue(md, res);
                     }
-
                 }
                 catch (System.Exception e)
                 {
@@ -531,7 +534,7 @@ namespace Wolf.Systems.Core
             dynamic obj = new System.Dynamic.ExpandoObject();
             foreach (KeyValuePair<string, object> item in keyValuePairs)
             {
-                ((IDictionary<string, object>)obj).Add(item.Key, item.Value);
+                ((IDictionary<string, object>) obj).Add(item.Key, item.Value);
             }
 
             return obj;

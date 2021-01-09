@@ -10,11 +10,11 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum Blood
     {
-        [EDescribe("A")] A = 1,
-        [EDescribe("B")] B = 2,
-        [EDescribe("AB")] AB = 3,
-        [EDescribe("O")] O = 4,
-        [EDescribe("RhP")] RhP = 5,
-        [EDescribe("RhN")] RhN = 6
+        [Description("A")] A = 1,
+        [Description("B")] B = 2,
+        [Description("AB")] AB = 3,
+        [Description("O")] O = 4,
+        [Description("RhP")] RhP = 5,
+        [Description("RhN")] RhN = 6
     }
 }

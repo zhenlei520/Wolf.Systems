@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
@@ -21,22 +22,10 @@ namespace Wolf.Systems.Core
         /// <param name="dec">带转换的金额</param>
         /// <param name="currencyType">货币类型，默认人民币</param>
         /// <returns></returns>
-        public static string ConvertToCurrency(this decimal dec, CurrencyType currencyType = null)
+        public static string ConvertToCurrency(this decimal dec, CurrencyType currencyType = CurrencyType.Cny)
         {
-            if (currencyType == null)
-            {
-                currencyType = CurrencyType.Cny;
-            }
-
-            IEnumerable<CurrencyProvider> list =
-                new ServiceProvider().GetServicesByAbstract<CurrencyProvider>();
-            var provider = list.FirstOrDefault(x => x.GetCurrencyType.Equals(currencyType));
-            if (provider == null)
-            {
-                throw new BusinessException("暂不支持当前货币转换");
-            }
-
-            return provider.ConvertToCurrency(dec);
+            var provider = GlobalConfigurations.Instance.GetCurrencyProvider(currencyType);
+            return provider?.ConvertToCurrency(dec) ?? throw new BusinessException("暂不支持当前货币转换", ErrorCode.ParamError);
         }
 
         #endregion

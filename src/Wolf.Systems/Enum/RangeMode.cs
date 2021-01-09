@@ -14,9 +14,9 @@ namespace Wolf.Systems.Enum
         /// <summary>
         /// 开区间
         /// </summary>
-        [EDescribe("开区间")] Open = 1,
-        [EDescribe("闭区间")] Close = 2,
-        [EDescribe("左开右闭")] OpenClose = 3,
-        [EDescribe("左闭右开")] CloseOpen = 4
+        [Description("开区间")] Open = 1,
+        [Description("闭区间")] Close = 2,
+        [Description("左开右闭")] OpenClose = 3,
+        [Description("左闭右开")] CloseOpen = 4
     }
 }

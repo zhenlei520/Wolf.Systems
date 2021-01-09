@@ -7,12 +7,12 @@ namespace Wolf.Systems.Abstracts
     /// <summary>
     ///
     /// </summary>
-    public abstract class SecurityProvider
+    public interface ISecurityProvider
     {
         /// <summary>
         /// 加密方式
         /// </summary>
-        public abstract int Type { get; }
+        int Type { get; }
 
         /// <summary>
         /// 加密
@@ -22,7 +22,7 @@ namespace Wolf.Systems.Abstracts
         /// <param name="iv">向量</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>返回加密后的字符串</returns>
-        public abstract string Encrypt(string str, string key,string iv,Encoding encoding);
+        string Encrypt(string str, string key, string iv, Encoding encoding);
 
         /// <summary>
         /// 解密
@@ -32,6 +32,6 @@ namespace Wolf.Systems.Abstracts
         /// <param name="iv">向量</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>返回解密后的字符串</returns>
-        public abstract string Decrypt(string str, string key,string iv,Encoding encoding);
+        string Decrypt(string str, string key, string iv, Encoding encoding);
     }
 }

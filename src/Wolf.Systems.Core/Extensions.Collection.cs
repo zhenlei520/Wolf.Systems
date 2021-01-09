@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Wolf.Systems.Abstracts;
+using Wolf.Systems.Core.Configuration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
@@ -27,7 +27,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static Page<T> ListPager<T>(this ICollection<T> query, int pageSize, int pageIndex, bool isTotal)
         {
-            PageList<T> list = new PageList<T>();
+            Page<T> list = new Page<T>();
 
             if (isTotal)
             {

@@ -13,7 +13,7 @@ namespace Wolf.Systems.Core.Internal.Security
     /// <summary>
     /// Des加解密
     /// </summary>
-    public class DesProvider : SecurityProvider
+    public class DesProvider : ISecurityProvider
     {
         /// <summary>
         /// 默认Iv
@@ -23,7 +23,7 @@ namespace Wolf.Systems.Core.Internal.Security
         /// <summary>
         /// 加密方式
         /// </summary>
-        public override int Type => (int) SecurityType.Des;
+        public int Type => (int) SecurityType.Des;
 
         /// <summary>
         /// Des加密
@@ -33,9 +33,9 @@ namespace Wolf.Systems.Core.Internal.Security
         /// <param name="iv">向量</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>返回加密后的字符串</returns>
-        public override string Encrypt(string str, string key, string iv, Encoding encoding)
+        public string Encrypt(string str, string key, string iv, Encoding encoding)
         {
-            Check(key,iv);
+            Check(key, iv);
             var cryptoTransform = GetCryptoTransform(key.SafeString(), iv.SafeString(),
                 CipherMode.CBC,
                 PaddingMode.PKCS7, encoding, true);
@@ -51,9 +51,9 @@ namespace Wolf.Systems.Core.Internal.Security
         /// <param name="iv">向量</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>返回解密后的字符串</returns>
-        public override string Decrypt(string str, string key, string iv, Encoding encoding)
+        public string Decrypt(string str, string key, string iv, Encoding encoding)
         {
-            Check(key,iv);
+            Check(key, iv);
             var cryptoTransform = GetCryptoTransform(key, iv,
                 CipherMode.CBC,
                 PaddingMode.PKCS7, encoding, false);

@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Wolf.Systems.Core.Configuration;
 
 namespace Wolf.Systems.Core
 {
@@ -11,40 +12,6 @@ namespace Wolf.Systems.Core
     /// </summary>
     public partial class Extensions
     {
-        #region 计算两点位置的距离，返回两点的距离，单位 米
-
-        /// <summary>
-        /// 计算两点位置的距离，返回两点的距离，单位 米
-        /// 该公式为GOOGLE提供，误差小于0.2米
-        /// </summary>
-        /// <param name="x">位置1</param>
-        /// <param name="y">位置2</param>
-        /// <returns></returns>
-        public static double GetDistance(this Points<double, double> x, Points<double, double> y)
-        {
-            return GeometryCommon.GetDistance(x.Y, x.X, y.Y, y.X);
-        }
-
-        #endregion
-
-        #region 判断当前坐标是在圆内
-
-        /// <summary>
-        /// 判断当前坐标是在圆内
-        /// </summary>
-        /// <param name="currentPosition">当前位置</param>
-        /// <param name="point">圆中心经纬度坐标</param>
-        /// <param name="radius">半径，单位：m</param>
-        /// <returns></returns>
-        public static bool IsInRegion(this Points<double, double> currentPosition, Points<double, double> point,
-            int radius)
-        {
-            double distance = currentPosition.GetDistance(point);
-            return radius - distance > 0;
-        }
-
-        #endregion
-
         #region 判断当前坐标是否在多边形内
 
         /// <summary>

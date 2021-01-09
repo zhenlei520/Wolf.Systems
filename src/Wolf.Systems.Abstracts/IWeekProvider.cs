@@ -5,18 +5,18 @@ namespace Wolf.Systems.Abstracts
     /// <summary>
     /// 星期
     /// </summary>
-    public abstract class WeekProvider
+    public interface IWeekProvider
     {
         /// <summary>
         /// 国家
         /// </summary>
-        public abstract int Nationality { get; }
+        int Nationality { get; }
 
         /// <summary>
         /// 得到星期N
         /// </summary>
         /// <param name="serialNumber">序列号</param>
         /// <returns></returns>
-        public abstract string GetName(int serialNumber);
+        string GetName(int serialNumber);
     }
 }

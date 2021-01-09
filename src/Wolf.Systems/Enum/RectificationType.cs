@@ -9,7 +9,7 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum RectificationType
     {
-        [EDescribe("向上取整")] Celling = 1,
-        [EDescribe("向下取整")] Floor = 2,
+        [Description("向上取整")] Celling = 1,
+        [Description("向下取整")] Floor = 2,
     }
 }

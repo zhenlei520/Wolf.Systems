@@ -9,8 +9,8 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum SecurityType
     {
-        [EDescribe("Aes")] Aes = 1,
-        [EDescribe("Des")] Des = 2,
-        [EDescribe("JsAes")] JsAes = 3
+        [Description("Aes")] Aes = 1,
+        [Description("Des")] Des = 2,
+        [Description("JsAes")] JsAes = 3
     }
 }

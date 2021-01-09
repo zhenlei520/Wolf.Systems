@@ -10,12 +10,12 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum Language
     {
-        [EDescribe("汉语")] Chinese = 1,
-        [EDescribe("粤语")] Cantonese = 2,
-        [EDescribe("日语")] Japanese = 3,
-        [EDescribe("英语")] English = 4,
-        [EDescribe("韩语")] Korean = 5,
-        [EDescribe("法语")] French = 6,
-        [EDescribe("印度语")] Hindi = 7
+        [Description("汉语")] Chinese = 1,
+        [Description("粤语")] Cantonese = 2,
+        [Description("日语")] Japanese = 3,
+        [Description("英语")] English = 4,
+        [Description("韩语")] Korean = 5,
+        [Description("法语")] French = 6,
+        [Description("印度语")] Hindi = 7
     }
 }

@@ -1,113 +1,113 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>net461;net462;netstandard2.0;netstandard2.1;</TargetFrameworks>
-        <LangVersion>7.3</LangVersion>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net461;net462;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <Reference Include="Wolf.Systems.UserAgentParse" />
-    </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net462'">
+    <Reference Include="System.Web" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Wolf.Systems.Abstracts\Wolf.Systems.Abstracts.csproj" />
-      <ProjectReference Include="..\Wolf.Systems.UserAgentParse\Wolf.Systems.UserAgentParse.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wolf.Systems.Abstracts\Wolf.Systems.Abstracts.csproj" />
+    <ProjectReference Include="..\Wolf.Systems.UserAgentParse\Wolf.Systems.UserAgentParse.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="Extensions.ByteArray.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Char.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Collection.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Common.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Convert.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.DataRow.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.DataSet.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.DataTable.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.DateTime.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.DbDataReader.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Decimal.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Dictionary.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Double.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Enum.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Enumerable.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Exception.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Expression.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Float.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Geometry.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Int.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.List.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Long.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Object.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Queryable.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Queue.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Security.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Stream.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.String.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.TimeSpan.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Type.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Extensions.Validate.cs">
-        <DependentUpon>Extensions.cs</DependentUpon>
-      </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Extensions.ByteArray.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Char.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Collection.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Common.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Convert.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.DataRow.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.DataSet.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.DataTable.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.DateTime.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.DbDataReader.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Decimal.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Dictionary.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Double.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Enum.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Enumerable.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Exception.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Expression.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Float.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Geometry.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Int.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.List.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Long.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Object.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Queryable.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Queue.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Security.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Stream.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.String.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.TimeSpan.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Type.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Validate.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
 </Project>
