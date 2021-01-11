@@ -109,5 +109,8 @@
       <DependentUpon>Extensions.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+  </ItemGroup>
 </Project>

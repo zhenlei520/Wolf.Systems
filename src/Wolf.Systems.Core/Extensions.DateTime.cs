@@ -4,11 +4,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Wolf.Systems.Core.Common;
-using Wolf.Systems.Core.InternalConfiguration;
+using Wolf.Systems.Core.Internal.Configuration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
@@ -19,157 +18,6 @@ namespace Wolf.Systems.Core
     /// </summary>
     public partial class Extensions
     {
-        #region 初始化
-
-        #region 初始化中国节日
-
-        private static ChineseLunisolarCalendar _china;
-        private static Hashtable _gHoliday;
-        private static Hashtable _nHoliday;
-        private static List<WeekHolidayStruct> _weekHolidayStructs;
-
-        /// <summary>
-        /// 初始化节日
-        /// </summary>
-        private static void InitDate()
-        {
-            _china = new ChineseLunisolarCalendar();
-
-            //公历节日
-            _gHoliday = new Hashtable
-            {
-                {"0101", "元旦"},
-                {"0202", "世界湿地日"},
-                {"0207", "国际声援南非日"},
-                {"0210", "国际气象节"},
-                {"0214", "情人节"},
-                {"0301", "国际海豹日"},
-                {"0303", "全国爱耳日"},
-                {"0305", "雷锋日"},
-                {"0308", "妇女节"},
-                {"0312", "植树节 孙中山逝世纪念日"},
-                {"0314", "国际警察日"},
-                {"0315", "国际消费者权益日"},
-                {"0317", "中国国医节 国际航海日"},
-                {"0321", "世界森林日 消除种族歧视国际日 世界儿歌日"},
-                {"0322", "世界水日"},
-                {"0323", "世界气象日"},
-                {"0324", "世界防治结核病日"},
-                {"0325", "全国中小学生安全教育日"},
-                {"0330", "巴勒斯坦国土日"},
-                {"0401", "愚人节 全国爱国卫生运动月(四月) 税收宣传月(四月)"},
-                {"0405", "清明节"},
-                {"0407", "世界卫生日"},
-                {"0422", "世界地球日"},
-                {"0423", "世界图书和版权日"},
-                {"0424", "亚非新闻工作者日"},
-                {"0501", "劳动节"},
-                {"0504", "青年节"},
-                {"0505", "碘缺乏病防治日"},
-                {"0508", "世界红十字日"},
-                {"0512", "国际护士节"},
-                {"0515", "国际家庭日"},
-                {"0517", "世界电信日"},
-                {"0518", "国际博物馆日"},
-                {"0520", "全国学生营养日"},
-                {"0523", "国际牛奶日"},
-                {"0531", "世界无烟日"},
-                {"0601", "国际儿童节"},
-                {"0605", "世界环境保护日"},
-                {"0606", "全国爱眼日"},
-                {"0617", "防治荒漠化和干旱日"},
-                {"0623", "国际奥林匹克日"},
-                {"0625", "全国土地日"},
-                {"0626", "国际禁毒日"},
-                {"0701", "建党节 香港回归纪念 世界建筑日"},
-                {"0702", "国际体育记者日"},
-                {"0707", "中国人民抗日战争纪念日"},
-                {"0711", "世界人口日"},
-                {"0730", "非洲妇女日"},
-                {"0801", "建军节"},
-                {"0808", "中国男子节 父亲节"},
-                {"0815", "抗日战争胜利纪念"},
-                {"0908", "国际扫盲日 国际新闻工作者日"},
-                {"0909", "毛泽东逝世纪念"},
-                {"0910", "教师节"},
-                {"0914", "世界清洁地球日"},
-                {"0916", "国际臭氧层保护日"},
-                {"0918", "九·一八事变纪念日"},
-                {"0920", "国际爱牙日"},
-                {"0921", "国际和平日"},
-                {"0927", "世界旅游日"},
-                {"0928", "孔子诞辰"},
-                {"1001", "国庆节 国际音乐日 国际老人节"},
-                {"1002", "国际和平与民主自由斗争日"},
-                {"1004", "世界动物日"},
-                {"1008", "全国高血压日 世界视觉日"},
-                {"1009", "世界邮政日 万国邮联日"},
-                {"1010", "辛亥革命纪念日 世界精神卫生日"},
-                {"1013", "世界保健日 国际教师节"},
-                {"1014", "世界标准日"},
-                {"1015", "国际盲人节(白手杖节)"},
-                {"1016", "世界粮食日"},
-                {"1017", "世界消除贫困日"},
-                {"1022", "世界传统医药日"},
-                {"1024", "联合国日 世界发展信息日"},
-                {"1031", "世界勤俭日"},
-                {"1107", "十月社会主义革命纪念日"},
-                {"1108", "中国记者日"},
-                {"1109", "全国消防安全宣传教育日"},
-                {"1110", "世界青年节"},
-                {"1111", "国际科学与和平周(本日所属的一周)"},
-                {"1112", "孙中山诞辰纪念"},
-                {"1114", "世界糖尿病日"},
-                {"1117", "国际大学生节 世界学生节"},
-                {"1121", "世界问候日 世界电视日"},
-                {"1129", "国际声援巴勒斯坦人民国际日"},
-                {"1201", "世界艾滋病日"},
-                {"1203", "世界残疾人日"},
-                {"1205", "国际经济和社会发展志愿人员日"},
-                {"1208", "国际儿童电视日"},
-                {"1209", "世界足球日"},
-                {"1210", "世界人权日"},
-                {"1212", "西安事变纪念日"},
-                {"1213", "南京大屠杀(1937年)纪念日！紧记血泪史！"},
-                {"1220", "澳门回归纪念"},
-                {"1221", "国际篮球日"},
-                {"1224", "平安夜"},
-                {"1225", "圣诞节"},
-                {"1226", "毛主席诞辰"},
-                {"1229", "国际生物多样性日"},
-            };
-
-            //农历节日
-            _nHoliday = new Hashtable
-            {
-                {"0101", "春节"},
-                {"0115", "元宵节"},
-                {"0505", "端午节"},
-                {"0707", "七夕情人节"},
-                {"0715", "中元节"},
-                {"0815", "中秋节"},
-                {"0909", "重阳节"},
-                {"1208", "腊八节"},
-                {"1223", "北方小年(扫房)"},
-                {"1224", "南方小年(掸尘)"},
-            };
-
-            _weekHolidayStructs = new List<WeekHolidayStruct>()
-            {
-                new WeekHolidayStruct(5, 2, 7, "母亲节"),
-                new WeekHolidayStruct(5, 3, 7, "全国助残日"),
-                new WeekHolidayStruct(6, 3, 7, "父亲节"),
-                new WeekHolidayStruct(9, 4, 7, "国际聋人节"),
-                new WeekHolidayStruct(10, 1, 1, "国际住房日"),
-                new WeekHolidayStruct(10, 2, 3, "国际减轻自然灾害日"),
-                new WeekHolidayStruct(11, 4, 4, "感恩节")
-            };
-        }
-
-        #endregion
-
-        #endregion
-
         #region 获得两个日期的间隔
 
         /// <summary>
@@ -656,56 +504,6 @@ namespace Wolf.Systems.Core
 
         #endregion
 
-        #region 阳历转阴历(农历)
-
-        /// <summary>
-        /// 阳历转阴历(农历)
-        /// </summary>
-        /// <param name="dateTime">待转换的日期</param>
-        /// <returns></returns>
-        public static string ConvertToLunar(this DateTime dateTime)
-        {
-            if (dateTime > _china.MaxSupportedDateTime || dateTime < _china.MinSupportedDateTime)
-            {
-                //日期范围：1901 年 2 月 19 日 - 2101 年 1 月 28 日
-                throw new System.Exception(
-                    $"日期超出范围！必须在{_china.MinSupportedDateTime:yyyy-MM-dd}到{_china.MaxSupportedDateTime.ToString($"yyyy-MM-dd")}之间！");
-            }
-
-            string str = $"{GetYear(dateTime)} {GetMonth(dateTime)}{GetDay(dateTime)}";
-            string strJq = GetSolarTerm(dateTime);
-            if (strJq != "")
-            {
-                str += " (" + strJq + ")";
-            }
-
-            string strHoliday = GetHoliday(dateTime);
-            if (strHoliday != "")
-            {
-                str += " " + strHoliday;
-            }
-
-            string strChinaHoliday = GetChinaHoliday(dateTime);
-            if (strChinaHoliday != "")
-            {
-                str += " " + strChinaHoliday;
-            }
-
-            return str;
-        }
-
-        /// <summary>
-        /// 阳历转阴历(农历)
-        /// </summary>
-        /// <param name="dateTimeOffset">待转换的日期</param>
-        /// <returns></returns>
-        public static string ConvertToLunar(this DateTimeOffset dateTimeOffset)
-        {
-            return dateTimeOffset.DateTime.ConvertToLunar();
-        }
-
-        #endregion
-
         #region 获取农历年份
 
         /// <summary>
@@ -715,13 +513,13 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static string GetYear(this DateTime dateTime)
         {
-            int yearIndex = _china.GetSexagenaryYear(dateTime);
+            int yearIndex = GlobalConfigurations.ChineseCalendar.GetSexagenaryYear(dateTime);
             string yearTG = " 甲乙丙丁戊己庚辛壬癸";
             string yearDZ = " 子丑寅卯辰巳午未申酉戌亥";
             string yearSX = " 鼠牛虎兔龙蛇马羊猴鸡狗猪";
-            int year = _china.GetYear(dateTime);
-            int yTg = _china.GetCelestialStem(yearIndex);
-            int yDz = _china.GetTerrestrialBranch(yearIndex);
+            int year = GlobalConfigurations.ChineseCalendar.GetYear(dateTime);
+            int yTg = GlobalConfigurations.ChineseCalendar.GetCelestialStem(yearIndex);
+            int yDz = GlobalConfigurations.ChineseCalendar.GetTerrestrialBranch(yearIndex);
 
             string str = string.Format("[{1}]{2}{3}{0}", year, yearSX[yDz], yearTG[yTg], yearDZ[yDz]);
             return str;
@@ -748,9 +546,9 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static string GetMonth(this DateTime dateTime)
         {
-            int year = _china.GetYear(dateTime);
-            int iMonth = _china.GetMonth(dateTime);
-            int leapMonth = _china.GetLeapMonth(year);
+            int year = GlobalConfigurations.ChineseCalendar.GetYear(dateTime);
+            int iMonth = GlobalConfigurations.ChineseCalendar.GetMonth(dateTime);
+            int leapMonth = GlobalConfigurations.ChineseCalendar.GetLeapMonth(year);
             bool isLeapMonth = iMonth == leapMonth;
             if (leapMonth != 0 && iMonth >= leapMonth)
             {
@@ -796,7 +594,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static string GetDay(this DateTime dateTime)
         {
-            int iDay = _china.GetDayOfMonth(dateTime);
+            int iDay = GlobalConfigurations.ChineseCalendar.GetDayOfMonth(dateTime);
             string szText1 = "初十廿三";
             string szText2 = "一二三四五六七八九十";
             string strDay;
@@ -867,103 +665,6 @@ namespace Wolf.Systems.Core
 
         #endregion
 
-        #region 获取公历(阳历)节日
-
-        /// <summary>
-        /// 获取公历(阳历)节日
-        /// </summary>
-        /// <param name="dateTime"></param>
-        /// <returns></returns>
-        public static string GetHoliday(this DateTime dateTime)
-        {
-            string strReturn = "";
-            object g = _gHoliday[dateTime.Month.ToString("00") + dateTime.Day.ToString("00")];
-            if (g != null)
-            {
-                strReturn = g.ToString();
-            }
-            else
-            {
-                var indexOfMonth = dateTime.GetWeekIndexOfMonth();
-                var dayOfWeek = dateTime.GetDayOfWeek(Nationality.China);
-
-                var weekHolidayStruct = _weekHolidayStructs.FirstOrDefault(x =>
-                    x.Month == dateTime.Month && x.WeekAtMonth == indexOfMonth && x.WeekDay == dayOfWeek);
-                if (weekHolidayStruct != null)
-                {
-                    return weekHolidayStruct.HolidayName;
-                }
-            }
-
-            return strReturn;
-        }
-
-        /// <summary>
-        /// 获取公历(阳历)节日
-        /// </summary>
-        /// <param name="dateTimeOffset"></param>
-        /// <returns></returns>
-        public static string GetHoliday(this DateTimeOffset dateTimeOffset)
-        {
-            return dateTimeOffset.DateTime.GetHoliday();
-        }
-
-        #endregion
-
-        #region 获取农历（阴历）节日
-
-        /// <summary>
-        /// 获取农历（阴历）节日
-        /// </summary>
-        /// <param name="dateTime"></param>
-        /// <returns></returns>
-        public static string GetChinaHoliday(this DateTime dateTime)
-        {
-            string strReturn = "";
-            int year = _china.GetYear(dateTime);
-            int iMonth = _china.GetMonth(dateTime);
-            int leapMonth = _china.GetLeapMonth(year);
-            int iDay = _china.GetDayOfMonth(dateTime);
-            if (_china.GetDayOfYear(dateTime) == _china.GetDaysInYear(year))
-            {
-                strReturn = "除夕";
-            }
-            else if (leapMonth != iMonth)
-            {
-                if (leapMonth != 0 && iMonth >= leapMonth)
-                {
-                    iMonth--;
-                }
-
-                object n = _nHoliday[iMonth.ToString("00") + iDay.ToString("00")];
-                if (n != null)
-                {
-                    if (strReturn == "")
-                    {
-                        strReturn = n.ToString();
-                    }
-                    else
-                    {
-                        strReturn += " " + n;
-                    }
-                }
-            }
-
-            return strReturn;
-        }
-
-        /// <summary>
-        /// 获取农历（阴历）节日
-        /// </summary>
-        /// <param name="dateTimeOffset"></param>
-        /// <returns></returns>
-        public static string GetChinaHoliday(this DateTimeOffset dateTimeOffset)
-        {
-            return dateTimeOffset.DateTime.GetChinaHoliday();
-        }
-
-        #endregion
-
         #region 阴历-阳历-转换
 
         #region 阴历转阳历
@@ -998,10 +699,10 @@ namespace Wolf.Systems.Core
         /// <returns>农历的日期</returns>
         public static DateTime GetSunYearDate(this DateTime dateTime)
         {
-            int year = _china.GetYear(dateTime);
-            int iMonth = _china.GetMonth(dateTime);
-            int iDay = _china.GetDayOfMonth(dateTime);
-            int leapMonth = _china.GetLeapMonth(year);
+            int year = GlobalConfigurations.ChineseCalendar.GetYear(dateTime);
+            int iMonth = GlobalConfigurations.ChineseCalendar.GetMonth(dateTime);
+            int iDay = GlobalConfigurations.ChineseCalendar.GetDayOfMonth(dateTime);
+            int leapMonth = GlobalConfigurations.ChineseCalendar.GetLeapMonth(year);
             if (leapMonth != 0 && iMonth >= leapMonth)
             {
                 iMonth--;
@@ -1086,9 +787,9 @@ namespace Wolf.Systems.Core
         /// 得到dateTime是当月的第几周，如果习惯周一到周日为一周，则nationality传Nationality.China
         /// </summary>
         /// <param name="dateTime">时间</param>
-        /// <param name="nationality">国家，默认为美国</param>
+        /// <param name="nationality">国家，默认为中国</param>
         /// <returns></returns>
-        public static int GetWeekIndexOfMonth(this DateTime dateTime, Nationality nationality = Nationality.Usa)
+        public static int GetWeekIndexOfMonth(this DateTime dateTime, Nationality nationality = Nationality.China)
         {
             int i = dateTime.GetDayOfWeek(Nationality.China);
             if (nationality.Equals(Nationality.China))
@@ -1103,10 +804,10 @@ namespace Wolf.Systems.Core
         /// 得到dateTime是当月的第几周，如果习惯周一到周日为一周，则nationality传Nationality.China
         /// </summary>
         /// <param name="dateTimeOffset">时间</param>
-        /// <param name="nationality">国家，默认为美国</param>
+        /// <param name="nationality">国家，默认为中国</param>
         /// <returns></returns>
         public static int GetWeekIndexOfMonth(this DateTimeOffset dateTimeOffset,
-            Nationality nationality = Nationality.Usa)
+            Nationality nationality = Nationality.China)
         {
             return dateTimeOffset.DateTime.GetWeekIndexOfMonth(nationality);
         }
@@ -1119,9 +820,9 @@ namespace Wolf.Systems.Core
         /// 获取当前是周几(中国时间)
         /// </summary>
         /// <param name="dateTime"></param>
-        /// <param name="nationality">国家，默认为美国</param>
+        /// <param name="nationality">国家，默认为中国</param>
         /// <returns></returns>
-        public static string GetDayName(this DateTime dateTime, Nationality nationality = Nationality.Usa)
+        public static string GetDayName(this DateTime dateTime, Nationality nationality = Nationality.China)
         {
             var dayOfWeek = dateTime.GetDayOfWeek(nationality);
             return GlobalConfigurations.Instance.GetWeekProvider(nationality).GetName(dayOfWeek);
@@ -1131,9 +832,9 @@ namespace Wolf.Systems.Core
         /// 获取当前是周几(中国时间)
         /// </summary>
         /// <param name="dateTimeOffset"></param>
-        /// <param name="nationality">国家，默认为美国</param>
+        /// <param name="nationality">国家，默认为中国</param>
         /// <returns></returns>
-        public static string GetDayName(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.Usa)
+        public static string GetDayName(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.China)
         {
             return dateTimeOffset.DateTime.GetDayName(nationality);
         }
@@ -1148,9 +849,9 @@ namespace Wolf.Systems.Core
         /// 其他国家为：周日是0，周六是7
         /// </summary>
         /// <param name="dateTime">时间</param>
-        /// <param name="nationality">国家，默认英国等</param>
+        /// <param name="nationality">国家，默认中国等</param>
         /// <returns></returns>
-        public static int GetDayOfWeek(this DateTime dateTime, Nationality nationality = Nationality.Usa)
+        public static int GetDayOfWeek(this DateTime dateTime, Nationality nationality = Nationality.China)
         {
             return dateTime.DayOfWeek.GetDayOfWeek(nationality);
         }
@@ -1161,9 +862,9 @@ namespace Wolf.Systems.Core
         /// 其他国家为：周日是0，周六是7
         /// </summary>
         /// <param name="dateTimeOffset">时间</param>
-        /// <param name="nationality">国家，默认英国等</param>
+        /// <param name="nationality">国家，默认中国等</param>
         /// <returns></returns>
-        public static int GetDayOfWeek(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.Usa)
+        public static int GetDayOfWeek(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.China)
         {
             return dateTimeOffset.DateTime.GetDayOfWeek(nationality);
         }
@@ -1174,9 +875,9 @@ namespace Wolf.Systems.Core
         /// 其他国家为：周日是0，周六是7
         /// </summary>
         /// <param name="dayOfWeek"></param>
-        /// <param name="nationality">国家,默认是美国</param>
+        /// <param name="nationality">国家,默认是中国</param>
         /// <returns></returns>
-        public static int GetDayOfWeek(this DayOfWeek dayOfWeek, Nationality nationality = Nationality.Usa)
+        public static int GetDayOfWeek(this DayOfWeek dayOfWeek, Nationality nationality = Nationality.China)
         {
             int? num = dayOfWeek.ToString("d").ConvertToInt();
             if (num == null)
@@ -1184,7 +885,7 @@ namespace Wolf.Systems.Core
                 throw new NotSupportedException(nameof(dayOfWeek));
             }
 
-            if (nationality.Equals(Nationality.China))
+            if (nationality==Nationality.China)
             {
                 if (num == 0)
                 {
@@ -1258,10 +959,10 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="dateTime">时间1</param>
         /// <param name="dateTime2">时间2</param>
-        /// <param name="nationality">国家,默认是美国</param>
+        /// <param name="nationality">国家,默认是中国</param>
         /// <returns></returns>
         public static bool IsInSameWeek(this DateTime dateTime, DateTime dateTime2,
-            Nationality nationality = Nationality.Usa)
+            Nationality nationality = Nationality.China)
         {
             return dateTime.AddDays(-(int) dateTime.GetDayOfWeek(nationality)).Date ==
                    dateTime2.AddDays(-(int) dateTime2.GetDayOfWeek(nationality)).Date;
@@ -1274,10 +975,10 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="dateTimeOffset1">时间1</param>
         /// <param name="dateTimeOffset2">时间2</param>
-        /// <param name="nationality">国家,默认是美国</param>
+        /// <param name="nationality">国家,默认是中国</param>
         /// <returns></returns>
         public static bool IsInSameWeek(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2,
-            Nationality nationality = Nationality.Usa)
+            Nationality nationality = Nationality.China)
         {
             return dateTimeOffset1.AddDays(-(int) dateTimeOffset1.GetDayOfWeek(nationality)).Date ==
                    dateTimeOffset2.AddDays(-(int) dateTimeOffset2.GetDayOfWeek(nationality)).Date;
@@ -1294,10 +995,10 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="dateTime">时间1</param>
         /// <param name="dateTime2">时间2</param>
-        /// <param name="nationality">国家,默认是美国</param>
+        /// <param name="nationality">国家,默认是中国</param>
         /// <returns></returns>
         public static int IntervalWeek(this DateTime dateTime, DateTime dateTime2,
-            Nationality nationality = Nationality.Usa)
+            Nationality nationality = Nationality.China)
         {
             var intervalWeek = Math.Abs((dateTime.AddDays(-(int) dateTime.GetDayOfWeek(nationality)).Date -
                                          dateTime2.AddDays(-(int) dateTime2.GetDayOfWeek(nationality))).TotalDays / 7);
@@ -1311,10 +1012,10 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="dateTimeOffset1">时间1</param>
         /// <param name="dateTimeOffset2">时间2</param>
-        /// <param name="nationality">国家,默认是美国</param>
+        /// <param name="nationality">国家,默认是中国</param>
         /// <returns></returns>
         public static int IntervalWeek(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2,
-            Nationality nationality = Nationality.Usa)
+            Nationality nationality = Nationality.China)
         {
             var intervalWeek = Math.Abs(
                 (dateTimeOffset1.AddDays(-(int) dateTimeOffset1.GetDayOfWeek(nationality)).Date -

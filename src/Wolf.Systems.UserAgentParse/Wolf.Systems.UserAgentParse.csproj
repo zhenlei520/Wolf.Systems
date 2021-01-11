@@ -5,10 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Reference Include="Wolf.Systems" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Wolf.Systems\Wolf.Systems.csproj" />
     </ItemGroup>
 </Project>

@@ -1,13 +1,17 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Wolf.Systems.Abstracts;
-using Wolf.Systems.Core.Internal.Currency;
-using Wolf.Systems.Core.Internal.DateTimes;
-using Wolf.Systems.Core.Internal.Security;
-using Wolf.Systems.Core.Internal.SpecifiedTimeAfter;
+using Wolf.Systems.Core.Provider.Currency;
+using Wolf.Systems.Core.Provider.DateTimes;
+using Wolf.Systems.Core.Provider.IdCard;
+using Wolf.Systems.Core.Provider.Security;
+using Wolf.Systems.Core.Provider.SpecifiedTimeAfter;
+using Wolf.Systems.Core.Provider.Unique;
+using Wolf.Systems.Core.Provider.Week;
 using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Core
@@ -33,6 +37,13 @@ namespace Wolf.Systems.Core
         static GlobalConfigurations()
         {
             Instance.ResetSecurityProviders();
+            Instance.ResetWeekProviders();
+            Instance.ResetDateTimeProviders();
+            Instance.ResetSpecifiedTimeAfterProviders();
+            Instance.ResetCurrencyProviders();
+            Instance.ResetUniqueProviders();
+            Instance.ResetIdCardProviders();
+
             ChineseCalendar = new ChineseLunisolarCalendar();
         }
 
@@ -205,7 +216,7 @@ namespace Wolf.Systems.Core
         {
             _weekProviders = new List<IWeekProvider>()
             {
-                new Wolf.Systems.Core.Internal.Week.ChinaWeekProvider()
+                new ChinaWeekProvider()
             };
         }
 
@@ -518,6 +529,197 @@ namespace Wolf.Systems.Core
         protected void ClearCurrencyProviders()
         {
             _currencyProviders = new List<ICurrencyProvider>();
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 唯一标识
+
+        /// <summary>
+        ///
+        /// </summary>
+        private static IList<IUniqueProvider> _uniqueProviders;
+
+        #region 添加唯一标识提供者
+
+        /// <summary>
+        /// 添加唯一标识提供者
+        /// </summary>
+        /// <param name="uniqueProviders">提供者集合</param>
+        protected void AddUniqueProvider(params IUniqueProvider[] uniqueProviders)
+        {
+            if (uniqueProviders.GetListCount() == 0)
+            {
+                return;
+            }
+
+            var providers = GetUniqueProviders();
+            providers.AddRange(uniqueProviders);
+        }
+
+        #endregion
+
+        #region 得到指定唯一标识提供者集合
+
+        /// <summary>
+        /// 得到指定唯一标识提供者集合
+        /// </summary>
+        /// <returns></returns>
+        public List<IUniqueProvider> GetUniqueProviders()
+        {
+            return _uniqueProviders?.ToList() ?? new List<IUniqueProvider>();
+        }
+
+        #endregion
+
+        #region 得到指定唯一标识提供者
+
+        /// <summary>
+        /// 得到指定唯一标识提供者
+        /// </summary>
+        /// <param name="type">唯一标识类型</param>
+        /// <returns></returns>
+        public IUniqueProvider GetUniqueProvider(int type)
+        {
+            return GetUniqueProviders().FirstOrDefault(x => x.Type == type);
+        }
+
+        /// <summary>
+        /// 得到唯一标识提供者
+        /// </summary>
+        /// <param name="sequentialGuidType">唯一标识类型</param>
+        /// <returns></returns>
+        public IUniqueProvider GetUniqueProvider(SequentialGuidType sequentialGuidType)
+        {
+            return GetUniqueProvider((int) sequentialGuidType);
+        }
+
+        #endregion
+
+        #region 重置唯一标识提供者为初始状态
+
+        /// <summary>
+        /// 重置唯一标识提供者为初始状态
+        /// </summary>
+        /// <returns></returns>
+        protected void ResetUniqueProviders()
+        {
+            _uniqueProviders = new List<IUniqueProvider>()
+            {
+                new SequentialAsStringProvider(),
+                new SequentialAsBinaryProvider(),
+                new SequentialAtEndProvider(),
+                new GuidProvider()
+            };
+        }
+
+        #endregion
+
+        #region 清空唯一标识提供者
+
+        /// <summary>
+        /// 清空唯一标识提供者
+        /// </summary>
+        /// <returns></returns>
+        protected void ClearUniqueProviders()
+        {
+            _uniqueProviders = new List<IUniqueProvider>();
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 身份证身份提供者
+
+        /// <summary>
+        ///
+        /// </summary>
+        private static IList<IIdCardProvider> _idCardProviders;
+
+        #region 添加身份证身份提供者
+
+        /// <summary>
+        /// 添加身份证身份提供者
+        /// </summary>
+        /// <param name="idCardProviders">提供者集合</param>
+        protected void AddIdCardProvider(params IIdCardProvider[] idCardProviders)
+        {
+            if (idCardProviders.GetListCount() == 0)
+            {
+                return;
+            }
+
+            var providers = GetIdCardProviders();
+            providers.AddRange(idCardProviders);
+        }
+
+        #endregion
+
+        #region 得到指定身份证身份提供者集合
+
+        /// <summary>
+        /// 得到指定身份证身份提供者集合
+        /// </summary>
+        /// <returns></returns>
+        public List<IIdCardProvider> GetIdCardProviders()
+        {
+            return _idCardProviders?.ToList() ?? new List<IIdCardProvider>();
+        }
+
+        #endregion
+
+        #region 得到指定身份证身份提供者
+
+        /// <summary>
+        /// 得到指定身份证身份提供者
+        /// </summary>
+        /// <param name="nationality">国家</param>
+        /// <returns></returns>
+        public IIdCardProvider GetIdCardProvider(int nationality)
+        {
+            return GetIdCardProviders().FirstOrDefault(x => x.Nationality == nationality);
+        }
+
+        /// <summary>
+        /// 得到身份证身份提供者
+        /// </summary>
+        /// <param name="nationality">国家</param>
+        /// <returns></returns>
+        public IIdCardProvider GetIdCardProvider(Nationality nationality)
+        {
+            return GetIdCardProvider((int) nationality);
+        }
+
+        #endregion
+
+        #region 重置身份证身份提供者为初始状态
+
+        /// <summary>
+        /// 重置身份证身份提供者为初始状态
+        /// </summary>
+        /// <returns></returns>
+        protected void ResetIdCardProviders()
+        {
+            _idCardProviders = new List<IIdCardProvider>()
+            {
+                new ChinaIdCardProvider(),
+            };
+        }
+
+        #endregion
+
+        #region 清空身份证身份提供者
+
+        /// <summary>
+        /// 清空身份证身份提供者
+        /// </summary>
+        /// <returns></returns>
+        protected void ClearIdCardProviders()
+        {
+            _idCardProviders = new List<IIdCardProvider>();
         }
 
         #endregion

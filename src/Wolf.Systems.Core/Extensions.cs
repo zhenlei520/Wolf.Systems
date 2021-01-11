@@ -13,10 +13,6 @@ namespace Wolf.Systems.Core
         /// </summary>
         static Extensions()
         {
-            InitConstellationData();
-            InitDate();
-            InitDateTimeProvider();
-            InitSecurity();
         }
     }
 }

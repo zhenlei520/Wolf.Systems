@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using Wolf.Systems.Core.Common;
 using Wolf.Systems.Core.Configuration;
-using Wolf.Systems.Core.InternalConfiguration;
+using Wolf.Systems.Core.Internal.Configuration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
