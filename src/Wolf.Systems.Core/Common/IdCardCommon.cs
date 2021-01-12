@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
+using Wolf.Systems.Abstracts;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
@@ -22,13 +23,13 @@ namespace Wolf.Systems.Core.Common
         /// <returns></returns>
         public static Animal? GetAnimal(string cardNo, Nationality nationality = Nationality.China)
         {
-            if (!cardNo.IsIdCard())
+            var animal = GetCardProvider(nationality).GetAnimal(cardNo);
+            if (animal != null)
             {
-                return null;
+                return (Animal) animal;
             }
 
-            var birthday = GetBirthday(cardNo);
-            return birthday != null ? TimeCommon.GetAnimal(birthday.Value.Year) : null;
+            return null;
         }
 
         #endregion
@@ -40,20 +41,10 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <param name="cardNo">身份证号码</param>
         /// <param name="nationality">国家，默认中国</param>
-        /// <param name="func"></param>
         /// <returns></returns>
-        public static DateTime? GetBirthday(string cardNo, Nationality nationality = Nationality.China, Func<DateTime?> func = null)
+        public static DateTime? GetBirthday(string cardNo, Nationality nationality = Nationality.China)
         {
-            if (!cardNo.IsIdCard())
-            {
-                throw new BusinessException("请输入合法的身份证号码", ErrorCode.ParamError);
-            }
-
-            string timeStr = cardNo.Length == 15
-                ? ("19" + cardNo.Substring(6, 2)) + "-" + cardNo.Substring(8, 2) + "-" +
-                  cardNo.Substring(10, 2)
-                : cardNo.Substring(6, 4) + "-" + cardNo.Substring(10, 2) + "-" + cardNo.Substring(12, 2);
-            return timeStr.ConvertToDateTime(func?.Invoke());
+            return GetCardProvider(nationality).GetBirthday(cardNo);
         }
 
         #endregion
@@ -65,24 +56,16 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <param name="cardNo">身份证号码</param>
         /// <param name="nationality">国家，默认中国</param>
-        /// <param name="action">查询性别失败转换，默认为未知</param>
         /// <returns></returns>
-        public static Gender? GetGender(string cardNo, Nationality nationality = Nationality.China,Func<Gender> action = null)
+        public static Gender? GetGender(string cardNo, Nationality nationality = Nationality.China)
         {
-            // var provider = GlobalConfigurations.Instance.GetIdCardProvider(nationality);
-
-            if (!cardNo.IsIdCard())
+            var gender= GetCardProvider(nationality).GetGender(cardNo);
+            if (gender != null)
             {
-                return action?.Invoke() ?? null;
+                return (Gender) gender;
             }
 
-            int? gender = (cardNo.Length == 15 ? cardNo.Substring(14, 1) : cardNo.Substring(16, 1)).ConvertToInt(null);
-            if (gender == null)
-            {
-                return action?.Invoke() ?? null;
-            }
-
-            return gender % 2 == 0 ? Gender.Girl : Gender.Boy;
+            return null;
         }
 
         #endregion
@@ -95,16 +78,35 @@ namespace Wolf.Systems.Core.Common
         /// <param name="cardNo">身份证号码</param>
         /// <param name="nationality">国家，默认中国</param>
         /// <returns></returns>
-        public static Constellation? GetConstellation(string cardNo,Nationality nationality = Nationality.China)
+        public static Constellation? GetConstellation(string cardNo, Nationality nationality = Nationality.China)
         {
-            if (cardNo.IsIdCard())
+            var constellation= GetCardProvider(nationality).GetConstellation(cardNo);
+            if (constellation != null)
             {
-                return ObjectCommon.SafeObject(!cardNo.IsNullOrWhiteSpace(),
-                    GetBirthday(cardNo).GetConstellationFromBirthday(), () => null);
+                return (Constellation) constellation;
             }
 
             return null;
         }
+
+        #endregion
+
+        #region private methods
+
+        #region 得到身份证提供者
+
+        /// <summary>
+        /// 得到身份证提供者
+        /// </summary>
+        /// <param name="nationality">国家</param>
+        /// <returns></returns>
+        private static IIdCardProvider GetCardProvider(Nationality nationality)
+        {
+            return GlobalConfigurations.Instance.GetIdCardProvider(nationality) ??
+                   throw new BusinessException("不支持的身份证提供者");
+        }
+
+        #endregion
 
         #endregion
     }

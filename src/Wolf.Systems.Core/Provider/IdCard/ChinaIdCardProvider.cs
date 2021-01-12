@@ -3,6 +3,9 @@
 
 using System;
 using Wolf.Systems.Abstracts;
+using Wolf.Systems.Core.Common;
+using Wolf.Systems.Enum;
+using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Provider.IdCard
 {
@@ -15,6 +18,8 @@ namespace Wolf.Systems.Core.Provider.IdCard
         /// 国家
         /// </summary>
         public int Nationality => (int) Enum.Nationality.China;
+
+        #region 是否身份证
 
         /// <summary>
         /// 是否身份证
@@ -87,5 +92,110 @@ namespace Wolf.Systems.Core.Provider.IdCard
 
             return true; //符合15位身份证标准
         }
+
+        #endregion
+
+        #region 得到生肖信息
+
+        /// <summary>
+        /// 得到生肖信息
+        /// </summary>
+        /// <param name="cardNo">身份证号</param>
+        /// <returns></returns>
+        public int? GetAnimal(string cardNo)
+        {
+            if (!IsIdCard(cardNo))
+            {
+                return null;
+            }
+            var birthday = GetBirthday(cardNo);
+            if (birthday != null)
+            {
+                var animal = TimeCommon.GetAnimal(birthday.Value.Year);
+                if (animal != null)
+                {
+                    return (int) animal;
+                }
+            }
+
+            return null;
+        }
+
+        #endregion
+
+        #region 得到生日信息
+
+
+        /// <summary>
+        /// 得到生日信息
+        /// </summary>
+        /// <param name="cardNo">身份证号</param>
+        /// <returns></returns>
+        public DateTime? GetBirthday(string cardNo)
+        {
+            if (!IsIdCard(cardNo))
+            {
+                return null;
+            }
+
+            string timeStr = cardNo.Length == 15
+                ? "19" + cardNo.Substring(6, 2) + "-" + cardNo.Substring(8, 2) + "-" +
+                  cardNo.Substring(10, 2)
+                : cardNo.Substring(6, 4) + "-" + cardNo.Substring(10, 2) + "-" + cardNo.Substring(12, 2);
+            return timeStr.ConvertToDateTime();
+        }
+
+        #endregion
+
+        #region 得到性别
+
+        /// <summary>
+        /// 得到性别
+        /// </summary>
+        /// <param name="cardNo">身份证号</param>
+        /// <returns></returns>
+        public int? GetGender(string cardNo)
+        {
+            if (!IsIdCard(cardNo))
+            {
+                return null;
+            }
+
+            int? gender = (cardNo.Length == 15 ? cardNo.Substring(14, 1) : cardNo.Substring(16, 1)).ConvertToInt(null);
+            if (gender == null)
+            {
+                return  null;
+            }
+
+            return gender % 2 == 0 ? (int)Gender.Girl : (int)Gender.Boy;
+        }
+
+        #endregion
+
+        #region 得到生肖
+
+        /// <summary>
+        /// 得到生肖
+        /// </summary>
+        /// <param name="cardNo">身份证号</param>
+        /// <returns></returns>
+        public int? GetConstellation(string cardNo)
+        {
+            if (IsIdCard(cardNo))
+            {
+                if (!cardNo.IsNullOrWhiteSpace())
+                {
+                    var constellation= GetBirthday(cardNo).GetConstellationFromBirthday();
+                    if (constellation != null)
+                    {
+                        return (int) constellation;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        #endregion
     }
 }
