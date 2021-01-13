@@ -4,6 +4,14 @@
     <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Wolf.Systems.Data.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\Wolf.Systems.Data.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="Provider" />
   </ItemGroup>

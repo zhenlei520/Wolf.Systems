@@ -6,4 +6,12 @@
     <Description>自定义抽象库</Description>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Wolf.Systems.Abstracts.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\Wolf.Systems.Abstracts.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
