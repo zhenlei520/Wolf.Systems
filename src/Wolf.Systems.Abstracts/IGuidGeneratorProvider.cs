@@ -5,7 +5,7 @@ namespace Wolf.Systems.Abstracts
     /// <summary>
     ///
     /// </summary>
-    public interface IUniqueProvider
+    public interface IGuidGeneratorProvider
     {
         /// <summary>
         /// 类型

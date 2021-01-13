@@ -4,20 +4,24 @@
 using System;
 using System.Security.Cryptography;
 using Wolf.Systems.Abstracts;
+using Wolf.Systems.Data.Enumerations;
 
-namespace Wolf.Systems.Core.Provider.Unique
+namespace Wolf.Systems.Data.Provider.Unique
 {
     /// <summary>
     ///
     /// </summary>
-    public class SequentialAtEndProvider : IUniqueProvider
+    public class SequentialAsStringProvider : IGuidGeneratorProvider
     {
-        private static readonly RandomNumberGenerator RandomNumberGenerator = RandomNumberGenerator.Create();
-
         /// <summary>
         ///
         /// </summary>
-        public int Type => (int) Wolf.Systems.Enum.SequentialGuidType.SequentialAtEnd;
+        private static readonly RandomNumberGenerator RandomNumberGenerator = RandomNumberGenerator.Create();
+
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public int Type => SequentialGuidType.SequentialAsString.Id;
 
         /// <summary>
         ///
@@ -29,9 +33,6 @@ namespace Wolf.Systems.Core.Provider.Unique
             var randomBytes = new byte[10];
             RandomNumberGenerator.GetBytes(randomBytes);
 
-            // Using millisecond resolution for our 48-bit timestamp gives us
-            // about 5900 years before the timestamp overflows and cycles.
-            // Hopefully this should be sufficient for most purposes. :)
             long timestamp = DateTime.UtcNow.Ticks / 10000L;
 
             // Then get the bytes
@@ -46,10 +47,22 @@ namespace Wolf.Systems.Core.Provider.Unique
 
             byte[] guidBytes = new byte[16];
 
-            // For sequential-at-the-end versions, we copy the random data first,
-            // followed by the timestamp.
-            Buffer.BlockCopy(randomBytes, 0, guidBytes, 0, 10);
-            Buffer.BlockCopy(timestampBytes, 2, guidBytes, 10, 6);
+
+            // For string and byte-array version, we copy the timestamp first, followed
+            // by the random data.
+            Buffer.BlockCopy(timestampBytes, 2, guidBytes, 0, 6);
+            Buffer.BlockCopy(randomBytes, 0, guidBytes, 6, 10);
+
+            // If formatting as a string, we have to compensate for the fact
+            // that .NET regards the Data1 and Data2 block as an Int32 and an Int16,
+            // respectively.  That means that it switches the order on little-endian
+            // systems.  So again, we have to reverse.
+            if (BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(guidBytes, 0, 4);
+                Array.Reverse(guidBytes, 4, 2);
+            }
+
 
             return new Guid(guidBytes);
         }

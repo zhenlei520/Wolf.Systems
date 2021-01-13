@@ -5,7 +5,7 @@ namespace Wolf.Systems.Enum
     /// <summary>
     ///
     /// </summary>
-    public enum SequentialGuidType
+    public enum SequentialGuidType2
     {
         /// <summary>
         /// The GUID should be sequential when formatted using the <see cref="Guid.ToString()" /> method.

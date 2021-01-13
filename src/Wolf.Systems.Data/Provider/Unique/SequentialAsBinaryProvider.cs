@@ -4,13 +4,14 @@
 using System;
 using System.Security.Cryptography;
 using Wolf.Systems.Abstracts;
+using Wolf.Systems.Data.Enumerations;
 
-namespace Wolf.Systems.Core.Provider.Unique
+namespace Wolf.Systems.Data.Provider.Unique
 {
     /// <summary>
     ///
     /// </summary>
-    public class SequentialAsStringProvider : IUniqueProvider
+    public class SequentialAsBinaryProvider : IGuidGeneratorProvider
     {
         /// <summary>
         ///
@@ -20,7 +21,7 @@ namespace Wolf.Systems.Core.Provider.Unique
         /// <summary>
         /// 类型
         /// </summary>
-        public int Type => (int) Wolf.Systems.Enum.SequentialGuidType.SequentialAsString;
+        public int Type => SequentialGuidType.SequentialAsBinary.Id;
 
         /// <summary>
         ///
@@ -46,22 +47,10 @@ namespace Wolf.Systems.Core.Provider.Unique
 
             byte[] guidBytes = new byte[16];
 
-
             // For string and byte-array version, we copy the timestamp first, followed
             // by the random data.
             Buffer.BlockCopy(timestampBytes, 2, guidBytes, 0, 6);
             Buffer.BlockCopy(randomBytes, 0, guidBytes, 6, 10);
-
-            // If formatting as a string, we have to compensate for the fact
-            // that .NET regards the Data1 and Data2 block as an Int32 and an Int16,
-            // respectively.  That means that it switches the order on little-endian
-            // systems.  So again, we have to reverse.
-            if (BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(guidBytes, 0, 4);
-                Array.Reverse(guidBytes, 4, 2);
-            }
-
 
             return new Guid(guidBytes);
         }

@@ -3,18 +3,19 @@
 
 using System;
 using Wolf.Systems.Abstracts;
+using Wolf.Systems.Enumerations;
 
 namespace Wolf.Systems.Core.Provider.Unique
 {
     /// <summary>
     ///
     /// </summary>
-    public class GuidProvider:IUniqueProvider
+    public class GuidProvider : IGuidGeneratorProvider
     {
         /// <summary>
         ///
         /// </summary>
-        public int Type => (int) Wolf.Systems.Enum.SequentialGuidType.Guid;
+        public int Type => (int) SequentialGuidType.Default.Id;
 
         /// <summary>
         ///

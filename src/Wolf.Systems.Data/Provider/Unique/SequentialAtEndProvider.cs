@@ -4,23 +4,21 @@
 using System;
 using System.Security.Cryptography;
 using Wolf.Systems.Abstracts;
+using Wolf.Systems.Data.Enumerations;
 
-namespace Wolf.Systems.Core.Provider.Unique
+namespace Wolf.Systems.Data.Provider.Unique
 {
     /// <summary>
     ///
     /// </summary>
-    public class SequentialAsBinaryProvider : IUniqueProvider
+    public class SequentialAtEndProvider : IGuidGeneratorProvider
     {
-        /// <summary>
-        ///
-        /// </summary>
         private static readonly RandomNumberGenerator RandomNumberGenerator = RandomNumberGenerator.Create();
 
         /// <summary>
-        /// 类型
+        ///
         /// </summary>
-        public int Type => (int) Wolf.Systems.Enum.SequentialGuidType.SequentialAsBinary;
+        public int Type => SequentialGuidType.SequentialAtEnd.Id;
 
         /// <summary>
         ///
@@ -32,6 +30,9 @@ namespace Wolf.Systems.Core.Provider.Unique
             var randomBytes = new byte[10];
             RandomNumberGenerator.GetBytes(randomBytes);
 
+            // Using millisecond resolution for our 48-bit timestamp gives us
+            // about 5900 years before the timestamp overflows and cycles.
+            // Hopefully this should be sufficient for most purposes. :)
             long timestamp = DateTime.UtcNow.Ticks / 10000L;
 
             // Then get the bytes
@@ -46,10 +47,10 @@ namespace Wolf.Systems.Core.Provider.Unique
 
             byte[] guidBytes = new byte[16];
 
-            // For string and byte-array version, we copy the timestamp first, followed
-            // by the random data.
-            Buffer.BlockCopy(timestampBytes, 2, guidBytes, 0, 6);
-            Buffer.BlockCopy(randomBytes, 0, guidBytes, 6, 10);
+            // For sequential-at-the-end versions, we copy the random data first,
+            // followed by the timestamp.
+            Buffer.BlockCopy(randomBytes, 0, guidBytes, 0, 10);
+            Buffer.BlockCopy(timestampBytes, 2, guidBytes, 10, 6);
 
             return new Guid(guidBytes);
         }

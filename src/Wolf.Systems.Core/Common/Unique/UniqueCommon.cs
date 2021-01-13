@@ -2,7 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
-using Wolf.Systems.Enum;
+using Wolf.Systems.Enumerations;
 
 namespace Wolf.Systems.Core.Common.Unique
 {
@@ -19,7 +19,13 @@ namespace Wolf.Systems.Core.Common.Unique
         /// </summary>
         public static Guid Guids(SequentialGuidType guidType)
         {
-            return GlobalConfigurations.Instance.GetUniqueProvider(guidType).GetGuid();
+            var provider = GlobalConfigurations.Instance.GetGuidGeneratorProvider(guidType);
+            if (provider == null)
+            {
+                throw new NotImplementedException("不支持的guidType");
+            }
+
+            return provider.GetGuid();
         }
 
         #endregion
