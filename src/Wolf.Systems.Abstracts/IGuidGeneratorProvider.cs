@@ -16,6 +16,6 @@ namespace Wolf.Systems.Abstracts
         /// 得到Guid
         /// </summary>
         /// <returns></returns>
-        Guid GetGuid();
+        Guid Create();
     }
 }

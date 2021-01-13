@@ -21,7 +21,7 @@ namespace Wolf.Systems.Core.Provider.Unique
         ///
         /// </summary>
         /// <returns></returns>
-        public Guid GetGuid()
+        public Guid Create()
         {
             return Guid.NewGuid();
         }

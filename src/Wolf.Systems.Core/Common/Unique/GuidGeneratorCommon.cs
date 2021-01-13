@@ -9,7 +9,7 @@ namespace Wolf.Systems.Core.Common.Unique
     /// <summary>
     /// 唯一方法实现
     /// </summary>
-    public static class UniqueCommon
+    public static class GuidGeneratorCommon
     {
         #region 全局唯一Guid
 
@@ -17,7 +17,7 @@ namespace Wolf.Systems.Core.Common.Unique
         /// 全局唯一Guid
         /// 参考abp中生成连续的guid改编而成
         /// </summary>
-        public static Guid Guids(SequentialGuidType guidType)
+        public static Guid Create(SequentialGuidType guidType)
         {
             var provider = GlobalConfigurations.Instance.GetGuidGeneratorProvider(guidType);
             if (provider == null)
@@ -25,7 +25,7 @@ namespace Wolf.Systems.Core.Common.Unique
                 throw new NotImplementedException("不支持的guidType");
             }
 
-            return provider.GetGuid();
+            return provider.Create();
         }
 
         #endregion

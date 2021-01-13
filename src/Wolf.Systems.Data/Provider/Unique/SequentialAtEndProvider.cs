@@ -24,7 +24,7 @@ namespace Wolf.Systems.Data.Provider.Unique
         ///
         /// </summary>
         /// <returns></returns>
-        public Guid GetGuid()
+        public Guid Create()
         {
             // We start with 16 bytes of cryptographically strong random data.
             var randomBytes = new byte[10];
