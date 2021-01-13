@@ -18,12 +18,6 @@ namespace Wolf.Systems.Data.Abstractions
     public interface IQuery<TEntity, T> where TEntity : IEntity<T> where T : IComparable
     {
         /// <summary>
-        /// 得到实现类唯一标示
-        /// </summary>
-        /// <returns></returns>
-        string GetIdentify();
-
-        /// <summary>
         /// 根据条件得到满足条件的单条信息
         /// </summary>
         /// <param name="condition">条件</param>

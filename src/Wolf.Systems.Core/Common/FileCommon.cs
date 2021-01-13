@@ -483,7 +483,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="fileName">带后缀的文件名</param>
         /// <param name="content">文件内容</param>
         /// <param name="encoding">编码格式，默认格式：UTF8</param>
-        public static void CreateFile(string directory, string fileName, string content, Encoding encoding = null)
+        public static void CreateFile(string directory, string fileName, string content, Encoding encoding)
         {
             encoding = encoding ?? Encoding.UTF8;
             fileName = fileName.Replace("/", "\\");

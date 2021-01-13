@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Internal" />
     <Folder Include="Provider" />
   </ItemGroup>
 

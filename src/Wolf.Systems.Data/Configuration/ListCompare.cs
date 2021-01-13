@@ -2,9 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Wolf.Systems.Data;
 using Wolf.Systems.Data.Abstractions;
-using Wolf.Systems.Data.Entities;
 
 // ReSharper disable once CheckNamespace
 namespace Wolf.Systems.Core.Configuration

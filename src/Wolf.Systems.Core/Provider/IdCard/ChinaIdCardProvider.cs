@@ -5,7 +5,6 @@ using System;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Core.Common;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Provider.IdCard
 {
