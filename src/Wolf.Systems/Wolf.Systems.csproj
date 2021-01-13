@@ -2,6 +2,9 @@
 
     <PropertyGroup>
         <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
+        <Title>自定义系统配置库</Title>
+        <Description>自定义系统配置库</Description>
+        <PackageTags>Wolf.Systems Systems Commmon</PackageTags>
     </PropertyGroup>
 
 </Project>
