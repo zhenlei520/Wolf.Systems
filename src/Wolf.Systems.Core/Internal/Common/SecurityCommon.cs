@@ -174,7 +174,7 @@ namespace Wolf.Systems.Core.Internal.Common
         {
             using (var hashAlgorithm = new SHA1Managed())
             {
-                return stream.ConvertToByteArray().GetSha(hashAlgorithm, isUpper);
+                return stream.GetSha(hashAlgorithm, isUpper);
             }
         }
 
@@ -221,7 +221,7 @@ namespace Wolf.Systems.Core.Internal.Common
         {
             using (var hashAlgorithm = new SHA256Managed())
             {
-                return stream.ConvertToByteArray().GetSha(hashAlgorithm, isUpper);
+                return stream.GetSha(hashAlgorithm, isUpper);
             }
         }
 
@@ -268,7 +268,7 @@ namespace Wolf.Systems.Core.Internal.Common
         {
             using (var hashAlgorithm = new SHA384Managed())
             {
-                return stream.ConvertToByteArray().GetSha(hashAlgorithm, isUpper);
+                return stream.GetSha(hashAlgorithm, isUpper);
             }
         }
 
@@ -315,7 +315,7 @@ namespace Wolf.Systems.Core.Internal.Common
         {
             using (var hashAlgorithm = new SHA512Managed())
             {
-                return stream.ConvertToByteArray().GetSha(hashAlgorithm, isUpper);
+                return stream.GetSha(hashAlgorithm, isUpper);
             }
         }
 
