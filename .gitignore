@@ -37,3 +37,4 @@ node_modules/
 global.json
 BenchmarkDotNet.Artifacts/
 *.binlog
+.idea
