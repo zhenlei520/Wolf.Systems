@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
-        <Title>自定义系统配置库</Title>
-        <Description>自定义系统配置库</Description>
-        <PackageTags>Wolf.Systems Systems Commmon</PackageTags>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <Title>自定义系统配置库</Title>
+    <Description>自定义系统配置库</Description>
+    <PackageTags>Wolf.Systems Systems Commmon</PackageTags>
+    <PackageProjectUrl>https://www.nuget.org/packages/$(AssemblyName)</PackageProjectUrl>
+  </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DocumentationFile>bin\Debug\Wolf.Systems.xml</DocumentationFile>
-    </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Wolf.Systems.xml</DocumentationFile>
+  </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\Wolf.Systems.xml</DocumentationFile>
-    </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\Wolf.Systems.xml</DocumentationFile>
+  </PropertyGroup>
 
 </Project>

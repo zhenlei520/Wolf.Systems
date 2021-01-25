@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <PackageProjectUrl>https://www.nuget.org/packages/$(AssemblyName)</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -13,11 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Provider" />
+    <Folder Include="Provider"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Wolf.Systems.Core\Wolf.Systems.Core.csproj" />
+    <ProjectReference Include="..\Wolf.Systems.Core\Wolf.Systems.Core.csproj"/>
   </ItemGroup>
 
 </Project>
