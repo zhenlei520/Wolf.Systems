@@ -14,4 +14,5 @@ set "package=*.nupkg"
 
 for /r %%i in (%package%) do ( 
 dotnet nuget push %%~ni.nupkg --source %3
+dotnet nuget push %%~ni.snupkg --source %3
 )
