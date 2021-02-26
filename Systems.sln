@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.Abstracts", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.Data", "src\Wolf.Systems.Data\Wolf.Systems.Data.csproj", "{61C1C895-DBD8-4875-B0B9-4964DE504223}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.UnitTest", "test\Wolf.Systems.UnitTest\Wolf.Systems.UnitTest.csproj", "{21B61C82-C835-4D27-B2CA-B49B6153D1FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,7 @@ Global
 		{F3B590C4-6B4D-4516-A645-D24C1A1CE93A} = {147844EE-5826-47AD-A828-61BC20FE85A2}
 		{D83AA09D-DD99-4276-9628-70754DBCF788} = {147844EE-5826-47AD-A828-61BC20FE85A2}
 		{61C1C895-DBD8-4875-B0B9-4964DE504223} = {147844EE-5826-47AD-A828-61BC20FE85A2}
+		{21B61C82-C835-4D27-B2CA-B49B6153D1FB} = {CE855983-A583-46B5-8C08-9B6C7B92AF19}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7F8EF514-CBAF-4913-82CB-B43525A0B8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,5 +43,9 @@ Global
 		{61C1C895-DBD8-4875-B0B9-4964DE504223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C1C895-DBD8-4875-B0B9-4964DE504223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61C1C895-DBD8-4875-B0B9-4964DE504223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

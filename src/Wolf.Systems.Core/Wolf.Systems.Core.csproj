@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
     <Title>自定义常用基础方法</Title>
     <Description>自定义常用基础方法</Description>
     <PackageTags>Wolf.Systems Systems Commmon</PackageTags>

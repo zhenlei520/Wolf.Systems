@@ -5,6 +5,7 @@
 	<Import Project="build\version.props" />
   
   <PropertyGroup>
+    <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
 	<PackageId>$(AssemblyName)</PackageId>
     <PackageIcon>packageIcon.png</PackageIcon>
     <Authors>zhenlei520</Authors>
@@ -19,11 +20,20 @@
     <IsProductComponent>false</IsProductComponent>
     <IsTestProject Condition="$(MSBuildProjectName.EndsWith('Tests')) OR $(MSBuildProjectName.EndsWith('.Test'))">true</IsTestProject>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(RepositoryRoot)cert.pfx</AssemblyOriginatorKeyFile>
+	<IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
 	<None Include="$(RepositoryRoot)packageIcon.png">
 	  <Pack>True</Pack>
 	  <PackagePath></PackagePath>
 	</None>
+    <None Include="$(RepositoryRoot)LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
