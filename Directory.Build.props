@@ -21,11 +21,10 @@
     <IsTestProject Condition="$(MSBuildProjectName.EndsWith('Tests')) OR $(MSBuildProjectName.EndsWith('.Test'))">true</IsTestProject>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(RepositoryRoot)cert.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(RepositoryRoot)cert.snk</AssemblyOriginatorKeyFile>
 	<IncludeSymbols>true</IncludeSymbols>
+    <DelaySign>true</DelaySign>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	<SignAssembly>false</SignAssembly>
-	<!--<SignAssembly>false</SignAssembly>-->
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
