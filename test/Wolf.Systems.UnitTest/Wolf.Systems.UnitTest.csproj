@@ -8,7 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-        <PackageReference Include="Wolf.Systems.Core" Version="0.0.1-preview-t003" />
+        <PackageReference Include="Wolf.Systems.Core" Version="0.0.1-preview-t004" />
         <PackageReference Include="xunit" Version="2.4.0" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
         <PackageReference Include="coverlet.collector" Version="1.2.0" />

@@ -24,6 +24,8 @@
     <AssemblyOriginatorKeyFile>$(RepositoryRoot)cert.pfx</AssemblyOriginatorKeyFile>
 	<IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<SignAssembly>false</SignAssembly>
+	<!--<SignAssembly>false</SignAssembly>-->
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
