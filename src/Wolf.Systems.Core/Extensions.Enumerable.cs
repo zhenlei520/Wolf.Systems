@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -385,7 +384,7 @@ namespace Wolf.Systems.Core
         /// <param name="keyGetter">Key键</param>
         /// <param name="valueGetter">Key值</param>
         /// <returns></returns>
-        public static Dictionary<TKey, TValue> ToDictionary<TElement, TKey, TValue>(
+        public static Dictionary<TKey, TValue> SafeToDictionary<TElement, TKey, TValue>(
             this IEnumerable<TElement> source,
             Func<TElement, TKey> keyGetter,
             Func<TElement, TValue> valueGetter)

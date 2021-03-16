@@ -137,7 +137,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         public IDictionary<string, object> GetDictionary(bool isSort = true, bool isUrlEncode = false,
             Encoding encoding = null)
         {
-            var result = Enumerable.ToDictionary(_params, t => t.Key,
+            var result = _params.SafeToDictionary(t => t.Key,
                 t => GetEncodeValue(t.Value, isUrlEncode, encoding ?? Encoding.UTF8));
             if (isSort == false)
                 return result;
