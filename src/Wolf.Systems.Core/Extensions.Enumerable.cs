@@ -447,7 +447,7 @@ namespace Wolf.Systems.Core
         /// <typeparam name="TOpt"></typeparam>
         /// <returns></returns>
         public static IEnumerable<TSource> Distinct<TSource, TOpt>(this IEnumerable<TSource> source,
-            Func<TSource, TOpt> keySelector)
+            Func<TSource, TOpt> keySelector) where TSource : class
         {
             return source.Distinct(new CommonEqualityComparer<TSource, TOpt>(keySelector));
         }
@@ -462,7 +462,7 @@ namespace Wolf.Systems.Core
         /// <typeparam name="V"></typeparam>
         /// <returns></returns>
         public static IEnumerable<T> Distinct<T, V>(this IEnumerable<T> source, Func<T, V> keySelector,
-            IEqualityComparer<V> comparer)
+            IEqualityComparer<V> comparer) where T : class
         {
             return source.Distinct(new CommonEqualityComparer<T, V>(keySelector, comparer));
         }

@@ -3,7 +3,6 @@
 
 
 using System.ComponentModel;
-using Wolf.Systems.ComponentModel;
 
 namespace Wolf.Systems.Enum
 {
