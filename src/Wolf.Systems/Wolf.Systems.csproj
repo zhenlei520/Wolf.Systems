@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Title>自定义系统配置库</Title>
-    <Description>自定义系统配置库</Description>
+    <Title>调整异常信息的返回参数名</Title>
+    <Description>调整异常信息的返回参数名</Description>
     <PackageTags>Wolf.Systems Systems Commmon</PackageTags>
     <PackageProjectUrl>https://www.nuget.org/packages/$(AssemblyName)</PackageProjectUrl>
   </PropertyGroup>

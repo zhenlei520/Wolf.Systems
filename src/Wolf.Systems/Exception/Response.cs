@@ -19,12 +19,12 @@ namespace Wolf.Systems.Exception
         ///
         /// </summary>
         /// <param name="code">异常码</param>
-        /// <param name="content">异常描述</param>
+        /// <param name="message">异常描述</param>
         /// <param name="extend">扩展信息</param>
-        public Response(T code, string content, object extend = null) : this()
+        public Response(T code, string message, object extend = null) : this()
         {
             this.Code = code;
-            this.Content = content;
+            this.Message = message;
             this.Extend = extend;
         }
 
@@ -36,7 +36,7 @@ namespace Wolf.Systems.Exception
         /// <summary>
         /// 异常响应内容
         /// </summary>
-        protected virtual string Content { get; set; }
+        protected virtual string Message { get; set; }
 
         /// <summary>
         /// 扩展信息
@@ -49,7 +49,7 @@ namespace Wolf.Systems.Exception
         /// <returns></returns>
         public override string ToString()
         {
-            return "{\"Code\":{" + Code + "},\"Content\":{\"" + Content + "\"}";
+            return "{\"Code\":{" + Code + "},\"Content\":{\"" + Message + "\"}";
         }
     }
 
