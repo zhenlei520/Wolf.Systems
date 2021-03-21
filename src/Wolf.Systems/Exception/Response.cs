@@ -18,8 +18,8 @@ namespace Wolf.Systems.Exception
         /// <summary>
         ///
         /// </summary>
-        /// <param name="code">异常码</param>
-        /// <param name="message">异常描述</param>
+        /// <param name="code">状态码</param>
+        /// <param name="message">提示信息</param>
         /// <param name="extend">扩展信息</param>
         public Response(T code, string message, object extend = null) : this()
         {
@@ -29,12 +29,12 @@ namespace Wolf.Systems.Exception
         }
 
         /// <summary>
-        /// 异常码
+        /// 状态码
         /// </summary>
         protected virtual T Code { get; set; }
 
         /// <summary>
-        /// 异常响应内容
+        /// 提示信息
         /// </summary>
         protected virtual string Message { get; set; }
 
@@ -49,7 +49,8 @@ namespace Wolf.Systems.Exception
         /// <returns></returns>
         public override string ToString()
         {
-            return "{\"Code\":{" + Code + "},\"Content\":{\"" + Message + "\"}";
+            return "{\"Code\":{" + Code + "},\"Content\":{\"" + Message + "\",\"Extend\":\"" + Extend.ToString() +
+                   "\"}";
         }
     }
 
@@ -68,25 +69,25 @@ namespace Wolf.Systems.Exception
         /// <summary>
         ///
         /// </summary>
-        /// <param name="code">异常码</param>
-        /// <param name="content">异常描述</param>
+        /// <param name="code">状态码</param>
+        /// <param name="message">提示信息</param>
         /// <param name="extend">扩展信息</param>
-        public Response(string code, string content, object extend = null) : this()
+        public Response(string code, string message, object extend = null) : this()
         {
             this.Code = code;
-            this.Content = content;
+            this.Message = message;
             this.Extend = extend;
         }
 
         /// <summary>
-        /// 异常码
+        /// 状态码
         /// </summary>
         protected virtual string Code { get; set; }
 
         /// <summary>
-        /// 异常响应内容
+        /// 提示信息
         /// </summary>
-        protected virtual string Content { get; set; }
+        protected virtual string Message { get; set; }
 
         /// <summary>
         /// 扩展信息
@@ -99,7 +100,8 @@ namespace Wolf.Systems.Exception
         /// <returns></returns>
         public override string ToString()
         {
-            return "{\"Code\":{\"" + Code + "\"},\"Content\":{\"" + Content + "\"}";
+            return "{\"Code\":{" + Code + "},\"Content\":{\"" + Message + "\",\"Extend\":\"" + Extend.ToString() +
+                   "\"}";
         }
     }
 }
