@@ -31,17 +31,17 @@ namespace Wolf.Systems.Exception
         /// <summary>
         /// 状态码
         /// </summary>
-        protected virtual T Code { get; set; }
+        public virtual T Code { get; set; }
 
         /// <summary>
         /// 提示信息
         /// </summary>
-        protected virtual string Message { get; set; }
+        public virtual string Message { get; set; }
 
         /// <summary>
         /// 扩展信息
         /// </summary>
-        protected virtual object Extend { get; set; }
+        public virtual object Extend { get; set; }
 
         /// <summary>
         ///
@@ -82,17 +82,17 @@ namespace Wolf.Systems.Exception
         /// <summary>
         /// 状态码
         /// </summary>
-        protected virtual string Code { get; set; }
+        public virtual string Code { get; set; }
 
         /// <summary>
         /// 提示信息
         /// </summary>
-        protected virtual string Message { get; set; }
+        public virtual string Message { get; set; }
 
         /// <summary>
         /// 扩展信息
         /// </summary>
-        protected virtual object Extend { get; set; }
+        public virtual object Extend { get; set; }
 
         /// <summary>
         ///
