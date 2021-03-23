@@ -7,7 +7,7 @@ namespace Wolf.Systems.Data.Abstractions
     ///
     /// </summary>
     /// <typeparam name="T">实体主键类型</typeparam>
-    public interface IEntity<T>
+    public interface IEntity<T> : IDbEntity
     {
         /// <summary>
         /// 实体主键

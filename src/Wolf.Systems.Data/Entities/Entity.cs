@@ -9,7 +9,7 @@ namespace Wolf.Systems.Data.Entities
     /// 实体实现
     /// </summary>
     /// <typeparam name="T">主键类型</typeparam>
-    public abstract class Entity<T> : IEntity<T>
+    public abstract class Entity<T> : DbEntity, IEntity<T>
     {
         /// <summary>
         /// 主键
