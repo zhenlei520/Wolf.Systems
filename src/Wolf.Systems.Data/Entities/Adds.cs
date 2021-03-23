@@ -6,7 +6,7 @@ using System;
 namespace Wolf.Systems.Data.Entities
 {
     /// <summary>
-    /// 添加信息聚合根
+    /// 添加 聚合根
     /// </summary>
     public class Adds<T> : AggregateRoot<T>
     {

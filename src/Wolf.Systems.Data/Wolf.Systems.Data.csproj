@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Title>调整基础data参数</Title>
+    <Description>调整基础data参数</Description>
     <PackageProjectUrl>https://www.nuget.org/packages/$(AssemblyName)</PackageProjectUrl>
   </PropertyGroup>
 
@@ -13,11 +15,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Provider" />
+    <Folder Include="Provider"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Wolf.Systems.Core\Wolf.Systems.Core.csproj" />
+    <ProjectReference Include="..\Wolf.Systems.Core\Wolf.Systems.Core.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Extensions.Enumerable.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

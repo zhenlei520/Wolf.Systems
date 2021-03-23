@@ -9,7 +9,14 @@ namespace Wolf.Systems.Data.Enum
     /// </summary>
     public enum DbOptionType
     {
+        /// <summary>
+        ///
+        /// </summary>
         [Description("写")] Write = 1,
+
+        /// <summary>
+        ///
+        /// </summary>
         [Description("读")] Read = 2
     }
 }
