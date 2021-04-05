@@ -75,7 +75,7 @@ namespace Wolf.Systems.Core.Internal.Common
         /// <param name="stream">待加密字符串</param>
         /// <param name="isUpper">是否转大写,默认：true</param>
         /// <returns></returns>
-        public static string GetMd5Hash(Stream stream,  bool isUpper = true)
+        public static string GetMd5Hash(Stream stream, bool isUpper = true)
         {
             return GetMd5Hash(stream, false, isUpper);
         }
@@ -90,7 +90,7 @@ namespace Wolf.Systems.Core.Internal.Common
         /// <returns></returns>
         private static string GetMd5Hash(string input, bool is16, Encoding encoding, bool isUpper = true)
         {
-            var signed = Md5CryptoServiceProvider.ComputeHash(encoding.GetBytes(input));
+            var signed = Md5CryptoServiceProvider.ComputeHash((encoding ?? Encoding.UTF8).GetBytes(input));
             string signResult = is16 ? GetSignResult(signed, 4, 8) : GetSignResult(signed);
             return isUpper ? signResult.ToUpper() : signResult.ToLower();
         }
