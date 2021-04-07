@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Data;
+using System.Text;
 
 namespace Wolf.Systems.Core
 {
@@ -19,14 +20,13 @@ namespace Wolf.Systems.Core
         /// <returns>Json字符串</returns>
         public static string ToJson(this DataSet dataSet)
         {
-            string jsonString = "{";
+            StringBuilder stringBuilder = new StringBuilder("{");
             foreach (DataTable table in dataSet.Tables)
             {
-                jsonString += "\"" + table.TableName + "\":" + table.ConvertToJson() + ",";
+                stringBuilder.Append("\"" + table.TableName + "\":" + table.ConvertToJson() + ",");
             }
 
-            jsonString = jsonString.TrimEnd(',');
-            return jsonString + "}";
+            return stringBuilder.ToString().TrimEnd(',') + "}";
         }
 
         #endregion

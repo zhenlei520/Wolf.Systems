@@ -310,13 +310,14 @@ namespace Wolf.Systems.Core
                 return string.Empty;
             }
 
-            string str = string.Empty;
             if (index > param.Length - 1)
             {
                 return param;
             }
 
-            str = param.Substring(0, index);
+            string str = param.Substring(0, index);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(str);
             if (length == -1)
             {
                 length = param.Length - index;
@@ -324,15 +325,15 @@ namespace Wolf.Systems.Core
 
             for (int i = 0; i < length; i++)
             {
-                str += key;
+                stringBuilder.Append(key);
             }
 
             if (index + length < param.Length)
             {
-                str += param.Substring(index + length);
+                stringBuilder.Append(param.Substring(index + length));
             }
 
-            return str;
+            return stringBuilder.ToString();
         }
 
         #endregion
@@ -728,10 +729,10 @@ namespace Wolf.Systems.Core
             }
 
             byte[] bts = Encoding.Unicode.GetBytes(str);
-            string r = string.Empty;
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < bts.Length; i += 2)
-                r += "\\u" + bts[i + 1].ToString("x").PadLeft(2, '0') + bts[i].ToString("x").PadLeft(2, '0');
-            return r;
+                stringBuilder.Append("\\u" + bts[i + 1].ToString("x").PadLeft(2, '0') + bts[i].ToString("x").PadLeft(2, '0'));
+            return stringBuilder.ToString();
         }
 
         #endregion
@@ -750,18 +751,18 @@ namespace Wolf.Systems.Core
                 return str;
             }
 
-            string r = string.Empty;
             MatchCollection mc = Regex.Matches(str, @"\\u([\w]{2})([\w]{2})",
                 RegexOptions.Compiled | RegexOptions.IgnoreCase);
             byte[] bts = new byte[2];
+            StringBuilder stringBuilder = new StringBuilder();
             foreach (Match m in mc)
             {
                 bts[0] = (byte) int.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
                 bts[1] = (byte) int.Parse(m.Groups[1].Value, NumberStyles.HexNumber);
-                r += Encoding.Unicode.GetString(bts);
+                stringBuilder.Append(Encoding.Unicode.GetString(bts));
             }
 
-            return r;
+            return stringBuilder.ToString();
         }
 
         #endregion

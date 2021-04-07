@@ -106,23 +106,7 @@ namespace Wolf.Systems.Core
         public static string GetContentByEncryption(this char? symbol, int number = 6,
             int? errCode = null)
         {
-            if (symbol == null)
-            {
-                symbol = '*';
-            }
-
-            string result = ""; //结果
-            if (number < 0)
-            {
-                throw new BusinessException("number必须为正整数", ErrorCode.TypeError);
-            }
-
-            for (int i = 0; i < number; i++)
-            {
-                result += symbol;
-            }
-
-            return result;
+            return GetContentByEncryption(symbol?.SafeString(), number, errCode);
         }
 
         /// <summary>
@@ -140,18 +124,18 @@ namespace Wolf.Systems.Core
                 symbol = "*";
             }
 
-            string result = ""; //结果
             if (number < 0)
             {
-                throw new BusinessException("number必须为正整数", ErrorCode.TypeError);
+                throw new BusinessException<int>("number必须为正整数", errCode ?? (int) ErrorCode.TypeError);
             }
 
+            StringBuilder result = new StringBuilder();
             for (int i = 0; i < number; i++)
             {
-                result += symbol;
+                result.Append(symbol);
             }
 
-            return result;
+            return result.ToString();
         }
 
         #endregion
@@ -241,7 +225,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsLetters(this char value)=>char.IsLetter(value);
+        public static bool IsLetters(this char value) => char.IsLetter(value);
 
         #endregion
 
@@ -252,7 +236,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsUpperLetters(this char value)=>char.IsLetter(value) && char.IsUpper(value);
+        public static bool IsUpperLetters(this char value) => char.IsLetter(value) && char.IsUpper(value);
 
         #endregion
 
@@ -263,7 +247,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsUpper(this char value)=>char.IsUpper(value);
+        public static bool IsUpper(this char value) => char.IsUpper(value);
 
         #endregion
 
@@ -274,7 +258,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsLowerLetters(this char value)=> char.IsLetter(value) && char.IsLower(value);
+        public static bool IsLowerLetters(this char value) => char.IsLetter(value) && char.IsLower(value);
 
         #endregion
 
@@ -285,7 +269,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsLower(this char value)=>char.IsLower(value);
+        public static bool IsLower(this char value) => char.IsLower(value);
 
         #endregion
 
@@ -297,7 +281,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsDigit(this char value)=>char.IsDigit(value);
+        public static bool IsDigit(this char value) => char.IsDigit(value);
 
         #endregion
 

@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Wolf.Systems.Core.Common;
 using Wolf.Systems.Core.Internal.Configuration;
 using Wolf.Systems.Enum;
@@ -554,21 +555,21 @@ namespace Wolf.Systems.Core
             }
 
             string szText = "正二三四五六七八九十";
-            string strMonth = isLeapMonth ? "闰" : "";
+            StringBuilder stringBuilder = new StringBuilder(isLeapMonth ? "闰" : "");
             if (iMonth <= 10)
             {
-                strMonth += szText.Substring(iMonth - 1, 1);
+                stringBuilder.Append(szText.Substring(iMonth - 1, 1));
             }
             else if (iMonth == 11)
             {
-                strMonth += "十一";
+                stringBuilder.Append("十一");
             }
             else
             {
-                strMonth += "腊";
+                stringBuilder.Append("腊");
             }
 
-            return strMonth + "月";
+            return stringBuilder.Append("月").ToString();
         }
 
         /// <summary>

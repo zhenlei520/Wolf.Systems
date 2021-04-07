@@ -154,10 +154,10 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// <returns></returns>
         public string GetQueryResult(bool isSort = false, bool isUrlEncode = false, Encoding encoding = null)
         {
-            string result = "";
+            StringBuilder stringBuilder=new StringBuilder();
             foreach (var param in GetDictionary(isSort, isUrlEncode, encoding))
-                result += (param.Key + "=" + param.Value + "&");
-            result = result.Trim();
+                stringBuilder.Append(param.Key + "=" + param.Value + "&");
+            string result = stringBuilder.ToString().Trim();
             return result.Length > 1 ? result.Substring(0, result.Length - 1) : result;
         }
 
