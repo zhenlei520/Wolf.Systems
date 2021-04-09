@@ -8,6 +8,5 @@ namespace Wolf.Systems.Data.Abstractions
     /// </summary>
     public interface IDbContext
     {
-
     }
 }

@@ -15,5 +15,14 @@ namespace Wolf.Systems.Data.Entities
         /// 主键
         /// </summary>
         public virtual T Id { get; set; }
+
+        /// <summary>
+        /// 设置id
+        /// </summary>
+        /// <param name="id">实体id</param>
+        public void SetId(T id)
+        {
+            this.Id = id;
+        }
     }
 }

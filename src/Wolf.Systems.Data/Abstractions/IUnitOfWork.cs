@@ -9,7 +9,7 @@ namespace Wolf.Systems.Data.Abstractions
     /// <summary>
     /// 单元模式
     /// </summary>
-    public interface IUnitOfWork : IDbContext
+    public interface IUnitOfWork<TDbContext> : IDbContext
     {
         /// <summary>
         /// 提交保存

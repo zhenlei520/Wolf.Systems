@@ -13,5 +13,11 @@ namespace Wolf.Systems.Data.Abstractions
         /// 实体主键
         /// </summary>
         T Id { get; }
+
+        /// <summary>
+        /// 设置id
+        /// </summary>
+        /// <param name="id">实体id</param>
+        void SetId(T id);
     }
 }
