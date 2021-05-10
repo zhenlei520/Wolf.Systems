@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <IsPackable>false</IsPackable>
         <SignAssembly>false</SignAssembly>
+        <PublicSign>false</PublicSign>
     </PropertyGroup>
 
     <ItemGroup>

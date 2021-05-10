@@ -22,7 +22,8 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(RepositoryRoot)cert.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>true</DelaySign>
+    <PublicSign>true</PublicSign>
+    <DelaySign>false</DelaySign>
 	  <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
