@@ -190,7 +190,13 @@ namespace Wolf.Systems.Core.Common.Unique
         /// <returns></returns>
         protected virtual long TimeGen()
         {
-            return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+#if NET40 || NET45 || NET451 || NET452
+            return DateTimeOffset.UtcNow.Millisecond;
+#else
+
+return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+#endif
         }
     }
 }

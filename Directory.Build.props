@@ -5,7 +5,7 @@
 	<Import Project="build\version.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
 	  <PackageId>$(AssemblyName)</PackageId>
     <PackageIcon>packageIcon.png</PackageIcon>
     <Authors>zhenlei520</Authors>
