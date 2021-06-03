@@ -49,7 +49,7 @@ namespace Wolf.Systems.Exception
         /// <returns></returns>
         public override string ToString()
         {
-            return "{\"Code\":{" + Code + "},\"Content\":{\"" + Message + "\",\"Extend\":\"" + Extend.ToString() +
+            return "{\"Code\":{" + Code + "},\"Content\":{\"" + (Message??"") + "\",\"Extend\":\"" + (Extend??"") +
                    "\"}";
         }
     }
