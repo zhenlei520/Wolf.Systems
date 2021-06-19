@@ -1,9 +1,8 @@
-name: publish to github nuget
+name: publish to nuget
 
 on:
   push:
-    tags:
-    - '*' 
+    branches: [ master ]
 
 jobs:
   build:
