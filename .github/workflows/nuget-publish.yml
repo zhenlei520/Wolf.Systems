@@ -16,10 +16,10 @@ jobs:
         dotnet-version: 3.1.407
 
     - name: Pack
-      run: dotnet pack src\Wolf.Systems\Wolf.Systems.csproj --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-           dotnet pack src\Wolf.Systems.Abstracts\Wolf.Systems.Abstracts.csproj --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-           dotnet pack src\Wolf.Systems.Core\Wolf.Systems.Core.csproj --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-           dotnet pack src\Wolf.Systems.Data\Wolf.Systems.Data.csproj --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+      run: dotnet pack src\Wolf.Systems\Wolf.Systems.csproj --configuration Release -p:IncludeSymbols=true
+           dotnet pack src\Wolf.Systems.Abstracts\Wolf.Systems.Abstracts.csproj --configuration Release -p:IncludeSymbols=true
+           dotnet pack src\Wolf.Systems.Core\Wolf.Systems.Core.csproj --configuration Release -p:IncludeSymbols=true
+           dotnet pack src\Wolf.Systems.Data\Wolf.Systems.Data.csproj --configuration Release -p:IncludeSymbols=true
       
     - name: Install Nuget
       uses: nuget/setup-nuget@v1
