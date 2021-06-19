@@ -33,5 +33,5 @@ jobs:
         nuget-version: '5.x'
 
     - name: Push to Nuget
-            nuget push src\*\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET }}
-            nuget push src\*\bin\Release\*.snupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET }}
+      run: nuget push src\*\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET }}
+           nuget push src\*\bin\Release\*.snupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET }}
