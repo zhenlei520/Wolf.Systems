@@ -15,10 +15,13 @@ jobs:
       with:
         dotnet-version: 3.1.407
 
-    - name: Pack
+    - name: Pack Wolf.Systems
       run: dotnet pack src\Wolf.Systems\Wolf.Systems.csproj --configuration Release -p:IncludeSymbols=true
+    - name: Pack Wolf.Systems.Abstracts
            dotnet pack src\Wolf.Systems.Abstracts\Wolf.Systems.Abstracts.csproj --configuration Release -p:IncludeSymbols=true
+    - name: Pack Wolf.Systems.Core
            dotnet pack src\Wolf.Systems.Core\Wolf.Systems.Core.csproj --configuration Release -p:IncludeSymbols=true
+    - name: Pack Wolf.Systems.Data
            dotnet pack src\Wolf.Systems.Data\Wolf.Systems.Data.csproj --configuration Release -p:IncludeSymbols=true
       
     - name: Install Nuget
