@@ -9,7 +9,7 @@ using Xunit;
 namespace Wolf.Systems.UnitTest
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class UrlCommonUnitTest
     {
@@ -19,7 +19,7 @@ namespace Wolf.Systems.UnitTest
         [Fact]
         public void GetTypeTest()
         {
-            var url = new Url("http://192.168.6.32:18070/apps/uuptcommon/envs/DEV/clusters/default/namespaces/UUPT.DbConnectConfig/item");
+            var url = new Url("http://www.baidu.com:10");
             string path =  url.GetQueryPath(false, false) ;
         }
     }
