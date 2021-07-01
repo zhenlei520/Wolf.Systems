@@ -612,9 +612,10 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>
         /// <param name="content">写入的内容</param>
-        public static void WriteText(string filePath, string content)
+        /// <param name="isCheckDirectoryAndCreate">是否检查目录并自动创建，默认为true（如果文件目录不存在则自动创建目录）</param>
+        public static void WriteText(string filePath, string content, bool isCheckDirectoryAndCreate = true)
         {
-            WriteText(filePath, content, Encoding.UTF8);
+            WriteText(filePath, content, Encoding.UTF8, isCheckDirectoryAndCreate);
         }
 
         /// <summary>
@@ -623,8 +624,14 @@ namespace Wolf.Systems.Core.Common
         /// <param name="filePath">文件的绝对路径</param>
         /// <param name="content">写入的内容</param>
         /// <param name="encoding">编码</param>
-        public static void WriteText(string filePath, string content, Encoding encoding)
+        /// <param name="isCheckDirectoryAndCreate">是否检查目录并自动创建，默认为true（如果文件目录不存在则自动创建目录）</param>
+        public static void WriteText(string filePath, string content, Encoding encoding,
+            bool isCheckDirectoryAndCreate = true)
         {
+            if (isCheckDirectoryAndCreate)
+            {
+                CheckFileAndCreateFile(filePath);
+            }
             File.WriteAllText(filePath, content, encoding);
         }
 
@@ -637,8 +644,13 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>
         /// <param name="content">写入的内容</param>
-        public static void AppendText(string filePath, string content)
+        /// <param name="isCheckDirectoryAndCreate">是否检查目录并自动创建，默认为true（如果文件目录不存在则自动创建目录）</param>
+        public static void AppendText(string filePath, string content, bool isCheckDirectoryAndCreate = true)
         {
+            if (isCheckDirectoryAndCreate)
+            {
+                CheckFileAndCreateFile(filePath);
+            }
             File.AppendAllText(filePath, content);
         }
 
@@ -923,6 +935,23 @@ namespace Wolf.Systems.Core.Common
                         }
                     }
                 }
+            }
+        }
+
+        #endregion
+
+        #region 检查并创建文件目录
+
+        /// <summary>
+        /// 检查并创建文件目录
+        /// </summary>
+        /// <param name="filePath">含文件名称的文件地址</param>
+        public static void CheckFileAndCreateFile(string filePath)
+        {
+            var directory = Path.GetDirectoryName(filePath);
+            if (!FileCommon.IsExistDirectory(directory))
+            {
+                FileCommon.CreateDirectory(directory);
             }
         }
 

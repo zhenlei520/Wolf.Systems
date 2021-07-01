@@ -57,9 +57,19 @@ namespace Wolf.Systems.Core.Configuration.Url
         public string Host { get; }
 
         /// <summary>
-        /// 得到完整的域，包含Scheme
+        /// 域含端口
+        /// </summary>
+        public string Authority { get; }
+
+        /// <summary>
+        /// 得到完整的域，包含Scheme不包含端口
         /// </summary>
         public string FullHost => Scheme + "://" + Host;
+
+        /// <summary>
+        /// 得到完整的域，包含Scheme以及端口
+        /// </summary>
+        public string FullAuthority => Scheme + "://" + Authority;
 
         /// <summary>
         ///
@@ -123,10 +133,10 @@ namespace Wolf.Systems.Core.Configuration.Url
             var queryParam = GetQueryResult(isSort, isUrlEncode, encoding);
             if (!string.IsNullOrEmpty(queryParam))
             {
-                return $"{RequestUrl.Replace(FullHost, "")}?{queryParam}";
+                return $"{RequestUrl.Replace(FullAuthority, "")}?{queryParam}";
             }
 
-            return $"{RequestUrl.Replace(FullHost, "")}";
+            return $"{RequestUrl.Replace(FullAuthority, "")}";
         }
 
         #endregion
