@@ -17,7 +17,7 @@ namespace Wolf.Systems.UnitTest
         ///
         /// </summary>
         [Fact]
-        public void GetTypeTest()
+        public void GetUrlTest()
         {
             var url = new Url("http://www.baidu.com:10");
             string path =  url.GetQueryPath(false, false) ;

@@ -1,30 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{147844EE-5826-47AD-A828-61BC20FE85A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CE855983-A583-46B5-8C08-9B6C7B92AF19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems", "src\Wolf.Systems\Wolf.Systems.csproj", "{7F8EF514-CBAF-4913-82CB-B43525A0B8B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems", "src\Wolf.Systems\Wolf.Systems.csproj", "{7F8EF514-CBAF-4913-82CB-B43525A0B8B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.Core", "src\Wolf.Systems.Core\Wolf.Systems.Core.csproj", "{D83AA09D-DD99-4276-9628-70754DBCF788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.Core", "src\Wolf.Systems.Core\Wolf.Systems.Core.csproj", "{D83AA09D-DD99-4276-9628-70754DBCF788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.Abstracts", "src\Wolf.Systems.Abstracts\Wolf.Systems.Abstracts.csproj", "{F3B590C4-6B4D-4516-A645-D24C1A1CE93A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.Abstracts", "src\Wolf.Systems.Abstracts\Wolf.Systems.Abstracts.csproj", "{F3B590C4-6B4D-4516-A645-D24C1A1CE93A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.Data", "src\Wolf.Systems.Data\Wolf.Systems.Data.csproj", "{61C1C895-DBD8-4875-B0B9-4964DE504223}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.Data", "src\Wolf.Systems.Data\Wolf.Systems.Data.csproj", "{61C1C895-DBD8-4875-B0B9-4964DE504223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.UnitTest", "test\Wolf.Systems.UnitTest\Wolf.Systems.UnitTest.csproj", "{21B61C82-C835-4D27-B2CA-B49B6153D1FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.UnitTest", "test\Wolf.Systems.UnitTest\Wolf.Systems.UnitTest.csproj", "{A624F241-B786-4B23-A6A1-1174203FABC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7F8EF514-CBAF-4913-82CB-B43525A0B8B8} = {147844EE-5826-47AD-A828-61BC20FE85A2}
-		{F3B590C4-6B4D-4516-A645-D24C1A1CE93A} = {147844EE-5826-47AD-A828-61BC20FE85A2}
-		{D83AA09D-DD99-4276-9628-70754DBCF788} = {147844EE-5826-47AD-A828-61BC20FE85A2}
-		{61C1C895-DBD8-4875-B0B9-4964DE504223} = {147844EE-5826-47AD-A828-61BC20FE85A2}
-		{21B61C82-C835-4D27-B2CA-B49B6153D1FB} = {CE855983-A583-46B5-8C08-9B6C7B92AF19}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7F8EF514-CBAF-4913-82CB-B43525A0B8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -43,9 +39,22 @@ Global
 		{61C1C895-DBD8-4875-B0B9-4964DE504223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C1C895-DBD8-4875-B0B9-4964DE504223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61C1C895-DBD8-4875-B0B9-4964DE504223}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21B61C82-C835-4D27-B2CA-B49B6153D1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A624F241-B786-4B23-A6A1-1174203FABC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A624F241-B786-4B23-A6A1-1174203FABC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A624F241-B786-4B23-A6A1-1174203FABC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A624F241-B786-4B23-A6A1-1174203FABC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7F8EF514-CBAF-4913-82CB-B43525A0B8B8} = {147844EE-5826-47AD-A828-61BC20FE85A2}
+		{D83AA09D-DD99-4276-9628-70754DBCF788} = {147844EE-5826-47AD-A828-61BC20FE85A2}
+		{F3B590C4-6B4D-4516-A645-D24C1A1CE93A} = {147844EE-5826-47AD-A828-61BC20FE85A2}
+		{61C1C895-DBD8-4875-B0B9-4964DE504223} = {147844EE-5826-47AD-A828-61BC20FE85A2}
+		{A624F241-B786-4B23-A6A1-1174203FABC8} = {CE855983-A583-46B5-8C08-9B6C7B92AF19}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F83BDA5-E410-4A85-8094-1E3F69EFD466}
 	EndGlobalSection
 EndGlobal

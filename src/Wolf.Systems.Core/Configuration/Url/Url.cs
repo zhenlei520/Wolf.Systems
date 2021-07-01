@@ -36,6 +36,7 @@ namespace Wolf.Systems.Core.Configuration.Url
 
             var uri = new Uri(url);
             Host = uri.Host;
+            Authority = uri.Authority;
             Scheme = uri.Scheme.ToLowers();
             IsHttps = Scheme.Equals("https", StringComparison.CurrentCultureIgnoreCase);
             PathAndQuery = uri.PathAndQuery;
