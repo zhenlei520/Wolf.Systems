@@ -39,3 +39,4 @@ BenchmarkDotNet.Artifacts/
 *.binlog
 .idea
 /cert.snk
+nupkgs/

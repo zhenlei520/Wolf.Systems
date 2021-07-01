@@ -214,13 +214,13 @@ namespace Wolf.Systems.Core
             {
                 if (logMethod != null)
                 {
-                    Debug.WriteLine($"{logName}|item {count} = {logMethod(item)}");
+                    System.Diagnostics.Debug.WriteLine($"{logName}|item {count} = {logMethod(item)}");
                 }
 
                 count++;
             });
 
-            Debug.WriteLine($"{logName}|count = {count}");
+            System.Diagnostics.Debug.WriteLine($"{logName}|count = {count}");
 #endif
             return query;
         }

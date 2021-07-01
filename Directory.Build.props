@@ -22,8 +22,8 @@
     <AssemblyOriginatorKeyFile>$(RepositoryRoot)cert.snk</AssemblyOriginatorKeyFile>
     <PublicSign>true</PublicSign>
     <DelaySign>false</DelaySign>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(RepositoryRoot)packageIcon.png">
