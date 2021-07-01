@@ -24,6 +24,9 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         /// </summary>
         public T2 Name { get; private set; }
 
+        /// <summary>
+        ///
+        /// </summary>
         public Enumeration()
         {
 
@@ -39,6 +42,10 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
             Name = name;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public override string ToString() => Name?.ToString() ?? string.Empty;
 
         /// <summary>

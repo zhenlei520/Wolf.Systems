@@ -483,6 +483,7 @@ namespace Wolf.Systems.Core
 
         #endregion
 
+#if !NET40
         #region 键值对集合转化为对象
 
         /// <summary>
@@ -521,6 +522,9 @@ namespace Wolf.Systems.Core
 
         #endregion
 
+#endif
+
+#if !NET40
         #region 创建动态对象
 
         /// <summary>
@@ -540,6 +544,7 @@ namespace Wolf.Systems.Core
         }
 
         #endregion
+#endif
 
         #region 添加linq查询扩展(仅在Debug下生效)
 

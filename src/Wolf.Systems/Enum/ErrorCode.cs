@@ -10,10 +10,30 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum ErrorCode
     {
+        /// <summary>
+        /// unknown
+        /// </summary>
         [Description("unknown")] UnknownError = 1,
+
+        /// <summary>
+        /// customer error
+        /// </summary>
         [Description("customer error")] CustomerError = 2,
+
+        /// <summary>
+        /// type error
+        /// </summary>
         [Description("type error")] TypeError = 3,
+
+        /// <summary>
+        /// param error
+        /// </summary>
         [Description("param error")] ParamError = 4,
-        [Description("param is null or empty")] ParamIsNullOrEmpty = 5
+
+        /// <summary>
+        /// param is null or empty
+        /// </summary>
+        [Description("param is null or empty")]
+        ParamIsNullOrEmpty = 5
     }
 }

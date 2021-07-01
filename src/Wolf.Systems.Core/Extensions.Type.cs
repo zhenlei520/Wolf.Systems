@@ -91,6 +91,7 @@ namespace Wolf.Systems.Core
 
         #endregion
 
+#if !NET40
         #region 判断是否枚举
 
         /// <summary>
@@ -104,5 +105,6 @@ namespace Wolf.Systems.Core
         }
 
         #endregion
+#endif
     }
 }

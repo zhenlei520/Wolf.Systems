@@ -1,6 +1,7 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+#if !NET40 && !NET45 && !NET451 && !NET452
 using System.Collections.Concurrent;
 using System.Threading;
 
@@ -32,5 +33,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static object GetData(string name) =>
             State.TryGetValue(name, out AsyncLocal<object> data) ? data.Value : null;
+
     }
 }
+#endif

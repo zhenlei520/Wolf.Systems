@@ -10,7 +10,14 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum TimestampType
     {
-        [Description("10 bit timestamp")]Second = 1,
-        [Description("13 bit timestamp")]MilliSecond = 2
+        /// <summary>
+        /// 10位时间戳
+        /// </summary>
+        [Description("10 bit timestamp")] Second = 1,
+
+        /// <summary>
+        /// 13位时间戳
+        /// </summary>
+        [Description("13 bit timestamp")] MilliSecond = 2
     }
 }

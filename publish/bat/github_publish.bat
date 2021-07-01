@@ -5,15 +5,15 @@ set "project=*.csproj"
 set  "batPath=%~dp0"
 
 setlocal enabledelayedexpansion  
-echo ¿ªÊ¼ËÑË÷ÎÄ¼þ£¬ÇëµÈ´ý³ÌÐòÌáÊ¾¡°ËÑË÷Íê³É¡±ÔÙÍË³ö ...  
+echo å¼€å§‹æœç´¢æ–‡ä»¶ï¼Œè¯·ç­‰å¾…ç¨‹åºæç¤ºâ€œæœç´¢å®Œæˆâ€å†é€€å‡º ...  
 
 echo %solutionPath%
 
 cd %solutionPath%
 
 @echo off
-rem Ö¸¶¨´ýËÑË÷µÄÎÄ¼þ
-echo ÕýÔÚËÑË÷£¬ÇëÉÔºò...
+rem æŒ‡å®šå¾…æœç´¢çš„æ–‡ä»¶
+echo æ­£åœ¨æœç´¢ï¼Œè¯·ç¨å€™...
 
 for /r %%i in (%project%) do ( 
     echo %%i 
@@ -26,5 +26,5 @@ for /r %%i in (%project%) do (
 )
 
 echo.  
-echo ·¢²¼³É¹¦  
+echo å‘å¸ƒæˆåŠŸ  
 pause >nul 

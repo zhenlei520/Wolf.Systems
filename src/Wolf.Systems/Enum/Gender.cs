@@ -10,7 +10,14 @@ namespace Wolf.Systems.Enum
     /// </summary>
     public enum Gender
     {
+        /// <summary>
+        /// 男
+        /// </summary>
         [Description("男")] Boy = 1,
+
+        /// <summary>
+        /// 女
+        /// </summary>
         [Description("女")] Girl = 2
     }
 }

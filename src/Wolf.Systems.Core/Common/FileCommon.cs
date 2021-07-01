@@ -137,7 +137,10 @@ namespace Wolf.Systems.Core.Common
 
         #endregion
 
-        #region 将文件转换成Base64格式
+        #region !NetFramework 4.0
+
+#if !NET40
+#region 将文件转换成Base64格式
 
         /// <summary>
         /// 将文件转换成Base64格式
@@ -253,6 +256,73 @@ namespace Wolf.Systems.Core.Common
 
         #endregion
 
+#elif NET40
+
+        #region 将文件转换成Base64格式
+
+        /// <summary>
+        /// 将文件转换成Base64格式
+        /// </summary>
+        /// <param name="filePath">本地文件绝对地址</param>
+        /// <returns></returns>
+        public static string FileToBase64(string filePath)
+        {
+            string result;
+            try
+            {
+                if (!File.Exists(filePath))
+                    return String.Empty;
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    return fs.ConvertToBase64();
+                }
+            }
+            catch
+            {
+                result = string.Empty;
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region 将文件转换为byte数组
+
+        #region 将文件转换成byte[]数组
+
+        /// <summary>
+        /// 将文件转换成byte[]数组
+        /// </summary>
+        /// <param name="filePath">本地文件绝对地址</param>
+        /// <returns>byte[]数组</returns>
+        public static byte[] ConvertFileToByte(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                    return new byte[] { };
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] byteArray = new byte[fs.Length];
+                    fs.Read(byteArray, 0, byteArray.Length);
+                    return byteArray;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+#endif
+
+        #endregion
+
         #region 将Csv读入DataTable
 
         /// <summary>
@@ -296,7 +366,8 @@ namespace Wolf.Systems.Core.Common
 
         #region 获取文件内容
 
-        #region 获取文件内容（支持换行读取）
+#if !NET40
+#region 获取文件内容（支持换行读取）
 
         /// <summary>
         /// 获取文件内容（支持换行读取）
@@ -420,6 +491,86 @@ namespace Wolf.Systems.Core.Common
         }
 
         #endregion
+#elif NET40
+
+        #region 获取文件内容（支持换行读取）
+
+        /// <summary>
+        /// 获取文件内容（支持换行读取）
+        /// </summary>
+        /// <param name="filePath">本地文件绝对地址</param>
+        /// <param name="encoding">编码格式,默认为Encoding.Default</param>
+        /// <returns></returns>
+        public static string GetFileContent(string filePath, Encoding encoding = null)
+        {
+            string result = string.Empty;
+            try
+            {
+                if (!File.Exists(filePath))
+                    return result;
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader reader = new StreamReader(fs, encoding ?? Encoding.UTF8))
+                    {
+                        result = reader.ReadToEnd();
+                    }
+                }
+            }
+            catch
+            {
+                result = string.Empty;
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region 获取文件内容（每行读取）
+
+        /// <summary>
+        /// 获取文件内容（每行读取）
+        /// </summary>
+        /// <param name="filePath">本地文件绝对地址</param>
+        /// <param name="encoding">编码格式,默认为Encoding.Default</param>
+        /// <returns></returns>
+        public static List<string> GetContentFormFile(string filePath, Encoding encoding = null)
+        {
+            List<string> result = new List<string>();
+            try
+            {
+                if (!File.Exists(filePath))
+                    return result;
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader reader = new StreamReader(fs, encoding ?? Encoding.UTF8))
+                    {
+                        bool isEnd = true;
+                        while (isEnd)
+                        {
+                            var content = reader.ReadLine();
+                            if (content is null)
+                            {
+                                isEnd = false;
+                                continue;
+                            }
+
+                            result.Add(content);
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
+
+        #endregion
+
+#endif
 
         #endregion
 
@@ -956,6 +1107,10 @@ namespace Wolf.Systems.Core.Common
         }
 
         #endregion
+
+        #endregion
+
+        #region private methods
 
         #endregion
     }

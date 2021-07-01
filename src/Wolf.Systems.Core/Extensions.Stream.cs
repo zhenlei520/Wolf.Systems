@@ -13,6 +13,8 @@ namespace Wolf.Systems.Core
     /// </summary>
     public partial class Extensions
     {
+#if !NET40
+
         #region Stream转换为Byte数组
 
         /// <summary>
@@ -199,6 +201,8 @@ namespace Wolf.Systems.Core
         #endregion
 
         #endregion
+        
+#endif
 
         #region 文件流转换为base64
 
@@ -212,6 +216,7 @@ namespace Wolf.Systems.Core
             return ConvertToBase64(stream.ConvertToByteArray());
         }
 
+#if !NET40
         /// <summary>
         /// 文件流转换为base64
         /// </summary>
@@ -221,7 +226,7 @@ namespace Wolf.Systems.Core
         {
             return ConvertToBase64(await stream.ConvertToByteArrayAsyncByStream(false));
         }
-
+#endif
         #endregion
 
         #region 得到哈希值

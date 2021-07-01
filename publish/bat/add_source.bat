@@ -7,4 +7,4 @@ nuget source Add -Name "github" -Source "https://nuget.pkg.github.com/%name%/ind
 
 nuget setApiKey %token% -s github
 
-pause >nul 
+pause >nul

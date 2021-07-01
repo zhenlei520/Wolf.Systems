@@ -223,7 +223,13 @@ namespace Wolf.Systems.Core.Common
         /// <param name="member">成员名或者枚举值，例如：Gender中有Boy=1,则传入Boy或者1或者Gender.Boy可获得其Key</param>
         public static string GetKey(Type type, object member)
         {
-            if (type == null || member == null || !type.IsEnum())
+            bool isEnum = false;
+#if NET40
+            isEnum = type.IsEnum;
+#elif !NET40
+            isEnum = type.IsEnum();
+#endif
+            if (type == null || member == null || !isEnum)
                 return string.Empty;
             if (member.IsInt())
             {
@@ -260,7 +266,13 @@ namespace Wolf.Systems.Core.Common
         /// <param name="member">成员名或者枚举值，例如：Gender中有Boy=1,则传入Boy或者1或者Gender.Boy可获得其value</param>
         public static int? GetValue(Type type, object member)
         {
-            if (type == null || member == null || !type.IsEnum())
+            bool isEnum = false;
+#if NET40
+            isEnum = type.IsEnum;
+#elif !NET40
+            isEnum = type.IsEnum();
+#endif
+            if (type == null || member == null || !isEnum)
                 return null;
             string value = member.SafeString();
             if (value.IsNullOrWhiteSpace())

@@ -2,11 +2,11 @@
 
 
 cd %1
-echo ÎÄ¼ş¼Ğ %1
-echo ÏîÄ¿Ãû³Æ£º%2
+echo æ–‡ä»¶å¤¹ %1
+echo é¡¹ç›®åç§°ï¼š%2
 dotnet build -c Release
 
-echo ÏîÄ¿Ãû³Æ£º%2
+echo é¡¹ç›®åç§°ï¼š%2
 dotnet pack -c Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output ./bin/Release/package
 
 cd ./bin/Release/package
