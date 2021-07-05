@@ -5,7 +5,7 @@ set /p key=ÇëÊäÈëÄúµÄÃØÔ¿:
 cd ../../
 dotnet restore
 dotnet build
-dotnet pack --configuration Release -p:IncludeSymbols=true --output nupkgs
+dotnet pack --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output nupkgs
 
 cd nupkgs
 dotnet nuget push *.nupkg -k %key%  -s https://api.nuget.org/v3/index.json --skip-duplicate
