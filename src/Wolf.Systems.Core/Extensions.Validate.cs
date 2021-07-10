@@ -190,25 +190,25 @@ namespace Wolf.Systems.Core
         /// <param name="minValue">最小值</param>
         /// <param name="maxValue">最大值</param>
         /// <param name="rangeMode">区间模式，如果为null，则视为开区间</param>
-        public static bool InRange<T>(this T value, T minValue, T maxValue, RangeMode rangeMode=RangeMode.Open)
+        public static bool InRange<T>(this T value, T minValue, T maxValue, RangeMode rangeMode = RangeMode.Open)
             where T : IComparable
         {
-            if (rangeMode==RangeMode.Open)
+            if (rangeMode == RangeMode.Open)
             {
                 return value.GreaterThanOrEqualTo(minValue) && value.LessThanOrEqualTo(maxValue);
             }
 
-            if (rangeMode==RangeMode.Close)
+            if (rangeMode == RangeMode.Close)
             {
                 return value.GreaterThan(minValue) && value.LessThan(maxValue);
             }
 
-            if (rangeMode==RangeMode.OpenClose)
+            if (rangeMode == RangeMode.OpenClose)
             {
                 return value.GreaterThanOrEqualTo(minValue) && value.LessThan(maxValue);
             }
 
-            if (rangeMode==RangeMode.CloseOpen)
+            if (rangeMode == RangeMode.CloseOpen)
             {
                 return value.GreaterThan(minValue) && value.LessThanOrEqualTo(maxValue);
             }
@@ -532,6 +532,20 @@ namespace Wolf.Systems.Core
         public static bool IsNullOrWhiteSpaceOrDbNull(this object value)
         {
             return value.IsNullOrDbNull() || value.ToString().IsNullOrWhiteSpace();
+        }
+
+        /// <summary>
+        /// 是否为Null或者空以字符串
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsNullOrWhiteSpace(this object value)
+        {
+            if (value.IsNull())
+            {
+                return true;
+            }
+            return value.ToString().IsNullOrWhiteSpace();
         }
 
         #endregion
