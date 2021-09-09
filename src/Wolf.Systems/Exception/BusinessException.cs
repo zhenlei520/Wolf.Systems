@@ -41,7 +41,7 @@ namespace Wolf.Systems.Exception
         /// </summary>
         /// <param name="msg">错误原因</param>
         /// <param name="error">错误扩展信息</param>
-        public BusinessException(string msg,  object error) :
+        public BusinessException(string msg, object error) :
             this(msg, ErrorCode.CustomerError, error)
         {
         }
@@ -53,7 +53,18 @@ namespace Wolf.Systems.Exception
         /// <param name="code">状态码</param>
         /// <param name="error">错误扩展信息</param>
         public BusinessException(string msg, ErrorCode code, object error) :
-            base(msg, (int)code, error)
+            this(msg, (int)code, error)
+        {
+        }
+
+        /// <summary>
+        /// 业务异常
+        /// </summary>
+        /// <param name="msg">错误原因</param>
+        /// <param name="code">状态码</param>
+        /// <param name="error">错误扩展信息</param>
+        public BusinessException(string msg, int code, object error) :
+            base(msg, code, error)
         {
         }
     }
@@ -63,18 +74,7 @@ namespace Wolf.Systems.Exception
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class BusinessException<T> : System.Exception
-        where T : struct
     {
-        /// <summary>
-        /// 错误状态码
-        /// </summary>
-        public T Code { get; set; }
-
-        /// <summary>
-        /// 错误扩展信息
-        /// </summary>
-        public object Error { get; set; }
-
         /// <summary>
         /// 业务异常
         /// </summary>
@@ -90,6 +90,16 @@ namespace Wolf.Systems.Exception
         /// <param name="code">状态码</param>
         /// <param name="error">错误扩展信息</param>
         public BusinessException(string msg, T code, object error) :
-            this(msg) => Error = error;
+            this(msg, code) => Error = error;
+
+        /// <summary>
+        /// 错误状态码
+        /// </summary>
+        public T Code { get; set; }
+
+        /// <summary>
+        /// 错误扩展信息
+        /// </summary>
+        public object Error { get; set; }
     }
 }
