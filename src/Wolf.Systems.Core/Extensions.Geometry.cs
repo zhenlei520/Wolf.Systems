@@ -1,16 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System.Collections.Generic;
-using System.Linq;
-using Wolf.Systems.Core.Configuration;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// Geometry扩展
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// Geometry扩展
+  /// </summary>
+  public partial class Extensions
     {
         #region 判断当前坐标是否在多边形内
 
@@ -21,10 +17,7 @@ namespace Wolf.Systems.Core
         /// <param name="points">经纬度</param>
         /// <returns></returns>
         public static bool IsInRegion(this Points<double, double> currentPosition,
-            params Points<double, double>[] points)
-        {
-            return currentPosition.IsInRegion(points.SafeList());
-        }
+            params Points<double, double>[] points) => currentPosition.IsInRegion(points.SafeList());
 
         /// <summary>
         /// 判断当前坐标是否在多边形内

@@ -1,16 +1,15 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.Text;
 using Wolf.Systems.Abstracts;
 
 namespace Wolf.Systems.Core.Provider.Random
 {
-    /// <summary>
-    /// 随机数字生成器
-    /// </summary>
-    public class RandomNumberGeneratorProvider : IRandomNumberGeneratorProvider
+  /// <summary>
+  /// 随机数字生成器
+  /// </summary>
+  public class RandomNumberGeneratorProvider : IRandomNumberGeneratorProvider
     {
         /// <summary>
         /// 随机数
@@ -20,10 +19,7 @@ namespace Wolf.Systems.Core.Provider.Random
         /// <summary>
         /// 初始化随机数字生成器
         /// </summary>
-        public RandomNumberGeneratorProvider()
-        {
-            _random = new System.Random();
-        }
+        public RandomNumberGeneratorProvider() => _random = new System.Random();
 
         #region 生成随机数字
 

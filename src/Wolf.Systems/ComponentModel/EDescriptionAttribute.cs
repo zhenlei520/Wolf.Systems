@@ -1,8 +1,6 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-
 namespace Wolf.Systems.ComponentModel
 {
     /// <summary>
@@ -22,9 +20,6 @@ namespace Wolf.Systems.ComponentModel
         /// 自定义描述信息
         /// </summary>
         /// <param name="describe"></param>
-        public EDescriptionAttribute(string describe)
-        {
-            _describe = describe;
-        }
+        public EDescriptionAttribute(string describe) => _describe = describe;
     }
 }

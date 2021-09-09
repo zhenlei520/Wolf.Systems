@@ -1,18 +1,15 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Linq;
-using Wolf.Systems.Core.Configuration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// ICollection扩展
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// ICollection扩展
+  /// </summary>
+  public partial class Extensions
     {
         #region 对list集合分页
 

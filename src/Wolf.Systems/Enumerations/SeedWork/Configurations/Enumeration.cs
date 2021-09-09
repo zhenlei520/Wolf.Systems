@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
 namespace Wolf.Systems.Enumerations.SeedWork.Configurations
 {
     /// <summary>
@@ -120,7 +115,7 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public int CompareTo(object other) => Id.CompareTo(((Enumeration<T1, T2>) other).Id);
+        public int CompareTo(object other) => Id.CompareTo(((Enumeration<T1, T2>)other).Id);
 
         #region 重写HashCode方法
 
@@ -129,7 +124,7 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        internal static int GetHashCode( string str)
+        internal static int GetHashCode(string str)
         {
             unchecked
             {

@@ -1,33 +1,27 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Linq;
 using System.Text;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Core.Common;
-using Wolf.Systems.Core.Configuration;
 
 namespace Wolf.Systems.Core.Provider.Random
 {
-    /// <summary>
-    ///
-    /// </summary>
-    public class RandomProvider : IRandomProvider
+  /// <summary>
+  ///
+  /// </summary>
+  public class RandomProvider : IRandomProvider
     {
-        /// <summary>
-        /// 初始化随机数生成器
-        /// </summary>
-        /// <param name="randomNumberGeneratorProvider">随机数字生成器</param>
-        public RandomProvider(IRandomNumberGeneratorProvider randomNumberGeneratorProvider = null)
-        {
-            _randomNumberGeneratorProvider = randomNumberGeneratorProvider ?? new RandomNumberGeneratorProvider();
-        }
-
         /// <summary>
         /// 随机数字生成器
         /// </summary>
         private readonly IRandomNumberGeneratorProvider _randomNumberGeneratorProvider;
+
+        /// <summary>
+        /// 初始化随机数生成器
+        /// </summary>
+        /// <param name="randomNumberGeneratorProvider">随机数字生成器</param>
+        public RandomProvider(IRandomNumberGeneratorProvider randomNumberGeneratorProvider = null) => _randomNumberGeneratorProvider = randomNumberGeneratorProvider ?? new RandomNumberGeneratorProvider();
 
         #region 生成指定长度的随机字符串
 
@@ -77,10 +71,7 @@ namespace Wolf.Systems.Core.Provider.Random
         /// <param name="maxLength">最大值（默认为int.MaxValue）</param>
         /// <param name="minLength">最小值（默认为0）</param>
         /// <returns></returns>
-        private int GetRandomLength(int maxLength = int.MaxValue, int minLength = 1)
-        {
-            return _randomNumberGeneratorProvider.Generate(minLength, maxLength);
-        }
+        private int GetRandomLength(int maxLength = int.MaxValue, int minLength = 1) => _randomNumberGeneratorProvider.Generate(minLength, maxLength);
 
         #endregion
 
@@ -89,10 +80,7 @@ namespace Wolf.Systems.Core.Provider.Random
         /// <summary>
         /// 获取随机字符
         /// </summary>
-        private string GetRandomChar(string text)
-        {
-            return text[_randomNumberGeneratorProvider.Generate(1, text.Length)].ToString();
-        }
+        private string GetRandomChar(string text) => text[_randomNumberGeneratorProvider.Generate(1, text.Length)].ToString();
 
         #endregion
 
@@ -121,10 +109,7 @@ namespace Wolf.Systems.Core.Provider.Random
         /// 生成随机汉字
         /// </summary>
         /// <param name="maxLength">最大长度</param>
-        public string GenerateChinese(int maxLength)
-        {
-            return GenerateString(maxLength, Const.SimplifiedChinese);
-        }
+        public string GenerateChinese(int maxLength) => GenerateString(maxLength, Const.SimplifiedChinese);
 
         #endregion
 
@@ -134,10 +119,7 @@ namespace Wolf.Systems.Core.Provider.Random
         /// 生成随机数字(指定最大程度)
         /// </summary>
         /// <param name="maxLength">最大长度</param>
-        public string GenerateNumbers(int maxLength)
-        {
-            return GenerateString(maxLength, Const.Numbers);
-        }
+        public string GenerateNumbers(int maxLength) => GenerateString(maxLength, Const.Numbers);
 
         #endregion
 
@@ -162,10 +144,7 @@ namespace Wolf.Systems.Core.Provider.Random
         /// 生成随机整数
         /// </summary>
         /// <param name="maxValue">最大值</param>
-        public int GenerateInt(int maxValue)
-        {
-            return _randomNumberGeneratorProvider.Generate(0, maxValue + 1);
-        }
+        public int GenerateInt(int maxValue) => _randomNumberGeneratorProvider.Generate(0, maxValue + 1);
 
         #endregion
 
@@ -199,7 +178,7 @@ namespace Wolf.Systems.Core.Provider.Random
         {
             var list = EnumCommon.ToDescriptionDictionary<TEnum>().Select(x => x.Key).ToList();
             int index = _randomNumberGeneratorProvider.Generate(0, list.Count);
-            return (TEnum) System.Enum.Parse(typeof(TEnum), list[index].ToString(), true);
+            return (TEnum)System.Enum.Parse(typeof(TEnum), list[index].ToString(), true);
         }
 
         #endregion

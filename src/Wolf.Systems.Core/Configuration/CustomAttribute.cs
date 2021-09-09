@@ -1,18 +1,14 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Wolf.Systems.Core.Configuration
 {
-    /// <summary>
-    /// 自定义属性
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <typeparam name="TSource"></typeparam>
-    public class CustomAttribute<T, TSource>
+  /// <summary>
+  /// 自定义属性
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="TSource"></typeparam>
+  public class CustomAttribute<T, TSource>
         where T : Attribute
         where TSource : IComparable
     {

@@ -1,15 +1,14 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
 using Wolf.Systems.Abstracts;
 
 namespace Wolf.Systems.Core.Configuration
 {
-    /// <summary>
-    /// 列表
-    /// </summary>
-    public class Page<T> : IPage<T>
+  /// <summary>
+  /// 列表
+  /// </summary>
+  public class Page<T> : IPage<T>
     {
         /// <summary>
         ///

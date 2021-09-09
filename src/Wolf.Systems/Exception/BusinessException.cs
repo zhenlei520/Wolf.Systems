@@ -1,7 +1,5 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Exception
 {
@@ -13,29 +11,49 @@ namespace Wolf.Systems.Exception
         /// <summary>
         /// 业务异常
         /// </summary>
-        /// <param name="content">异常详情</param>
-        public BusinessException(string content) :
-            base(content, (int)ErrorCode.CustomerError)
+        /// <param name="msg">错误原因</param>
+        public BusinessException(string msg) :
+            base(msg, (int)ErrorCode.CustomerError)
         {
         }
 
         /// <summary>
         /// 业务异常
         /// </summary>
+        /// <param name="msg">错误原因</param>
         /// <param name="code">状态码</param>
-        /// <param name="content">异常详情</param>
-        public BusinessException(string content, int? code = null) :
-            base(content, code ?? (int)ErrorCode.CustomerError)
+        public BusinessException(string msg, int code) :
+            base(msg, code)
         {
         }
 
         /// <summary>
         /// 业务异常
         /// </summary>
-        /// <param name="errorCode">状态码</param>
-        /// <param name="content">异常详情</param>
-        public BusinessException(string content, ErrorCode errorCode) :
-            base(content, (int)errorCode)
+        /// <param name="msg">错误原因</param>
+        /// <param name="code">状态码</param>
+        public BusinessException(string msg, ErrorCode code) :
+            base(msg, (int)code)
+        {
+        }
+        /// <summary>
+        /// 业务异常
+        /// </summary>
+        /// <param name="msg">错误原因</param>
+        /// <param name="error">错误扩展信息</param>
+        public BusinessException(string msg,  object error) :
+            this(msg, ErrorCode.CustomerError, error)
+        {
+        }
+
+        /// <summary>
+        /// 业务异常
+        /// </summary>
+        /// <param name="msg">错误原因</param>
+        /// <param name="code">状态码</param>
+        /// <param name="error">错误扩展信息</param>
+        public BusinessException(string msg, ErrorCode code, object error) :
+            base(msg, (int)code, error)
         {
         }
     }
@@ -48,13 +66,30 @@ namespace Wolf.Systems.Exception
         where T : struct
     {
         /// <summary>
+        /// 错误状态码
+        /// </summary>
+        public T Code { get; set; }
+
+        /// <summary>
+        /// 错误扩展信息
+        /// </summary>
+        public object Error { get; set; }
+
+        /// <summary>
         /// 业务异常
         /// </summary>
+        /// <param name="msg">异常详情</param>
         /// <param name="code">状态码</param>
-        /// <param name="content">异常详情</param>
-        public BusinessException(string content, T code = default(T)) :
-            base(new Response<T>(code, content).ToString())
-        {
-        }
+        public BusinessException(string msg, T code = default(T)) :
+            base(msg) => Code = code;
+
+        /// <summary>
+        /// 业务异常
+        /// </summary>
+        /// <param name="msg">异常详情</param>
+        /// <param name="code">状态码</param>
+        /// <param name="error">错误扩展信息</param>
+        public BusinessException(string msg, T code, object error) :
+            this(msg) => Error = error;
     }
 }

@@ -1,8 +1,6 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -15,10 +13,10 @@ using Wolf.Systems.Core.Internal.Common;
 
 namespace Wolf.Systems.Core.Common
 {
-    /// <summary>
-    /// 文件帮助类
-    /// </summary>
-    public class FileCommon
+  /// <summary>
+  /// 文件帮助类
+  /// </summary>
+  public class FileCommon
     {
         #region 得到文件md5
 
@@ -40,7 +38,7 @@ namespace Wolf.Systems.Core.Common
                 }
             }
 
-            return String.Empty;
+            return Const.Empty;
         }
 
         #endregion
@@ -56,7 +54,7 @@ namespace Wolf.Systems.Core.Common
         {
             if (!File.Exists(localFilePath))
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             using (FileStream fileStream =
@@ -79,7 +77,7 @@ namespace Wolf.Systems.Core.Common
         {
             if (!File.Exists(localFilePath))
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             using (FileStream fileStream =
@@ -102,7 +100,7 @@ namespace Wolf.Systems.Core.Common
         {
             if (!File.Exists(localFilePath))
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             using (FileStream fileStream =
@@ -125,7 +123,7 @@ namespace Wolf.Systems.Core.Common
         {
             if (!File.Exists(localFilePath))
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             using (FileStream fileStream =
@@ -174,7 +172,7 @@ namespace Wolf.Systems.Core.Common
             try
             {
                 if (!File.Exists(filePath))
-                    return String.Empty;
+                    return Const.Empty;
                 using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
                     if (isSync)
@@ -187,7 +185,7 @@ namespace Wolf.Systems.Core.Common
             }
             catch
             {
-                result = string.Empty;
+                result = Const.Empty;
             }
 
             return result;
@@ -271,7 +269,7 @@ namespace Wolf.Systems.Core.Common
             try
             {
                 if (!File.Exists(filePath))
-                    return String.Empty;
+                    return Const.Empty;
                 using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
                     return fs.ConvertToBase64();
@@ -279,7 +277,7 @@ namespace Wolf.Systems.Core.Common
             }
             catch
             {
-                result = string.Empty;
+                result = Const.Empty;
             }
 
             return result;
@@ -400,7 +398,7 @@ namespace Wolf.Systems.Core.Common
         /// <returns></returns>
         private static async Task<string> GetFileContent(string filePath, bool isSync, Encoding encoding = null)
         {
-            string result = string.Empty;
+            string result = Const.Empty;
             try
             {
                 if (!File.Exists(filePath))
@@ -415,7 +413,7 @@ namespace Wolf.Systems.Core.Common
             }
             catch
             {
-                result = string.Empty;
+                result = Const.Empty;
             }
 
             return result;
@@ -503,7 +501,7 @@ namespace Wolf.Systems.Core.Common
         /// <returns></returns>
         public static string GetFileContent(string filePath, Encoding encoding = null)
         {
-            string result = string.Empty;
+            string result = Const.Empty;
             try
             {
                 if (!File.Exists(filePath))
@@ -518,7 +516,7 @@ namespace Wolf.Systems.Core.Common
             }
             catch
             {
-                result = string.Empty;
+                result = Const.Empty;
             }
 
             return result;
@@ -622,10 +620,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="directory">文件夹</param>
         /// <param name="fileName">带后缀的文件名</param>
         /// <param name="content">文件内容</param>
-        public static void CreateFile(string directory, string fileName, string content)
-        {
-            CreateFile(directory, fileName, content, Encoding.UTF8);
-        }
+        public static void CreateFile(string directory, string fileName, string content)=> CreateFile(directory, fileName, content, Encoding.UTF8);
 
         /// <summary>
         /// 创建文件
@@ -764,10 +759,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="filePath">文件的绝对路径</param>
         /// <param name="content">写入的内容</param>
         /// <param name="isCheckDirectoryAndCreate">是否检查目录并自动创建，默认为true（如果文件目录不存在则自动创建目录）</param>
-        public static void WriteText(string filePath, string content, bool isCheckDirectoryAndCreate = true)
-        {
-            WriteText(filePath, content, Encoding.UTF8, isCheckDirectoryAndCreate);
-        }
+        public static void WriteText(string filePath, string content, bool isCheckDirectoryAndCreate = true)=> WriteText(filePath, content, Encoding.UTF8, isCheckDirectoryAndCreate);
 
         /// <summary>
         /// 向文本文件中写入内容
@@ -877,10 +869,7 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <param name="directoryPath">文件夹的绝对路径</param>
         /// <returns></returns>
-        public static bool IsExistDirectory(string directoryPath)
-        {
-            return Directory.Exists(directoryPath);
-        }
+        public static bool IsExistDirectory(string directoryPath)=> Directory.Exists(directoryPath);
 
         #endregion
 
@@ -1107,10 +1096,6 @@ namespace Wolf.Systems.Core.Common
         }
 
         #endregion
-
-        #endregion
-
-        #region private methods
 
         #endregion
     }

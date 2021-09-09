@@ -1,16 +1,15 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// TimeSpan扩展信息
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// TimeSpan扩展信息
+  /// </summary>
+  public partial class Extensions
     {
         #region 格式化时间
 

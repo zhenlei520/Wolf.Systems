@@ -1,16 +1,15 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Core.Provider.DateTimes
 {
-    /// <summary>
-    /// 本周周一
-    /// </summary>
-    public class StartWeekProvider : IDateTimeProvider
+  /// <summary>
+  /// 本周周一
+  /// </summary>
+  public class StartWeekProvider : IDateTimeProvider
     {
         /// <summary>
         /// 类型

@@ -1,9 +1,7 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
+using System.Collections;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
@@ -99,12 +97,43 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static bool IsEnum(this Type type)
-        {
-            return type.GetTypeInfo().IsEnum;
-        }
+        public static bool IsEnum(this Type type) => type.GetTypeInfo().IsEnum;
 
         #endregion
 #endif
+
+        #region 判断是list集合
+
+        public static bool IsList(this object obj) => obj is IList || obj.IsGenericList();
+
+        #endregion
+
+        #region 判断是泛型集合
+
+        public static bool IsGenericList(this object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return IsGenericList(obj.GetType());
+        }
+
+        public static bool IsGenericList<T>(this object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return IsGenericList<T>(obj.GetType());
+        }
+
+        public static bool IsGenericList(this Type type) => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>);
+
+        public static bool IsGenericList<T>(this Type type) => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<T>);
+
+        #endregion
     }
 }

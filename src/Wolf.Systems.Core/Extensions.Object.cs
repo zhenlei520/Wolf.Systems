@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using Wolf.Systems.Core.Common;
@@ -19,11 +19,11 @@ namespace Wolf.Systems.Core
         /// <param name="isReplaceSpace">是否移除空格（默认移除）</param>
         public static string SafeString(this object param, bool isReplaceSpace = true)
         {
-            return ObjectCommon.SafeObject(!param.IsNullOrDbNull(), () =>
+            return ObjectCommon.SafeObject(!param.IsNull(), () =>
             {
                 var res = param.ToString();
                 return isReplaceSpace ? res.Trim() : res;
-            }, () => string.Empty);
+            }, () => Const.Empty);
         }
 
         #endregion

@@ -1,7 +1,6 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -162,7 +161,7 @@ namespace Wolf.Systems.Core.Provider.Security
         private string ByteArrayToHex(byte[] ba)
         {
             string hex = BitConverter.ToString(ba);
-            return hex.Replace("-", "");
+            return hex.Replace("-", Const.Empty);
         }
 
         #region 得到结果

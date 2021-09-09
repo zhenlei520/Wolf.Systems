@@ -1,17 +1,16 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace Wolf.Systems.Core.Internal.Common
 {
-    /// <summary>
-    /// 加密帮助类
-    /// </summary>
-    internal class SecurityCommon
+  /// <summary>
+  /// 加密帮助类
+  /// </summary>
+  internal class SecurityCommon
     {
         #region MD5加密
 
@@ -21,30 +20,21 @@ namespace Wolf.Systems.Core.Internal.Common
         /// <param name="str">待加密字符串</param>
         /// <param name="encoding">编码方式（默认Utf-8）</param>
         /// <param name="isUpper">是否转大写,默认：true</param>
-        public static string GetMd5HashBy16(string str, Encoding encoding, bool isUpper = true)
-        {
-            return GetMd5Hash(str, true, encoding, isUpper);
-        }
+        public static string GetMd5HashBy16(string str, Encoding encoding, bool isUpper = true) => GetMd5Hash(str, true, encoding, isUpper);
 
         /// <summary>
         /// Md5加密，返回16位结果
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="isUpper">是否转大写,默认：true</param>
-        public static string GetMd5HashBy16(byte[] bytes, bool isUpper = true)
-        {
-            return GetMd5Hash(bytes, true, isUpper);
-        }
+        public static string GetMd5HashBy16(byte[] bytes, bool isUpper = true) => GetMd5Hash(bytes, true, isUpper);
 
         /// <summary>
         /// Md5加密，返回16位结果
         /// </summary>
         /// <param name="stream">待加密字符串</param>
         /// <param name="isUpper">是否转大写,默认：true</param>
-        public static string GetMd5HashBy16(Stream stream, bool isUpper = true)
-        {
-            return GetMd5Hash(stream, true, isUpper);
-        }
+        public static string GetMd5HashBy16(Stream stream, bool isUpper = true) => GetMd5Hash(stream, true, isUpper);
 
         /// <summary>
         /// MD5加密(32位)
@@ -53,10 +43,7 @@ namespace Wolf.Systems.Core.Internal.Common
         /// <param name="encoding">编码方式（默认Utf-8）</param>
         /// <param name="isUpper">是否转大写,默认：true</param>
         /// <returns></returns>
-        public static string GetMd5Hash(string str, Encoding encoding = null, bool isUpper = true)
-        {
-            return GetMd5Hash(str, false, encoding, isUpper);
-        }
+        public static string GetMd5Hash(string str, Encoding encoding = null, bool isUpper = true) => GetMd5Hash(str, false, encoding, isUpper);
 
         /// <summary>
         /// MD5加密(32位)
@@ -64,10 +51,7 @@ namespace Wolf.Systems.Core.Internal.Common
         /// <param name="bytes">待加密字符串</param>
         /// <param name="isUpper">是否转大写,默认：true</param>
         /// <returns></returns>
-        public static string GetMd5Hash(byte[] bytes, bool isUpper = true)
-        {
-            return GetMd5Hash(bytes, false, isUpper);
-        }
+        public static string GetMd5Hash(byte[] bytes, bool isUpper = true) => GetMd5Hash(bytes, false, isUpper);
 
         /// <summary>
         /// MD5加密(32位)
@@ -75,10 +59,7 @@ namespace Wolf.Systems.Core.Internal.Common
         /// <param name="stream">待加密字符串</param>
         /// <param name="isUpper">是否转大写,默认：true</param>
         /// <returns></returns>
-        public static string GetMd5Hash(Stream stream, bool isUpper = true)
-        {
-            return GetMd5Hash(stream, false, isUpper);
-        }
+        public static string GetMd5Hash(Stream stream, bool isUpper = true) => GetMd5Hash(stream, false, isUpper);
 
         /// <summary>
         /// 得到md5加密结果
@@ -131,12 +112,10 @@ namespace Wolf.Systems.Core.Internal.Common
         /// <param name="startIndex"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        private static string GetSignResult(byte[] signed, int? startIndex = null, int? length = null)
-        {
-            return (startIndex == null
+        private static string GetSignResult(byte[] signed, int? startIndex = null, int? length = null) =>
+            (startIndex == null
                 ? BitConverter.ToString(signed)
-                : BitConverter.ToString(signed, (int) startIndex, length ?? default(int))).Replace("-", string.Empty);
-        }
+                : BitConverter.ToString(signed, (int)startIndex, length ?? default(int))).Replace("-", Const.Empty);
 
         /// <summary>
         ///

@@ -1,15 +1,14 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using Wolf.Systems.Enumerations;
 
 namespace Wolf.Systems.Core.Common.Unique
 {
-    /// <summary>
-    /// 唯一方法实现
-    /// </summary>
-    public static class GuidGeneratorCommon
+  /// <summary>
+  /// 唯一方法实现
+  /// </summary>
+  public static class GuidGeneratorCommon
     {
         #region 全局唯一Guid
 

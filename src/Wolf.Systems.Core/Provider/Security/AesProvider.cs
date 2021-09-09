@@ -9,11 +9,11 @@ using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Provider.Security
 {
-    /// <summary>
-    /// Aes
-    /// 加解密
-    /// </summary>
-    public class AesProvider : ISecurityProvider
+  /// <summary>
+  /// Aes
+  /// 加解密
+  /// </summary>
+  public class AesProvider : ISecurityProvider
     {
         /// <summary>
         /// 加密方式

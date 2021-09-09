@@ -10,10 +10,10 @@ using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Provider.Security
 {
-    /// <summary>
-    /// Des加解密
-    /// </summary>
-    public class DesProvider : ISecurityProvider
+  /// <summary>
+  /// Des加解密
+  /// </summary>
+  public class DesProvider : ISecurityProvider
     {
         /// <summary>
         /// 默认Iv

@@ -1,10 +1,5 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
-using System.Security.Cryptography;
-using Wolf.Systems.Abstracts;
-using Wolf.Systems.Data.Enumerations;
 
 namespace Wolf.Systems.Data.Provider.Unique
 {

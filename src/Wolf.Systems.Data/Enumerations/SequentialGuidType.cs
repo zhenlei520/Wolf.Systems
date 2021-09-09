@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 
 namespace Wolf.Systems.Data.Enumerations
 {

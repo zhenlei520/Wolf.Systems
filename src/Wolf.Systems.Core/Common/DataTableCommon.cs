@@ -1,16 +1,15 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.ComponentModel;
 using System.Data;
 
 namespace Wolf.Systems.Core.Common
 {
-    /// <summary>
-    ///
-    /// </summary>
-    public static class DataTableCommon
+  /// <summary>
+  ///
+  /// </summary>
+  public static class DataTableCommon
     {
         #region 创建空表记录
 

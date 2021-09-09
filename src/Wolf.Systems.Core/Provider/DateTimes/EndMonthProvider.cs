@@ -1,17 +1,15 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Globalization;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Core.Provider.DateTimes
 {
-    /// <summary>
-    /// 本月月末
-    /// </summary>
-    public class EndMonthProvider : IDateTimeProvider
+  /// <summary>
+  /// 本月月末
+  /// </summary>
+  public class EndMonthProvider : IDateTimeProvider
     {
         /// <summary>
         ///
@@ -21,18 +19,14 @@ namespace Wolf.Systems.Core.Provider.DateTimes
         /// <summary>
         /// 时间类型
         /// </summary>
-        public int Type => (int) TimeType.EndMonth;
+        public int Type => (int)TimeType.EndMonth;
 
         /// <summary>
         /// 得到结果
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public DateTime GetResult(DateTime date)
-        {
-            var lastDay = Calendar.GetDaysInMonth(date.Year, date.Month);
-            return new DateTime(date.Year, date.Month, lastDay);
-        }
+        public DateTime GetResult(DateTime date) => new DateTime(date.Year, date.Month, Calendar.GetDaysInMonth(date.Year, date.Month));
 
         /// <summary>
         /// 得到结果

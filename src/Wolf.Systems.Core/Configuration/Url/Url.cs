@@ -1,16 +1,15 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.Text;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Configuration.Url
 {
-    /// <summary>
-    /// url地址
-    /// </summary>
-    public class Url
+  /// <summary>
+  /// url地址
+  /// </summary>
+  public class Url
     {
         /// <summary>
         ///
@@ -112,10 +111,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// <param name="isUrlEncode">是否url编码</param>
         /// <param name="encoding">编码格式，默认UTF8</param>
         /// <returns></returns>
-        public string GetQueryResult(bool isSort = false, bool isUrlEncode = false, Encoding encoding = null)
-        {
-            return UrlParameter.GetQueryResult(isSort, isUrlEncode, encoding);
-        }
+        public string GetQueryResult(bool isSort = false, bool isUrlEncode = false, Encoding encoding = null)=> UrlParameter.GetQueryResult(isSort, isUrlEncode, encoding);
 
         #endregion
 
@@ -134,10 +130,10 @@ namespace Wolf.Systems.Core.Configuration.Url
             var queryParam = GetQueryResult(isSort, isUrlEncode, encoding);
             if (!string.IsNullOrEmpty(queryParam))
             {
-                return $"{RequestUrl.Replace(FullAuthority, "")}?{queryParam}";
+                return $"{RequestUrl.Replace(FullAuthority, Const.Empty)}?{queryParam}";
             }
 
-            return $"{RequestUrl.Replace(FullAuthority, "")}";
+            return $"{RequestUrl.Replace(FullAuthority, Const.Empty)}";
         }
 
         #endregion
@@ -172,10 +168,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// 格式：{host}/api/user?参数1=参数值&参数2=参数值
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return GetFullQueryPath(false, false, Encoding.UTF8, true);
-        }
+        public override string ToString()=> GetFullQueryPath(false, false, Encoding.UTF8, true);
 
         #region private methods
 
@@ -209,7 +202,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                return "";
+                return Const.Empty;
             }
 
             if (url.StartsWith("//"))

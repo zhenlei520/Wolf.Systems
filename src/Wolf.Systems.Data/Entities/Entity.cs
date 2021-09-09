@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using Wolf.Systems.Data.Abstractions;
@@ -20,9 +20,6 @@ namespace Wolf.Systems.Data.Entities
         /// 设置id
         /// </summary>
         /// <param name="id">实体id</param>
-        public void SetId(T id)
-        {
-            this.Id = id;
-        }
+        public void SetId(T id) => this.Id = id;
     }
 }

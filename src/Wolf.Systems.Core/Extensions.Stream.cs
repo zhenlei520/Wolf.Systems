@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.IO;
@@ -22,19 +22,13 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <returns></returns>
-        public static byte[] ConvertToByteArray(this Stream stream)
-        {
-            return stream.ConvertToByteArrayAsyncByStream(true).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
+        public static byte[] ConvertToByteArray(this Stream stream) => stream.ConvertToByteArrayAsyncByStream(true).ConfigureAwait(false).GetAwaiter().GetResult();
 
         /// <summary>
         /// 流转换为字节流
         /// </summary>
         /// <param name="stream">流</param>
-        public static async Task<byte[]> ConvertToByteArrayAsync(this Stream stream)
-        {
-            return await stream.ConvertToByteArrayAsyncByStream(false);
-        }
+        public static async Task<byte[]> ConvertToByteArrayAsync(this Stream stream)=> await stream.ConvertToByteArrayAsyncByStream(false);
 
         #region 流转换为字节流
 
@@ -82,10 +76,7 @@ namespace Wolf.Systems.Core
         /// 复制流并转换成字符串
         /// </summary>
         /// <param name="stream">流</param>
-        public static async Task<string> CopyToStringAsync(this Stream stream)
-        {
-            return await CopyToStringAsync(stream, Encoding.UTF8);
-        }
+        public static async Task<string> CopyToStringAsync(this Stream stream)=>await CopyToStringAsync(stream, Encoding.UTF8);
 
         /// <summary>
         /// 复制流并转换成字符串（流会重置）
@@ -95,9 +86,9 @@ namespace Wolf.Systems.Core
         public static async Task<string> CopyToStringAsync(this Stream stream, Encoding encoding)
         {
             if (stream == null)
-                return string.Empty;
+                return Const.Empty;
             if (stream.CanRead == false)
-                return string.Empty;
+                return Const.Empty;
             using (var memoryStream = new MemoryStream())
             {
                 using (var reader = new StreamReader(memoryStream, encoding))
@@ -124,10 +115,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="stream">文件流</param>
         /// <returns></returns>
-        public static string ConvertToString(this Stream stream)
-        {
-            return stream.ConvertToString(Encoding.UTF8);
-        }
+        public static string ConvertToString(this Stream stream)=>stream.ConvertToString(Encoding.UTF8);
 
         /// <summary>
         /// 文件流转字符串
@@ -138,20 +126,14 @@ namespace Wolf.Systems.Core
         /// <param name="isCloseStream">是否自动释放文件</param>
         /// <returns></returns>
         public static string ConvertToString(this Stream stream, Encoding encoding, int bufferSize = 1024 * 2,
-            bool isCloseStream = true)
-        {
-            return stream.ConvertToStringAsync(encoding, true, bufferSize, isCloseStream).Result;
-        }
+            bool isCloseStream = true)=>stream.ConvertToStringAsync(encoding, true, bufferSize, isCloseStream).Result;
 
         /// <summary>
         /// 文件流转字符串
         /// </summary>
         /// <param name="stream">文件流</param>
         /// <returns></returns>
-        public static async Task<string> ConvertToStringAsync(this Stream stream)
-        {
-            return await stream.ConvertToStringAsync(Encoding.UTF8, false);
-        }
+        public static async Task<string> ConvertToStringAsync(this Stream stream)=>await stream.ConvertToStringAsync(Encoding.UTF8, false);
 
         /// <summary>
         /// 文件流转字符串
@@ -163,10 +145,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static async Task<string> ConvertToStringAsync(this Stream stream, Encoding encoding,
             int bufferSize = 1024 * 2,
-            bool isCloseStream = true)
-        {
-            return await stream.ConvertToStringAsync(encoding, false, bufferSize, isCloseStream);
-        }
+            bool isCloseStream = true)=>await stream.ConvertToStringAsync(encoding, false, bufferSize, isCloseStream);
 
         #endregion
 
@@ -186,7 +165,7 @@ namespace Wolf.Systems.Core
             bool isCloseStream = true)
         {
             if (stream == null || encoding == null || stream.CanRead == false)
-                return string.Empty;
+                return Const.Empty;
             using (var reader = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream))
             {
                 if (stream.CanSeek)
@@ -211,22 +190,18 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="stream">文件流</param>
         /// <returns></returns>
-        public static string ConvertToBase64(this Stream stream)
-        {
-            return ConvertToBase64(stream.ConvertToByteArray());
-        }
+        public static string ConvertToBase64(this Stream stream) => ConvertToBase64(stream.ConvertToByteArray());
 
 #if !NET40
+
         /// <summary>
         /// 文件流转换为base64
         /// </summary>
         /// <param name="stream">文件流</param>
         /// <returns></returns>
-        public static async Task<string> ConvertToBase64Async(this Stream stream)
-        {
-            return ConvertToBase64(await stream.ConvertToByteArrayAsyncByStream(false));
-        }
+        public static async Task<string> ConvertToBase64Async(this Stream stream) => ConvertToBase64(await stream.ConvertToByteArrayAsyncByStream(false));
 #endif
+
         #endregion
 
         #region 得到哈希值
@@ -239,10 +214,7 @@ namespace Wolf.Systems.Core
         /// <param name="stream">文件流</param>
         /// <param name="isUpper">是否大写，默认大写</param>
         /// <returns></returns>
-        public static string GetHashByMd5(this Stream stream, bool isUpper = true)
-        {
-            return stream.GetSha(new MD5CryptoServiceProvider(), isUpper);
-        }
+        public static string GetHashByMd5(this Stream stream, bool isUpper = true) => stream.GetSha(new MD5CryptoServiceProvider(), isUpper);
 
         #endregion
 
@@ -254,10 +226,7 @@ namespace Wolf.Systems.Core
         /// <param name="stream">文件流</param>
         /// <param name="isUpper">是否大写</param>
         /// <returns></returns>
-        public static string GetHashBySha1(this Stream stream, bool isUpper = true)
-        {
-            return stream.GetSha(new SHA1CryptoServiceProvider(), isUpper);
-        }
+        public static string GetHashBySha1(this Stream stream, bool isUpper = true) => stream.GetSha(new SHA1CryptoServiceProvider(), isUpper);
 
         #endregion
 
@@ -269,10 +238,7 @@ namespace Wolf.Systems.Core
         /// <param name="stream">文件流</param>
         /// <param name="isUpper">是否大写，默认大写</param>
         /// <returns></returns>
-        public static string GetHashBySha256(this Stream stream, bool isUpper = true)
-        {
-            return stream.GetSha(new SHA256CryptoServiceProvider(), isUpper);
-        }
+        public static string GetHashBySha256(this Stream stream, bool isUpper = true) => stream.GetSha(new SHA256CryptoServiceProvider(), isUpper);
 
         #endregion
 
@@ -284,10 +250,7 @@ namespace Wolf.Systems.Core
         /// <param name="stream">文件流</param>
         /// <param name="isUpper">是否大写，默认大写</param>
         /// <returns></returns>
-        public static string GetHashBySha384(this Stream stream, bool isUpper = true)
-        {
-            return stream.GetSha(new SHA384CryptoServiceProvider(), isUpper);
-        }
+        public static string GetHashBySha384(this Stream stream, bool isUpper = true)=> stream.GetSha(new SHA384CryptoServiceProvider(), isUpper);
 
         #endregion
 
@@ -299,10 +262,7 @@ namespace Wolf.Systems.Core
         /// <param name="stream">文件流</param>
         /// <param name="isUpper">是否大写，默认大写</param>
         /// <returns></returns>
-        public static string GetHashBySha512(this Stream stream, bool isUpper = true)
-        {
-            return stream.GetSha(new SHA512CryptoServiceProvider(), isUpper);
-        }
+        public static string GetHashBySha512(this Stream stream, bool isUpper = true)=> stream.GetSha(new SHA512CryptoServiceProvider(), isUpper);
 
         #endregion
 

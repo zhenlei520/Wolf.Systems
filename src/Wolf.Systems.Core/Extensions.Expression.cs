@@ -1,19 +1,14 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using Wolf.Systems.Core.Internal.Configuration;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// Expression扩展
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// Expression扩展
+  /// </summary>
+  public partial class Extensions
     {
         #region Compose two expression and merge all in a new expression
 

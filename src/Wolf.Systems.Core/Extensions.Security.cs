@@ -1,7 +1,6 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,10 +10,10 @@ using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// 加密帮助类
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// 加密帮助类
+  /// </summary>
+  public partial class Extensions
     {
         #region Aes加解密
 
@@ -29,7 +28,7 @@ namespace Wolf.Systems.Core
         public static string AesEncrypt(this string str, string key)
         {
             var provider = GlobalConfigurations.Instance.GetSecurityProvider(SecurityType.Aes);
-            return provider?.Encrypt(str, key, string.Empty, Encoding.UTF8) ??
+            return provider?.Encrypt(str, key, Const.Empty, Encoding.UTF8) ??
                    throw new NotImplementedException("Unsupported encryption methods");
         }
 
@@ -46,7 +45,7 @@ namespace Wolf.Systems.Core
         public static string AesDecrypt(this string str, string key)
         {
             var provider = GlobalConfigurations.Instance.GetSecurityProvider(SecurityType.Aes);
-            return provider?.Decrypt(str, key, string.Empty, Encoding.UTF8) ??
+            return provider?.Decrypt(str, key, Const.Empty, Encoding.UTF8) ??
                    throw new NotImplementedException("Unsupported decryption methods");
         }
 
@@ -68,7 +67,7 @@ namespace Wolf.Systems.Core
         public static string DesEncrypt(this string str, string key, string iv)
         {
             var provider = GlobalConfigurations.Instance.GetSecurityProvider(SecurityType.Des);
-            return provider?.Encrypt(str, key, string.Empty, Encoding.UTF8) ??
+            return provider?.Encrypt(str, key, Const.Empty, Encoding.UTF8) ??
                    throw new NotImplementedException("Unsupported encryption methods");
         }
 
@@ -86,7 +85,7 @@ namespace Wolf.Systems.Core
         public static string DesDecrypt(this string str, string key, string iv)
         {
             var provider = GlobalConfigurations.Instance.GetSecurityProvider(SecurityType.Des);
-            return provider?.Decrypt(str, key, string.Empty, Encoding.UTF8) ??
+            return provider?.Decrypt(str, key, Const.Empty, Encoding.UTF8) ??
                    throw new NotImplementedException("Unsupported decryption methods");
         }
 
@@ -108,7 +107,7 @@ namespace Wolf.Systems.Core
         public static string JsAesEncrypt(this string str, string key, string iv)
         {
             var provider = GlobalConfigurations.Instance.GetSecurityProvider(SecurityType.JsAes);
-            return provider?.Encrypt(str, key, string.Empty, Encoding.UTF8) ??
+            return provider?.Encrypt(str, key, Const.Empty, Encoding.UTF8) ??
                    throw new NotImplementedException("Unsupported encryption methods");
         }
 
@@ -126,7 +125,7 @@ namespace Wolf.Systems.Core
         public static string JsAesDecrypt(this string str, string key, string iv)
         {
             var provider = GlobalConfigurations.Instance.GetSecurityProvider(SecurityType.JsAes);
-            return provider?.Encrypt(str, key, string.Empty, Encoding.UTF8) ??
+            return provider?.Encrypt(str, key, Const.Empty, Encoding.UTF8) ??
                    throw new NotImplementedException("Unsupported decryption methods");
         }
 

@@ -1,15 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
-using System.Linq;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// 公共方法
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// 公共方法
+  /// </summary>
+  public partial class Extensions
     {
         #region 安全获取值，当值为null时，不会抛出异常
 
@@ -17,10 +14,7 @@ namespace Wolf.Systems.Core
         /// 安全获取值，当值为null时，不会抛出异常
         /// </summary>
         /// <param name="value">可空值</param>
-        public static T SafeValue<T>(this T? value) where T : struct
-        {
-            return value ?? default(T);
-        }
+        public static T SafeValue<T>(this T? value) where T : struct => value ?? default(T);
 
         #endregion
 
@@ -47,100 +41,71 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref ushort parameter1, ref ushort parameter2)
-        {
-            ChangeResult<ushort>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref ushort parameter1, ref ushort parameter2) => ChangeResult<ushort>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref short parameter1, ref short parameter2)
-        {
-            ChangeResult<short>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref short parameter1, ref short parameter2) => ChangeResult<short>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref int parameter1, ref int parameter2)
-        {
-            ChangeResult<int>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref int parameter1, ref int parameter2) => ChangeResult<int>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref long parameter1, ref long parameter2)
-        {
-            ChangeResult<long>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref long parameter1, ref long parameter2) => ChangeResult<long>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref sbyte parameter1, ref sbyte parameter2)
-        {
-            ChangeResult<sbyte>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref sbyte parameter1, ref sbyte parameter2) => ChangeResult<sbyte>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref byte parameter1, ref byte parameter2)
-        {
-            ChangeResult<byte>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref byte parameter1, ref byte parameter2) => ChangeResult<byte>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref float parameter1, ref float parameter2)
-        {
-            ChangeResult<float>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref float parameter1, ref float parameter2) => ChangeResult<float>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref double parameter1, ref double parameter2)
-        {
-            ChangeResult<double>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref double parameter1, ref double parameter2) => ChangeResult<double>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref decimal parameter1, ref decimal parameter2)
-        {
-            ChangeResult<decimal>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref decimal parameter1, ref decimal parameter2) => ChangeResult<decimal>(ref parameter1, ref parameter2);
 
         /// <summary>
         /// 值互换(转换后变成：参数1：最小值,参数2：最大值)
         /// </summary>
         /// <param name="parameter1">参数1</param>
         /// <param name="parameter2">参数2</param>
-        public static void ChangeResult(this ref DateTime parameter1, ref DateTime parameter2)
-        {
-            ChangeResult<DateTime>(ref parameter1, ref parameter2);
-        }
+        public static void ChangeResult(this ref DateTime parameter1, ref DateTime parameter2) => ChangeResult<DateTime>(ref parameter1, ref parameter2);
+
         #endregion
 
         #region ForEach循环

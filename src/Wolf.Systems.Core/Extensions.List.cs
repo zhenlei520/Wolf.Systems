@@ -1,17 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// List扩展
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// List扩展
+  /// </summary>
+  public partial class Extensions
     {
         #region 返回集合原来的第一个元素的值
 
@@ -98,10 +93,7 @@ namespace Wolf.Systems.Core
         /// <param name="item"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static void RemoveNew<T>(this List<T> list, T item)
-        {
-            list.Remove(item);
-        }
+        public static void RemoveNew<T>(this List<T> list, T item) => list.Remove(item);
 
         /// <summary>
         /// 移除集合
@@ -110,10 +102,7 @@ namespace Wolf.Systems.Core
         /// <param name="delList">待删除的集合</param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static void RemoveRangeNew<T>(this List<T> list, ICollection<T> delList)
-        {
-            delList.ToList().ForEach(item => { list.Remove(item); });
-        }
+        public static void RemoveRangeNew<T>(this List<T> list, ICollection<T> delList) => delList.ToList().ForEach(item => { list.Remove(item); });
 
         #endregion
 

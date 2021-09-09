@@ -1,8 +1,6 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-
 namespace Wolf.Systems.ComponentModel
 {
     /// <summary>
@@ -22,9 +20,6 @@ namespace Wolf.Systems.ComponentModel
         /// 版本信息
         /// </summary>
         /// <param name="version"></param>
-        public EVersionAttribute(string version)
-        {
-            _version = version;
-        }
+        public EVersionAttribute(string version)=> _version = version;
     }
 }

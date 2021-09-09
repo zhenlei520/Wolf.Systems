@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Collections;
@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// Exception扩展
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// Exception扩展
+  /// </summary>
+  public partial class Extensions
     {
         #region 提取异常及其内部异常堆栈跟踪
 
@@ -18,10 +18,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="exception">提取的例外</param>
         /// <returns>Syste.String</returns>
-        public static string ExtractAllStackTrace(this System.Exception exception)
-        {
-            return ExtractAllStackTrace(exception, null, 1);
-        }
+        public static string ExtractAllStackTrace(this System.Exception exception) => ExtractAllStackTrace(exception, null, 1);
 
         /// <summary>
         /// 提取异常及其内部异常堆栈跟踪
@@ -44,7 +41,7 @@ namespace Wolf.Systems.Core
                 stringBuilder.Append("\r\n    Data: ");
                 foreach (var item in exception.Data)
                 {
-                    var entry = (DictionaryEntry) item;
+                    var entry = (DictionaryEntry)item;
                     stringBuilder.Append($"\r\n\t{entry.Key}: {exception.Data[entry.Key]}");
                 }
             }

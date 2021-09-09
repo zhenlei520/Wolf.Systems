@@ -1,17 +1,15 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Linq;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Common
 {
-    /// <summary>
-    /// 时间扩展
-    /// </summary>
-    public class TimeCommon
+  /// <summary>
+  /// 时间扩展
+  /// </summary>
+  public class TimeCommon
     {
         #region 把秒转换成分钟
 
@@ -46,10 +44,7 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <param name="year">年</param>
         /// <returns></returns>
-        public static bool IsLeapYear(int year)
-        {
-            return DateTime.IsLeapYear(year);
-        }
+        public static bool IsLeapYear(int year)=> DateTime.IsLeapYear(year);
 
         #endregion
 

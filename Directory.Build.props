@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<LangVersion>7.3</LangVersion>
+	<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<Import Project="build\version.props" />
 
@@ -18,10 +18,6 @@
     <RepoRelativeProjectDir>$([MSBuild]::MakeRelative($(RepositoryRoot), $(MSBuildProjectDirectory)))</RepoRelativeProjectDir>
     <IsProductComponent>false</IsProductComponent>
     <IsTestProject Condition="$(MSBuildProjectName.EndsWith('Tests')) OR $(MSBuildProjectName.EndsWith('.Test'))">true</IsTestProject>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(RepositoryRoot)cert.snk</AssemblyOriginatorKeyFile>
-    <PublicSign>true</PublicSign>
-    <DelaySign>false</DelaySign>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>

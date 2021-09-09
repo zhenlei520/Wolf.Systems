@@ -1,18 +1,16 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Linq;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Provider.Week
 {
-    /// <summary>
-    ///
-    /// </summary>
-    public class ChinaWeekProvider : IWeekProvider
+  /// <summary>
+  ///
+  /// </summary>
+  public class ChinaWeekProvider : IWeekProvider
     {
         /// <summary>
         ///

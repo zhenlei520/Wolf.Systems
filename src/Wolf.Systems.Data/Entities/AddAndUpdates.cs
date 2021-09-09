@@ -1,7 +1,5 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
 
 namespace Wolf.Systems.Data.Entities
 {
@@ -13,10 +11,7 @@ namespace Wolf.Systems.Data.Entities
         /// <summary>
         /// 构造函数
         /// </summary>
-        public AddAndUpdate() : base()
-        {
-            EditTime = DateTime.Now;
-        }
+        public AddAndUpdate() : base() => EditTime = DateTime.Now;
 
         /// <summary>
         /// 构造函数（默认为更新用户以及添加用户赋值）

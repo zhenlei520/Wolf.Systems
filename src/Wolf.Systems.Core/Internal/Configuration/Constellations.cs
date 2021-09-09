@@ -5,10 +5,10 @@ using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Core.Internal.Configuration
 {
-    /// <summary>
-    /// 星座
-    /// </summary>
-    internal class Constellations
+  /// <summary>
+  /// 星座
+  /// </summary>
+  internal class Constellations
     {
         /// <summary>
         /// 内容

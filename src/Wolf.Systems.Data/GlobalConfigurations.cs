@@ -1,7 +1,6 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 
 using System.Collections.Generic;
-using Wolf.Systems.Abstracts;
 using Wolf.Systems.Core.Provider.Unique;
 using Wolf.Systems.Data.Provider.Unique;
 

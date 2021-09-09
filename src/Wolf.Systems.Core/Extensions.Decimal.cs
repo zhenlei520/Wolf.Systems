@@ -1,9 +1,6 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
@@ -59,8 +56,20 @@ namespace Wolf.Systems.Core
             MidpointRounding midpointRounding = MidpointRounding.AwayFromZero)
         {
             dec = Math.Round(dec, num, midpointRounding);
-            return dec.ToString("0." + "".RepairZero(num));
+            return dec.ToString("0." + Const.Empty.RepairZero(num));
         }
+
+        #endregion
+
+        #region 判断精度是否正确
+
+        /// <summary>
+        /// 判断精度是否正确
+        /// </summary>
+        /// <param name="str">带匹配的字符串</param>
+        /// <param name="maxScale">最大保留小数位数</param>
+        /// <returns></returns>
+        public static bool IsMaxScale(this decimal str, int maxScale) => str.ToString(CultureInfo.InvariantCulture).IsMaxScale(maxScale);
 
         #endregion
     }

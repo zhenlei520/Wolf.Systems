@@ -1,15 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace Wolf.Systems.Core.Internal.Configuration
 {
-    /// <summary>
-    ///
-    /// </summary>
-    internal class ParameterRebinder : ExpressionVisitor
+  /// <summary>
+  ///
+  /// </summary>
+  internal class ParameterRebinder : ExpressionVisitor
     {
         private readonly Dictionary<ParameterExpression, ParameterExpression> _map;
 
@@ -17,10 +14,8 @@ namespace Wolf.Systems.Core.Internal.Configuration
         /// Default construcotr
         /// </summary>
         /// <param name="map">Map specification</param>
-        public ParameterRebinder(Dictionary<ParameterExpression, ParameterExpression> map)
-        {
+        public ParameterRebinder(Dictionary<ParameterExpression, ParameterExpression> map) =>
             this._map = map ?? new Dictionary<ParameterExpression, ParameterExpression>();
-        }
 
         /// <summary>
         /// Replate parameters in expression with a Map information
@@ -29,10 +24,7 @@ namespace Wolf.Systems.Core.Internal.Configuration
         /// <param name="exp">Expression to replace parameters</param>
         /// <returns>Expression with parameters replaced</returns>
         public static Expression ReplaceParameters(Dictionary<ParameterExpression, ParameterExpression> map,
-            Expression exp)
-        {
-            return new ParameterRebinder(map).Visit(exp);
-        }
+            Expression exp) => new ParameterRebinder(map).Visit(exp);
 
         /// <summary>
         /// Visit pattern method

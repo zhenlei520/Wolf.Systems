@@ -1,14 +1,12 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-
 namespace Wolf.Systems.Core.Common.Unique
 {
-    /// <summary>
-    /// 雪花id
-    /// </summary>
-    public class SnowflakeId
+  /// <summary>
+  /// 雪花id
+  /// </summary>
+  public class SnowflakeId
     {
         /// <summary>
         /// 开始时间截

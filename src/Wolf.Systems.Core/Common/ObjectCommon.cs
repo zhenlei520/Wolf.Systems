@@ -1,14 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
 
 namespace Wolf.Systems.Core.Common
 {
-    /// <summary>
-    /// 对象帮助类
-    /// </summary>
-    public class ObjectCommon
+  /// <summary>
+  /// 对象帮助类
+  /// </summary>
+  public class ObjectCommon
     {
         #region 返回安全的结果
 
@@ -20,10 +18,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="errorRes">失败默认值</param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T SafeObject<T>(bool state, T successRes, T errorRes)
-        {
-            return SafeObject<T>(state, () => successRes, () => errorRes);
-        }
+        public static T SafeObject<T>(bool state, T successRes, T errorRes)=> SafeObject<T>(state, () => successRes, () => errorRes);
 
         /// <summary>
         /// 返回安全的结果
@@ -33,10 +28,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="errorFunc">失败回调</param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T SafeObject<T>(bool state, T successRes, Func<T> errorFunc)
-        {
-            return SafeObject<T>(state, () => successRes, errorFunc);
-        }
+        public static T SafeObject<T>(bool state, T successRes, Func<T> errorFunc)=> SafeObject(state, () => successRes, errorFunc);
 
         /// <summary>
         /// 返回安全的结果
@@ -46,10 +38,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="errorRes">失败默认值</param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T SafeObject<T>(bool state, Func<T> successFunc, T errorRes)
-        {
-            return SafeObject<T>(state, successFunc, () => errorRes);
-        }
+        public static T SafeObject<T>(bool state, Func<T> successFunc, T errorRes)=> SafeObject(state, successFunc, () => errorRes);
 
         /// <summary>
         /// 返回安全的结果

@@ -1,7 +1,5 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
 
 namespace Wolf.Systems.Data.Entities
 {
@@ -13,19 +11,13 @@ namespace Wolf.Systems.Data.Entities
         /// <summary>
         ///
         /// </summary>
-        public Fulls():base()
-        {
-            IsDel = false;
-        }
+        public Fulls() : base() => IsDel = false;
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="accountId"></param>
-        public Fulls(T accountId) : base(accountId)
-        {
-            IsDel = false;
-        }
+        public Fulls(T accountId) : base(accountId) => IsDel = false;
 
         /// <summary>
         /// 删除信息

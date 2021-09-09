@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Wolf.Systems.Enum
+﻿namespace Wolf.Systems.Enum
 {
     /// <summary>
     /// 时间类型

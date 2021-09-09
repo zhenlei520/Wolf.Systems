@@ -1,7 +1,5 @@
 // Copyright (c) zhenlei520 All rights reserved.
 
-using System;
-using System.Linq;
 using Wolf.Systems.Enumerations.SeedWork.Configurations;
 
 namespace Wolf.Systems.Enumerations.SeedWork

@@ -1,9 +1,5 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Wolf.Systems.Core
 {
@@ -38,11 +34,19 @@ namespace Wolf.Systems.Core
         /// <param name="midpointRounding">默认正常的四舍五入</param>
         /// <returns></returns>
         public static string ToFixed(this double dec, int num,
-            MidpointRounding midpointRounding = MidpointRounding.AwayFromZero)
-        {
-            dec = Math.Round(dec, num, midpointRounding);
-            return dec.ToString("0." + "".RepairZero(num));
-        }
+            MidpointRounding midpointRounding = MidpointRounding.AwayFromZero) => Math.Round(dec, num, midpointRounding).ToString("0." + Const.Empty.RepairZero(num));
+
+        #endregion
+
+        #region 判断精度是否正确
+
+        /// <summary>
+        /// 判断精度是否正确
+        /// </summary>
+        /// <param name="str">带匹配的字符串</param>
+        /// <param name="maxScale">最大保留小数位数</param>
+        /// <returns></returns>
+        public static bool IsMaxScale(this double str, int maxScale) => str.ToString(CultureInfo.InvariantCulture).IsMaxScale(maxScale);
 
         #endregion
     }

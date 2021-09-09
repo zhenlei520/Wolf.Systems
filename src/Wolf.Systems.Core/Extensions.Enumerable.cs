@@ -1,25 +1,21 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Wolf.Systems.Core.Common;
-using Wolf.Systems.Core.Configuration;
 using Wolf.Systems.Core.Internal.Configuration;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// Enumerable扩展
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// Enumerable扩展
+  /// </summary>
+  public partial class Extensions
     {
         #region List<T>操作
 
@@ -33,10 +29,7 @@ namespace Wolf.Systems.Core
         /// <param name="t1">集合1（新集合）</param>
         /// <param name="t2">集合2（旧集合）</param>
         /// <returns>排除t1中包含t2的项</returns>
-        public static List<T> ExceptNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2)
-        {
-            return t1.Except(t2).ToList();
-        }
+        public static List<T> ExceptNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2) => t1.Except(t2).ToList();
 
         #endregion
 
@@ -49,10 +42,7 @@ namespace Wolf.Systems.Core
         /// <param name="t2"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> IntersectNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2)
-        {
-            return t1.Intersect(t2).ToList();
-        }
+        public static List<T> IntersectNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2) => t1.Intersect(t2).ToList();
 
         #endregion
 
@@ -65,10 +55,7 @@ namespace Wolf.Systems.Core
         /// <param name="t2"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> UnionNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2)
-        {
-            return t1.Union(t2).ToList();
-        }
+        public static List<T> UnionNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2) => t1.Union(t2).ToList();
 
         #endregion
 
@@ -81,10 +68,7 @@ namespace Wolf.Systems.Core
         /// <param name="t2"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> ConcatNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2)
-        {
-            return t1.Concat(t2).ToList();
-        }
+        public static List<T> ConcatNew<T>(this IEnumerable<T> t1, IEnumerable<T> t2) => t1.Concat(t2).ToList();
 
         #endregion
 
@@ -98,10 +82,7 @@ namespace Wolf.Systems.Core
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static ListCompare<T> Compare<T>(this IEnumerable<T> sourceList, IEnumerable<T> optList)
-            where T : struct
-        {
-            return new ListCompare<T>(sourceList, optList);
-        }
+            where T : struct => new ListCompare<T>(sourceList, optList);
 
         #endregion
 
@@ -173,7 +154,7 @@ namespace Wolf.Systems.Core
                 foreach (PropertyDescriptor prop in properties)
                 {
                     csvrowText.Append(",");
-                    csvrowText.Append(prop.GetValue(item)?.ToString().SafeString() ?? "");
+                    csvrowText.Append(prop.GetValue(item)?.ToString().SafeString() ?? Const.Empty);
                 }
 
                 csvText.AppendLine(csvrowText.ToString().Substring(1));
@@ -192,10 +173,7 @@ namespace Wolf.Systems.Core
         /// <param name="list"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static int GetListCount<T>(this IEnumerable<T> list)
-        {
-            return list?.Count() ?? 0;
-        }
+        public static int GetListCount<T>(this IEnumerable<T> list) => list?.Count() ?? 0;
 
         #endregion
 
@@ -207,35 +185,32 @@ namespace Wolf.Systems.Core
         /// IEnumerable转换为string
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="str">待转换的list集合</param>
+        /// <param name="strList">待转换的list集合</param>
         /// <param name="split">分割字符</param>
         /// <param name="isReplaceEmpty">是否移除Null或者空字符串</param>
         /// <param name="isReplaceSpace">是否去除空格(仅当为string有效)</param>
         /// <returns></returns>
-        public static string ConvertToString<T>(this IEnumerable<T> str, char split = ',',
+        public static string ConvertToString<T>(this IEnumerable<T> strList, char split = ',',
             bool isReplaceEmpty = true,
-            bool isReplaceSpace = true) where T : struct
-        {
-            return str.ConvertToString(split + "", isReplaceEmpty, isReplaceSpace);
-        }
+            bool isReplaceSpace = true) where T : struct => strList.ConvertToString(split + Const.Empty, isReplaceEmpty, isReplaceSpace);
 
         /// <summary>
         /// IEnumerable转换为string
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="str">待转换的list集合</param>
+        /// <param name="strList">待转换的list集合</param>
         /// <param name="split">分割字符</param>
         /// <param name="isReplaceEmpty">是否移除Null或者空字符串</param>
         /// <param name="isReplaceSpace">是否去除空格(仅当为string有效)</param>
         /// <returns></returns>
-        public static string ConvertToString<T>(this IEnumerable<T> str, string split = ",",
+        public static string ConvertToString<T>(this IEnumerable<T> strList, string split = ",",
             bool isReplaceEmpty = true,
             bool isReplaceSpace = true) where T : struct
         {
-            var enumerable = str.SafeList();
+            var enumerable = strList.SafeList();
             if (!enumerable.Any())
             {
-                return "";
+                return Const.Empty;
             }
 
             return ConvertToString(enumerable.Select(x => x.ToString()), split, isReplaceEmpty,
@@ -249,34 +224,31 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// IEnumerable转换为string
         /// </summary>
-        /// <param name="str">待转换的list集合</param>
+        /// <param name="strList">待转换的list集合</param>
         /// <param name="split">分割字符</param>
         /// <param name="isReplaceEmpty">是否移除Null或者空字符串</param>
         /// <param name="isReplaceSpace">是否去除空格(仅当为string有效)</param>
         /// <returns></returns>
-        public static string ConvertToString(this IEnumerable<string> str, char split = ',',
+        public static string ConvertToString(this IEnumerable<string> strList, char split = ',',
             bool isReplaceEmpty = true,
-            bool isReplaceSpace = true)
-        {
-            return str.ConvertToString(split + "", isReplaceEmpty, isReplaceSpace);
-        }
+            bool isReplaceSpace = true) => strList.ConvertToString(split + Const.Empty, isReplaceEmpty, isReplaceSpace);
 
         /// <summary>
         /// IEnumerable转换为string
         /// </summary>
-        /// <param name="str">待转换的list集合</param>
+        /// <param name="strList">待转换的list集合</param>
         /// <param name="split">分割字符</param>
         /// <param name="isReplaceEmpty">是否移除Null或者空字符串</param>
         /// <param name="isReplaceSpace">是否去除空格(仅当为string有效)</param>
         /// <returns></returns>
-        public static string ConvertToString(this IEnumerable<string> str, string split = ",",
+        public static string ConvertToString(this IEnumerable<string> strList, string split = ",",
             bool isReplaceEmpty = true,
             bool isReplaceSpace = true)
         {
-            IEnumerable<string> enumerable = str.SafeList();
+            IEnumerable<string> enumerable = strList.SafeList();
             if (!enumerable.Any())
             {
-                return "";
+                return Const.Empty;
             }
 
             if (isReplaceEmpty)
@@ -289,7 +261,7 @@ namespace Wolf.Systems.Core
                 enumerable = enumerable.Where(x => !string.IsNullOrEmpty(x));
             }
 
-            return string.Join(split + "", enumerable);
+            return string.Join(split + Const.Empty, enumerable);
         }
 
         #endregion
@@ -299,30 +271,24 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 字符串数组转String(简单转换)
         /// </summary>
-        /// <param name="s">带转换的list集合</param>
+        /// <param name="strArray">带转换的list集合</param>
         /// <param name="c">分割字符</param>
         /// <param name="isReplaceEmpty">是否移除Null或者空字符串</param>
         /// <param name="isReplaceSpace">是否去除空格(仅当为string有效)</param>
         /// <returns></returns>
-        public static string ConvertToString(this string[] s, char c = ',', bool isReplaceEmpty = true,
-            bool isReplaceSpace = true)
-        {
-            return s.SafeList().ConvertToString(c, isReplaceEmpty, isReplaceSpace);
-        }
+        public static string ConvertToString(this string[] strArray, char c = ',', bool isReplaceEmpty = true,
+            bool isReplaceSpace = true) => strArray.SafeList().ConvertToString(c, isReplaceEmpty, isReplaceSpace);
 
         /// <summary>
         /// 字符串数组转String(简单转换)
         /// </summary>
-        /// <param name="s">带转换的list集合</param>
+        /// <param name="strArray">带转换的list集合</param>
         /// <param name="c">分割字符</param>
         /// <param name="isReplaceEmpty">是否移除Null或者空字符串</param>
         /// <param name="isReplaceSpace">是否去除空格(仅当为string有效)</param>
         /// <returns></returns>
-        public static string ConvertToString(this string[] s, string c = ",", bool isReplaceEmpty = true,
-            bool isReplaceSpace = true)
-        {
-            return s.SafeList().ConvertToString(c, isReplaceEmpty, isReplaceSpace);
-        }
+        public static string ConvertToString(this string[] strArray, string c = ",", bool isReplaceEmpty = true,
+            bool isReplaceSpace = true) => strArray.SafeList().ConvertToString(c, isReplaceEmpty, isReplaceSpace);
 
         #endregion
 
@@ -344,7 +310,7 @@ namespace Wolf.Systems.Core
         {
             if (pageSize <= 0 && pageSize != -1)
             {
-                throw new BusinessException("页大小必须为正数", errCode ?? (int) ErrorCode.ParamError);
+                throw new BusinessException("页大小必须为正数", errCode ?? (int)ErrorCode.ParamError);
             }
 
             if (query == null)
@@ -414,10 +380,7 @@ namespace Wolf.Systems.Core
         /// <param name="param"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns>如果param不为空，则返回param，否则返回空集合</returns>
-        public static List<T> SafeList<T>(this IEnumerable<T> param)
-        {
-            return ObjectCommon.SafeObject(param != null, () => param.ToList(), () => new List<T>());
-        }
+        public static List<T> SafeList<T>(this IEnumerable<T> param) => param?.ToList() ?? new List<T>();
 
         #endregion
 
@@ -429,10 +392,7 @@ namespace Wolf.Systems.Core
         /// <param name="param"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T[] SafeArray<T>(this IEnumerable<T> param)
-        {
-            return ObjectCommon.SafeObject(!param.IsNullOrDbNull(), () => param.ToArray(), () => new T[0]);
-        }
+        public static T[] SafeArray<T>(this IEnumerable<T> param) => param?.ToArray() ?? new T[0];
 
         #endregion
 
@@ -447,10 +407,7 @@ namespace Wolf.Systems.Core
         /// <typeparam name="TOpt"></typeparam>
         /// <returns></returns>
         public static IEnumerable<TSource> Distinct<TSource, TOpt>(this IEnumerable<TSource> source,
-            Func<TSource, TOpt> keySelector) where TSource : class
-        {
-            return source.Distinct(new CommonEqualityComparer<TSource, TOpt>(keySelector));
-        }
+            Func<TSource, TOpt> keySelector) where TSource : class => source.Distinct(new CommonEqualityComparer<TSource, TOpt>(keySelector));
 
         /// <summary>
         ///根据条件查询不同的数据
@@ -462,10 +419,7 @@ namespace Wolf.Systems.Core
         /// <typeparam name="V"></typeparam>
         /// <returns></returns>
         public static IEnumerable<T> Distinct<T, V>(this IEnumerable<T> source, Func<T, V> keySelector,
-            IEqualityComparer<V> comparer) where T : class
-        {
-            return source.Distinct(new CommonEqualityComparer<T, V>(keySelector, comparer));
-        }
+            IEqualityComparer<V> comparer) where T : class => source.Distinct(new CommonEqualityComparer<T, V>(keySelector, comparer));
 
         #endregion
 
@@ -476,10 +430,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmpty<T>(this IEnumerable<T> list)
-        {
-            return list.GetListCount() == 0;
-        }
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> list) => list.GetListCount() == 0;
 
         #endregion
 

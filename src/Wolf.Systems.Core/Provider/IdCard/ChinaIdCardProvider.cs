@@ -1,17 +1,16 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Core.Common;
 using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Core.Provider.IdCard
 {
-    /// <summary>
-    ///
-    /// </summary>
-    public class ChinaIdCardProvider : IIdCardProvider
+  /// <summary>
+  ///
+  /// </summary>
+  public class ChinaIdCardProvider : IIdCardProvider
     {
         /// <summary>
         /// 国家

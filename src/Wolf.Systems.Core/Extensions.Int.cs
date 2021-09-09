@@ -1,16 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Wolf.Systems.Core
 {
-    /// <summary>
-    /// int扩展
-    /// </summary>
-    public partial class Extensions
+  /// <summary>
+  /// int扩展
+  /// </summary>
+  public partial class Extensions
     {
         #region 判断param的值是否在枚举中
 
@@ -19,10 +15,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static bool IsExist<T>(this int param) where T : System.Enum
-        {
-            return System.Enum.IsDefined(typeof(T), param);
-        }
+        public static bool IsExist<T>(this int param) where T : System.Enum => System.Enum.IsDefined(typeof(T), param);
 
         /// <summary>
         /// 判断值是否在枚举中
@@ -30,10 +23,7 @@ namespace Wolf.Systems.Core
         /// <param name="enumValue">需要判断的参数</param>
         /// <param name="type">类型</param>
         /// <returns></returns>
-        public static bool IsExist(this int enumValue, Type type)
-        {
-            return System.Enum.IsDefined(type, enumValue);
-        }
+        public static bool IsExist(this int enumValue, Type type) => System.Enum.IsDefined(type, enumValue);
 
         #endregion
 
@@ -119,7 +109,20 @@ namespace Wolf.Systems.Core
         /// <param name="value">值</param>
         public static bool IsPrime(this int value)
         {
-            return value.ConvertToLong().IsPrime();
+            if ((value & 1) == 0)
+            {
+                if (value == 2)
+                    return true;
+                return false;
+            }
+
+            for (long i = 3; i * i <= value; i += 2)
+            {
+                if (value % i == 0)
+                    return false;
+            }
+
+            return value != 1;
         }
 
         /// <summary>
@@ -128,11 +131,17 @@ namespace Wolf.Systems.Core
         /// <param name="value">值</param>
         public static bool IsPrime(this int? value)
         {
-            return value.ConvertToLong().IsPrime();
+            if (value == null)
+            {
+                return false;
+            }
+
+            return IsPrime(value.Value);
         }
 
         #endregion
 
         #endregion
+
     }
 }

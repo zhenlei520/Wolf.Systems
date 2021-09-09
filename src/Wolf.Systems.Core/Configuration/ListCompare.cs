@@ -1,16 +1,13 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Wolf.Systems.Core.Configuration
 {
-    /// <summary>
-    /// 比较集合
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class ListCompare<T> where T : struct
+  /// <summary>
+  /// 比较集合
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  public class ListCompare<T> where T : struct
     {
         /// <summary>
         /// 初始化列表比较结果
