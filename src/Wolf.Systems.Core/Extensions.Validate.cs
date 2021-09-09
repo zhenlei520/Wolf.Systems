@@ -18,11 +18,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Double类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDouble(this object expression)
+        public static bool IsDouble(this object parameter)
         {
-            return expression.ConvertToDouble().IsNull() == false;
+            return parameter.ConvertToDouble().IsNull() == false;
         }
 
         #endregion
@@ -32,11 +32,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Decimal类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDecimal(this object expression)
+        public static bool IsDecimal(this object parameter)
         {
-            return expression.ConvertToDecimal().IsNull() == false;
+            return parameter.ConvertToDecimal().IsNull() == false;
         }
 
         #endregion
@@ -46,11 +46,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Long类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsLong(this object expression)
+        public static bool IsLong(this object parameter)
         {
-            return expression.ConvertToLong().IsNull() == false;
+            return parameter.ConvertToLong().IsNull() == false;
         }
 
         #endregion
@@ -60,11 +60,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Int类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsInt(this object expression)
+        public static bool IsInt(this object parameter)
         {
-            return expression.ConvertToInt().IsNull() == false;
+            return parameter.ConvertToInt().IsNull() == false;
         }
 
         #endregion
@@ -74,11 +74,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Short类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsShort(this object expression)
+        public static bool IsShort(this object parameter)
         {
-            return expression.ConvertToShort().IsNull() == false;
+            return parameter.ConvertToShort().IsNull() == false;
         }
 
         #endregion
@@ -88,11 +88,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Guid类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsGuid(this object expression)
+        public static bool IsGuid(this object parameter)
         {
-            return expression.ConvertToGuid().IsNull() == false;
+            return parameter.ConvertToGuid().IsNull() == false;
         }
 
         #endregion
@@ -102,11 +102,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Char类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsChar(this object expression)
+        public static bool IsChar(this object parameter)
         {
-            return expression.ConvertToChar().IsNull() == false;
+            return parameter.ConvertToChar().IsNull() == false;
         }
 
         #endregion
@@ -116,11 +116,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Float类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsFloat(this object expression)
+        public static bool IsFloat(this object parameter)
         {
-            return expression.ConvertToFloat().IsNull() == false;
+            return parameter.ConvertToFloat().IsNull() == false;
         }
 
         #endregion
@@ -130,11 +130,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为DateTime类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDateTime(this object expression)
+        public static bool IsDateTime(this object parameter)
         {
-            return expression.ConvertToDateTime().IsNull() == false;
+            return parameter.ConvertToDateTime().IsNull() == false;
         }
 
         #endregion
@@ -144,11 +144,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Byte类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsByte(this object expression)
+        public static bool IsByte(this object parameter)
         {
-            return expression.ConvertToByte().IsNull() == false;
+            return parameter.ConvertToByte().IsNull() == false;
         }
 
         #endregion
@@ -158,11 +158,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为SByte类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsSByte(this object expression)
+        public static bool IsSByte(this object parameter)
         {
-            return expression.ConvertToSByte().IsNull() == false;
+            return parameter.ConvertToSByte().IsNull() == false;
         }
 
         #endregion
@@ -172,11 +172,11 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Bool类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsBool(this object expression)
+        public static bool IsBool(this object parameter)
         {
-            return expression.ConvertToBool().IsNull() == false;
+            return parameter.ConvertToBool().IsNull() == false;
         }
 
         #endregion
@@ -287,7 +287,7 @@ namespace Wolf.Systems.Core
             !source.IsNull() && !list.IsNull() && list.All(t => t.CompareTo(source) != 0);
 
         /// <summary>
-        /// 是否全部在指定列表内
+        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -299,19 +299,11 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            foreach (var item in sourceList)
-            {
-                if (item.IsNotIn(list))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
         }
 
         /// <summary>
-        /// 是否全部在指定列表内
+        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -323,15 +315,7 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            foreach (var item in sourceList)
-            {
-                if (item.IsNotIn(list))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
         }
 
         /// <summary>
@@ -353,7 +337,7 @@ namespace Wolf.Systems.Core
             !source.IsNull() && !list.IsNull() && list.All(t => t.CompareTo(source) != 0);
 
         /// <summary>
-        /// 是否全部在指定列表内
+        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -365,19 +349,11 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            foreach (var item in sourceList)
-            {
-                if (item.IsNotIn(list))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
         }
 
         /// <summary>
-        /// 是否全部在指定列表内
+        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -389,15 +365,7 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            foreach (var item in sourceList)
-            {
-                if (item.IsNotIn(list))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
         }
 
         /// <summary>
@@ -419,7 +387,7 @@ namespace Wolf.Systems.Core
             !source.IsNull() && !list.IsNull() && list.All(t => t.CompareTo(source) != 0);
 
         /// <summary>
-        /// 是否全部在指定列表内
+        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -431,15 +399,7 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            foreach (var item in sourceList)
-            {
-                if (item.IsNotIn(list))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
         }
 
         /// <summary>
@@ -545,6 +505,7 @@ namespace Wolf.Systems.Core
             {
                 return true;
             }
+
             return value.ToString().IsNullOrWhiteSpace();
         }
 
