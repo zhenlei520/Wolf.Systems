@@ -1,8 +1,6 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using Wolf.Systems.Enum;
-
 namespace Wolf.Systems.Core
 {
     /// <summary>
@@ -15,9 +13,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Double类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDouble(this object expression) => expression.ConvertToDouble().IsNull() == false;
+        public static bool IsDouble(this object parameter) => parameter.ConvertToDouble().IsNull() == false;
 
         #endregion
 
@@ -26,9 +24,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Decimal类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDecimal(this object expression) => expression.ConvertToDecimal().IsNull() == false;
+        public static bool IsDecimal(this object parameter) => parameter.ConvertToDecimal().IsNull() == false;
 
         #endregion
 
@@ -37,9 +35,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Long类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsLong(this object expression) => expression.ConvertToLong().IsNull() == false;
+        public static bool IsLong(this object parameter) => parameter.ConvertToLong().IsNull() == false;
 
         #endregion
 
@@ -48,9 +46,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Int类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsInt(this object expression) => expression.ConvertToInt().IsNull() == false;
+        public static bool IsInt(this object parameter) => parameter.ConvertToInt().IsNull() == false;
 
         #endregion
 
@@ -59,9 +57,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Short类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsShort(this object expression) => expression.ConvertToShort().IsNull() == false;
+        public static bool IsShort(this object parameter) => parameter.ConvertToShort().IsNull() == false;
 
         #endregion
 
@@ -70,9 +68,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Guid类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsGuid(this object expression) => expression.ConvertToGuid().IsNull() == false;
+        public static bool IsGuid(this object parameter) => parameter.ConvertToGuid().IsNull() == false;
 
         #endregion
 
@@ -81,9 +79,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Char类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsChar(this object expression) => expression.ConvertToChar().IsNull() == false;
+        public static bool IsChar(this object parameter) => parameter.ConvertToChar().IsNull() == false;
 
         #endregion
 
@@ -92,9 +90,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Float类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsFloat(this object expression) => expression.ConvertToFloat().IsNull() == false;
+        public static bool IsFloat(this object parameter) => parameter.ConvertToFloat().IsNull() == false;
 
         #endregion
 
@@ -103,9 +101,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为DateTime类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDateTime(this object expression) => expression.ConvertToDateTime().IsNull() == false;
+        public static bool IsDateTime(this object parameter) => parameter.ConvertToDateTime().IsNull() == false;
 
         #endregion
 
@@ -114,9 +112,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Byte类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsByte(this object expression) => expression.ConvertToByte().IsNull() == false;
+        public static bool IsByte(this object parameter) => parameter.ConvertToByte().IsNull() == false;
 
         #endregion
 
@@ -125,9 +123,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为SByte类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsSByte(this object expression) => expression.ConvertToSByte().IsNull() == false;
+        public static bool IsSByte(this object parameter) => parameter.ConvertToSByte().IsNull() == false;
 
         #endregion
 
@@ -136,9 +134,9 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为Bool类型
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsBool(this object expression) => expression.ConvertToBool().IsNull() == false;
+        public static bool IsBool(this object parameter) => parameter.ConvertToBool().IsNull() == false;
 
         #endregion
 

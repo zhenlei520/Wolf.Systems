@@ -5,3 +5,4 @@ global using System.Globalization;
 global using System.Linq;
 global using System.Linq.Expressions;
 global using System.Reflection;
+global using Wolf.Systems.Enum;
