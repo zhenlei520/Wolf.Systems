@@ -1,19 +1,17 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Diagnostics;
 #if NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
 using Wolf.Systems.ComponentModel;
-using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Core.Common.Systems
 {
-  /// <summary>
-  /// 环境信息
-  /// </summary>
-  public static class EnvironmentCommon
+    /// <summary>
+    /// 环境信息
+    /// </summary>
+    public static class EnvironmentCommon
     {
         static EnvironmentCommon()
         {

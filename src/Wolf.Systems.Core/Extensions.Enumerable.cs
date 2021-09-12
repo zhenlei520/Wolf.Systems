@@ -1,21 +1,14 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.ComponentModel;
-using System.Data;
-using System.IO;
-using System.Text;
-using Wolf.Systems.Core.Common;
 using Wolf.Systems.Core.Internal.Configuration;
-using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// Enumerable扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// Enumerable扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region List<T>操作
 

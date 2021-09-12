@@ -1,18 +1,14 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Text;
-using Wolf.Systems.Core.Common;
 using Wolf.Systems.Core.Internal.Configuration;
-using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// 时间扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// 时间扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region 获得两个日期的间隔
 

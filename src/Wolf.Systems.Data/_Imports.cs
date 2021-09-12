@@ -1,4 +1,11 @@
 global using System;
+global using System.Collections.Generic;
+global using System.ComponentModel;
+global using System.Linq;
 global using System.Security.Cryptography;
 global using Wolf.Systems.Abstracts;
+global using Wolf.Systems.Core.Provider.Unique;
+global using Wolf.Systems.Data.Abstractions;
+global using Wolf.Systems.Data.Enum;
 global using Wolf.Systems.Data.Enumerations;
+global using Wolf.Systems.Data.Provider.Unique;

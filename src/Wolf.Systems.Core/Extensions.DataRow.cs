@@ -1,14 +1,12 @@
 ﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Data;
-
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// DataRow扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// DataRow扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region 将单行信息转换为对象
 

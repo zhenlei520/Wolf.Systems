@@ -1,15 +1,12 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Collections;
-using System.Text;
-
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// Exception扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// Exception扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region 提取异常及其内部异常堆栈跟踪
 

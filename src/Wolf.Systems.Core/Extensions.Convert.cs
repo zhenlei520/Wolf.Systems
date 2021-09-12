@@ -1,15 +1,14 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// 强转
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// 强转
+    /// </summary>
+    public partial class Extensions
     {
         #region obj转Char
 

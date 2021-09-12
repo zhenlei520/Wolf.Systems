@@ -1,9 +1,5 @@
 // Copyright (c) zhenlei520 All rights reserved.
 
-using System.Collections.Generic;
-using System.Linq;
-using Wolf.Systems.Data.Abstractions;
-
 namespace Wolf.Systems.Core.Configuration
 {
     /// <summary>

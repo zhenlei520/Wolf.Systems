@@ -1,15 +1,12 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.IO;
-using System.Text;
-
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// Byte数组扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// Byte数组扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region 将 byte[] 转成 Stream
 

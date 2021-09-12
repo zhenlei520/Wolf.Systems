@@ -1,15 +1,12 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.ComponentModel;
-using Wolf.Systems.Core.Common;
-
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// 枚举信息扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// 枚举信息扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region 得到自定义描述
 

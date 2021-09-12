@@ -1,18 +1,14 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Text;
-using System.Text.RegularExpressions;
 using Wolf.Systems.Core.Internal.Configuration;
-using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// Char类型扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// Char类型扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region ToDBC(转换为半角字符)
 

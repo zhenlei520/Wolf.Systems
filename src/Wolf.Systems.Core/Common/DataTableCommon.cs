@@ -1,39 +1,35 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.ComponentModel;
-using System.Data;
+namespace Wolf.Systems.Core.Common;
 
-namespace Wolf.Systems.Core.Common
+/// <summary>
+///
+/// </summary>
+public static class DataTableCommon
 {
-  /// <summary>
-  ///
-  /// </summary>
-  public static class DataTableCommon
+    #region 创建空表记录
+
+    /// <summary>
+    /// 创建空表记录
+    /// </summary>
+    /// <param name="tableName">表名，默认为空（如果为空，则以当前类名为表名）</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static DataTable CreateEmptyTable<T>(string tableName = "") where T : class
     {
-        #region 创建空表记录
+        Type entityType = typeof(T);
+        string name = ObjectCommon.SafeObject(tableName.IsNullOrEmpty(), () => entityType.Name, () => tableName);
+        DataTable table = new DataTable(name);
+        PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
 
-        /// <summary>
-        /// 创建空表记录
-        /// </summary>
-        /// <param name="tableName">表名，默认为空（如果为空，则以当前类名为表名）</param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static DataTable CreateEmptyTable<T>(string tableName="") where T : class
+        foreach (PropertyDescriptor prop in properties)
         {
-            Type entityType = typeof(T);
-            string name = ObjectCommon.SafeObject(tableName.IsNullOrEmpty(),()=>entityType.Name,()=>tableName);
-            DataTable table = new DataTable(name);
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
-
-            foreach (PropertyDescriptor prop in properties)
-            {
-                table.Columns.Add(prop.Name, prop.PropertyType);
-            }
-
-            return table;
+            table.Columns.Add(prop.Name, prop.PropertyType);
         }
 
-        #endregion
+        return table;
     }
+
+    #endregion
 }
