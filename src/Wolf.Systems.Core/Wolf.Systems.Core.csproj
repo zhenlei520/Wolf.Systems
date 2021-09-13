@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard2.0;netstandard2.1;</TargetFrameworks>
     <Title>自定义常用基础方法</Title>
     <Description>自定义常用基础方法</Description>
     <PackageTags>Wolf.Systems Systems Commmon</PackageTags>
@@ -16,12 +16,8 @@
     <DocumentationFile>bin\Release\Wolf.Systems.Core.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40' OR '$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net451' OR '$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net46' OR '$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net462' OR '$(TargetFramework)' == 'net47' OR '$(TargetFramework)' == 'net471' OR '$(TargetFramework)' == 'net472' OR '$(TargetFramework)' == 'net48'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netstandard2.1'">
     <Reference Include="System.Web" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Provider\SpecifiedTimeAfter\MonthProvider.cs~RF5d04178.TMP" />
   </ItemGroup>
 
   <ItemGroup>
