@@ -3,14 +3,13 @@
 
 #if !NET40 && !NET45 && !NET451 && !NET452
 using System.Collections.Concurrent;
-using System.Threading;
 
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// 从线程获取实例
-  /// </summary>
-  public class CallContext
+    /// <summary>
+    /// 从线程获取实例
+    /// </summary>
+    public class CallContext
     {
         /// <summary>
         ///

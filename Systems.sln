@@ -15,12 +15,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.Abstracts", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.Data", "src\Wolf.Systems.Data\Wolf.Systems.Data.csproj", "{61C1C895-DBD8-4875-B0B9-4964DE504223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.UnitTest", "test\Wolf.Systems.UnitTest\Wolf.Systems.UnitTest.csproj", "{3B2B0161-9C67-4732-A567-1CE336A151FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.UnitTest", "test\Wolf.Systems.UnitTest\Wolf.Systems.UnitTest.csproj", "{3B2B0161-9C67-4732-A567-1CE336A151FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80DF58E1-4CC0-40B2-8C58-33257CDD5486}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.Core.UnitTest", "test\Wolf.Systems.Core.UnitTest\Wolf.Systems.Core.UnitTest.csproj", "{ECEE3D0D-BDCA-4B98-99A0-06A15CE670F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{3B2B0161-9C67-4732-A567-1CE336A151FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B2B0161-9C67-4732-A567-1CE336A151FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B2B0161-9C67-4732-A567-1CE336A151FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECEE3D0D-BDCA-4B98-99A0-06A15CE670F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEE3D0D-BDCA-4B98-99A0-06A15CE670F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECEE3D0D-BDCA-4B98-99A0-06A15CE670F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEE3D0D-BDCA-4B98-99A0-06A15CE670F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{F3B590C4-6B4D-4516-A645-D24C1A1CE93A} = {147844EE-5826-47AD-A828-61BC20FE85A2}
 		{61C1C895-DBD8-4875-B0B9-4964DE504223} = {147844EE-5826-47AD-A828-61BC20FE85A2}
 		{3B2B0161-9C67-4732-A567-1CE336A151FC} = {CE855983-A583-46B5-8C08-9B6C7B92AF19}
+		{ECEE3D0D-BDCA-4B98-99A0-06A15CE670F5} = {CE855983-A583-46B5-8C08-9B6C7B92AF19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F83BDA5-E410-4A85-8094-1E3F69EFD466}

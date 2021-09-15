@@ -71,8 +71,8 @@ public class RandomNumberGeneratorProvider : IRandomNumberGeneratorProvider
     private int GetRandomSeed()
     {
         byte[] bytes = new byte[4];
-        System.Security.Cryptography.RNGCryptoServiceProvider rng =
-            new System.Security.Cryptography.RNGCryptoServiceProvider();
+        RNGCryptoServiceProvider rng =
+            new RNGCryptoServiceProvider();
         rng.GetBytes(bytes);
         return BitConverter.ToInt32(bytes, 0);
     }

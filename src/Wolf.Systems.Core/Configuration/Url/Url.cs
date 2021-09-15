@@ -1,6 +1,8 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using Wolf.Systems.Core.Internal.Configuration;
+
 namespace Wolf.Systems.Core.Configuration.Url;
 
 /// <summary>
@@ -8,46 +10,6 @@ namespace Wolf.Systems.Core.Configuration.Url;
 /// </summary>
 public class Url
 {
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="host">域</param>
-    /// <param name="url">完整的url地址</param>
-    public Url(string host, string url) : this(GetFullPath(host, url))
-    {
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="url">完整的url地址</param>
-    public Url(string url)
-    {
-        if (url.IsNullOrWhiteSpace())
-            throw new BusinessException("url is not empty");
-        if (!url.StartsWith("http://") && !url.StartsWith("https://"))
-        {
-            throw new System.Exception("Please enter the correct url");
-        }
-
-        var uri = new Uri(url);
-        Host = uri.Host;
-        Authority = uri.Authority;
-        Scheme = uri.Scheme.ToLowers();
-        IsHttps = Scheme.Equals("https", StringComparison.CurrentCultureIgnoreCase);
-        PathAndQuery = uri.PathAndQuery;
-        Path = PathAndQuery.Split('?').GetSafeString(0).Trim();
-        RequestUrl = url.Split('?').GetSafeString(0).Trim();
-        if (url.Split('?').Length > 1)
-        {
-            UrlParameter = new UrlParameter(url.Split('?').GetSafeString(1).Trim());
-        }
-        else
-        {
-            UrlParameter = new UrlParameter();
-        }
-    }
-
     /// <summary>
     /// 域
     /// </summary>
@@ -97,6 +59,46 @@ public class Url
     /// 是否https
     /// </summary>
     public bool IsHttps { get; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="host">域</param>
+    /// <param name="url">完整的url地址</param>
+    public Url(string host, string url) : this(GetFullPath(host, url))
+    {
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="url">完整的url地址</param>
+    public Url(string url)
+    {
+        if (url.IsNullOrWhiteSpace())
+            throw new BusinessException("url is not empty");
+        if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+        {
+            throw new System.Exception("Please enter the correct url");
+        }
+
+        var uri = new Uri(url);
+        Host = uri.Host;
+        Authority = uri.Authority;
+        Scheme = uri.Scheme.ToLowers();
+        IsHttps = Scheme.Equals("https", StringComparison.CurrentCultureIgnoreCase);
+        PathAndQuery = uri.PathAndQuery;
+        Path = PathAndQuery.Split('?').GetSafeString(0).Trim();
+        RequestUrl = url.Split('?').GetSafeString(0).Trim();
+        if (url.Split('?').Length > 1)
+        {
+            UrlParameter = new UrlParameter(url.Split('?').GetSafeString(1).Trim());
+        }
+        else
+        {
+            UrlParameter = new UrlParameter();
+        }
+    }
 
     #region 得到请求参数
 

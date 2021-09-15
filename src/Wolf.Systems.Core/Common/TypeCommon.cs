@@ -32,8 +32,11 @@ public class TypeCommon
     /// <param name="assemblies"></param>
     /// <param name="type"></param>
     /// <returns></returns>
-    public static List<KeyValuePair<Type, Type>> GetInterfaceAndImplementationType(Assembly[] assemblies, Type type)
+    public static List<KeyValuePair<Type, Type>> GetInterfaceAndImplementationType(Type type, params Assembly[] assemblies)
     {
+        if (assemblies == null || assemblies.Length == 0)
+            throw new ArgumentNullException(nameof(assemblies));
+
         var fulleName = type.Namespace + type.Name;
         var list = assemblies
             .SelectMany(x =>

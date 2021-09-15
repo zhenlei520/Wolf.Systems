@@ -337,7 +337,7 @@ namespace Wolf.Systems.Core
                 return 0;
             }
 
-            System.Text.ASCIIEncoding ascii = new System.Text.ASCIIEncoding();
+            ASCIIEncoding ascii = new ASCIIEncoding();
             int tempLen = 0;
             byte[] s = ascii.GetBytes(param);
             foreach (var t in s)

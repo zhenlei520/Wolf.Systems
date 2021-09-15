@@ -18,7 +18,7 @@ public class ObjectCommon
     /// <param name="errorRes">失败默认值</param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T SafeObject<T>(bool state, T successRes, T errorRes) => SafeObject<T>(state, () => successRes, () => errorRes);
+    public static T SafeObject<T>(bool state, T successRes, T errorRes) => SafeObject(state, () => successRes, () => errorRes);
 
     /// <summary>
     /// 返回安全的结果

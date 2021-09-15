@@ -3,10 +3,10 @@
 
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// Long类型扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// Long类型扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region 将时间戳转时间
 
@@ -15,22 +15,23 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="unixTimeStamp">待转时间戳</param>
         /// <param name="dateTimeKind"></param>
+        /// <param name="isLocalTime">是否需要转换为本地时间，默认true</param>
         /// <returns></returns>
         public static DateTime UnixTimeStampToDateTime(this long unixTimeStamp,
-            DateTimeKind dateTimeKind = DateTimeKind.Utc)
+            DateTimeKind dateTimeKind = DateTimeKind.Utc, bool isLocalTime = true)
         {
-            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, dateTimeKind);
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, dateTimeKind);
             switch (unixTimeStamp.ToString(CultureInfo.InvariantCulture).Length)
             {
                 case 10:
-                    dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+                    dateTime = dateTime.AddSeconds(unixTimeStamp);
                     break;
                 case 13:
-                    dtDateTime = dtDateTime.AddMilliseconds(unixTimeStamp).ToLocalTime();
+                    dateTime = dateTime.AddMilliseconds(unixTimeStamp);
                     break;
             }
 
-            return dtDateTime;
+            return isLocalTime ? dateTime.ToLocalTime() : dateTime;
         }
 
         #endregion

@@ -5,7 +5,7 @@ namespace Wolf.Systems.Data;
 /// <summary>
 ///
 /// </summary>
-public class GlobalConfigurations : Wolf.Systems.Core.GlobalConfigurations
+public class GlobalConfigurations : Core.GlobalConfigurations
 {
     /// <summary>
     ///

@@ -5,7 +5,7 @@ namespace Wolf.Systems.Enumerations;
 /// <summary>
 /// 有序的Guid方式
 /// </summary>
-public class SequentialGuidType : Enumerations.SeedWork.Enumeration
+public class SequentialGuidType : SeedWork.Enumeration
 {
     /// <summary>
     /// 默认Guid

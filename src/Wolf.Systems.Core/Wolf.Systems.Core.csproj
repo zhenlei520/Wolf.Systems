@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Title>自定义常用基础方法</Title>
     <Description>自定义常用基础方法</Description>
     <PackageTags>Wolf.Systems Systems Commmon</PackageTags>
@@ -117,6 +117,9 @@
       <DependentUpon>Extensions.cs</DependentUpon>
     </Compile>
     <Compile Update="Extensions.Validate.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions.Task.cs">
       <DependentUpon>Extensions.cs</DependentUpon>
     </Compile>
   </ItemGroup>

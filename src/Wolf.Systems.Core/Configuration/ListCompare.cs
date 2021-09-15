@@ -10,6 +10,16 @@ namespace Wolf.Systems.Core.Configuration;
 public class ListCompare<T> where T : struct
 {
     /// <summary>
+    /// 原列表
+    /// </summary>
+    private IEnumerable<T> SourceList { get; }
+
+    /// <summary>
+    /// 新列表
+    /// </summary>
+    private IEnumerable<T> OptList { get; }
+
+    /// <summary>
     /// 初始化列表比较结果
     /// </summary>
     /// <param name="sourceList">原列表</param>
@@ -19,16 +29,6 @@ public class ListCompare<T> where T : struct
         SourceList = sourceList ?? new List<T>();
         OptList = optList ?? new List<T>();
     }
-
-    /// <summary>
-    /// 原列表
-    /// </summary>
-    private IEnumerable<T> SourceList { get; }
-
-    /// <summary>
-    /// 新列表
-    /// </summary>
-    private IEnumerable<T> OptList { get; }
 
     #region 创建列表
 

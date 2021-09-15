@@ -1,6 +1,8 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using Wolf.Systems.Core.Internal.Configuration;
+
 namespace Wolf.Systems.Core.Common;
 
 /// <summary>
@@ -130,56 +132,50 @@ public class FileCommon
 #if !NET40
     #region 将文件转换成Base64格式
 
-        /// <summary>
-        /// 将文件转换成Base64格式
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <returns></returns>
-        public static string FileToBase64(string filePath)
-        {
-            return FileToBase64Async(filePath, true).Result;
-        }
+    /// <summary>
+    /// 将文件转换成Base64格式
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <returns></returns>
+    public static string FileToBase64(string filePath) => FileToBase64Async(filePath, true).GetResultSync();
 
-        /// <summary>
-        /// 将文件转换成Base64格式
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <returns></returns>
-        public static async Task<string> FileToBase64Async(string filePath)
-        {
-            return await FileToBase64Async(filePath, false);
-        }
+    /// <summary>
+    /// 将文件转换成Base64格式
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <returns></returns>
+    public static async Task<string> FileToBase64Async(string filePath) => await FileToBase64Async(filePath, false);
 
-        /// <summary>
-        /// 将文件转换成Base64格式
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="isSync">是否同步</param>
-        /// <returns></returns>
-        private static async Task<string> FileToBase64Async(string filePath, bool isSync)
+    /// <summary>
+    /// 将文件转换成Base64格式
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="isSync">是否同步</param>
+    /// <returns></returns>
+    private static async Task<string> FileToBase64Async(string filePath, bool isSync)
+    {
+        string result;
+        try
         {
-            string result;
-            try
+            if (!File.Exists(filePath))
+                return Const.Empty;
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                if (!File.Exists(filePath))
-                    return Const.Empty;
-                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                if (isSync)
                 {
-                    if (isSync)
-                    {
-                        return fs.ConvertToBase64();
-                    }
-
-                    return await fs.ConvertToBase64Async();
+                    return fs.ConvertToBase64();
                 }
-            }
-            catch
-            {
-                result = Const.Empty;
-            }
 
-            return result;
+                return await fs.ConvertToBase64Async();
+            }
         }
+        catch
+        {
+            result = Const.Empty;
+        }
+
+        return result;
+    }
 
     #endregion
 
@@ -187,58 +183,52 @@ public class FileCommon
 
     #region 将文件转换成byte[]数组
 
-        /// <summary>
-        /// 将文件转换成byte[]数组
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <returns>byte[]数组</returns>
-        public static byte[] ConvertFileToByte(string filePath)
-        {
-            return ConvertFileToByte(filePath, true).Result;
-        }
+    /// <summary>
+    /// 将文件转换成byte[]数组
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <returns>byte[]数组</returns>
+    public static byte[] ConvertFileToByte(string filePath) => ConvertFileToByte(filePath, true).GetResultSync();
 
-        /// <summary>
-        /// 将文件转换成byte[]数组
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <returns>byte[]数组</returns>
-        public static async Task<byte[]> ConvertFileToByteAsync(string filePath)
-        {
-            return await ConvertFileToByte(filePath, false);
-        }
+    /// <summary>
+    /// 将文件转换成byte[]数组
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <returns>byte[]数组</returns>
+    public static async Task<byte[]> ConvertFileToByteAsync(string filePath) => await ConvertFileToByte(filePath, false);
 
-        /// <summary>
-        /// 将文件转换成byte[]数组
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="isSync">是否同步</param>
-        /// <returns>byte[]数组</returns>
-        private static async Task<byte[]> ConvertFileToByte(string filePath, bool isSync)
+    /// <summary>
+    /// 将文件转换成byte[]数组
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="isSync">是否同步</param>
+    /// <returns>byte[]数组</returns>
+    private static async Task<byte[]> ConvertFileToByte(string filePath, bool isSync)
+    {
+        try
         {
-            try
+            if (!File.Exists(filePath))
+                return new byte[] { };
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                if (!File.Exists(filePath))
-                    return new byte[] { };
-                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                byte[] byteArray = new byte[fs.Length];
+                if (isSync)
                 {
-                    byte[] byteArray = new byte[fs.Length];
-                    if (isSync)
-                    {
-                        fs.Read(byteArray, 0, byteArray.Length);
-                    }
-                    else
-                    {
-                        await fs.ReadAsync(byteArray, 0, byteArray.Length);
-                    }
-
-                    return byteArray;
+                    fs.Read(byteArray, 0, byteArray.Length);
                 }
-            }
-            catch
-            {
-                return null;
+                else
+                {
+                    await fs.ReadAsync(byteArray, 0, byteArray.Length);
+                }
+
+                return byteArray;
             }
         }
+        catch
+        {
+            return null;
+        }
+    }
 
     #endregion
 
@@ -357,126 +347,114 @@ public class FileCommon
 #if !NET40
     #region 获取文件内容（支持换行读取）
 
-        /// <summary>
-        /// 获取文件内容（支持换行读取）
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="encoding">编码格式,默认为Encoding.Default</param>
-        /// <returns></returns>
-        public static string GetFileContent(string filePath, Encoding encoding = null)
-        {
-            return GetFileContent(filePath, true, encoding).Result;
-        }
+    /// <summary>
+    /// 获取文件内容（支持换行读取）
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="encoding">编码格式,默认为Encoding.Default</param>
+    /// <returns></returns>
+    public static string GetFileContent(string filePath, Encoding encoding = null)=> GetFileContent(filePath, true, encoding).GetResultSync();
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="encoding">编码格式,默认为Encoding.Default</param>
-        /// <returns></returns>
-        public static async Task<string> GetFileContentAsync(string filePath, Encoding encoding = null)
-        {
-            return await GetFileContent(filePath, false, encoding);
-        }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="encoding">编码格式,默认为Encoding.Default</param>
+    /// <returns></returns>
+    public static async Task<string> GetFileContentAsync(string filePath, Encoding encoding = null)=> await GetFileContent(filePath, false, encoding);
 
-        /// <summary>
-        /// 获取文件内容（支持换行读取）
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="isSync">是否同步</param>
-        /// <param name="encoding">编码格式,默认为Encoding.UTF8</param>
-        /// <returns></returns>
-        private static async Task<string> GetFileContent(string filePath, bool isSync, Encoding encoding = null)
+    /// <summary>
+    /// 获取文件内容（支持换行读取）
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="isSync">是否同步</param>
+    /// <param name="encoding">编码格式,默认为Encoding.UTF8</param>
+    /// <returns></returns>
+    private static async Task<string> GetFileContent(string filePath, bool isSync, Encoding encoding = null)
+    {
+        string result = Const.Empty;
+        try
         {
-            string result = Const.Empty;
-            try
+            if (!File.Exists(filePath))
+                return result;
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                if (!File.Exists(filePath))
-                    return result;
-                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                using (StreamReader reader = new StreamReader(fs, encoding ?? Encoding.UTF8))
                 {
-                    using (StreamReader reader = new StreamReader(fs, encoding ?? Encoding.UTF8))
-                    {
-                        result = isSync ? reader.ReadToEnd() : await reader.ReadToEndAsync();
-                    }
+                    result = isSync ? reader.ReadToEnd() : await reader.ReadToEndAsync();
                 }
             }
-            catch
-            {
-                result = Const.Empty;
-            }
-
-            return result;
         }
+        catch
+        {
+            result = Const.Empty;
+        }
+
+        return result;
+    }
 
     #endregion
 
     #region 获取文件内容（每行读取）
 
-        /// <summary>
-        /// 获取文件内容（每行读取）
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="encoding">编码格式,默认为Encoding.Default</param>
-        /// <returns></returns>
-        public static List<string> GetContentFormFile(string filePath, Encoding encoding = null)
-        {
-            return GetFileContentByLine(filePath, true, encoding).Result;
-        }
+    /// <summary>
+    /// 获取文件内容（每行读取）
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="encoding">编码格式,默认为Encoding.Default</param>
+    /// <returns></returns>
+    public static List<string> GetContentFormFile(string filePath, Encoding encoding = null) => GetFileContentByLine(filePath, true, encoding).GetResultSync();
 
-        /// <summary>
-        /// 获取文件内容（每行读取）
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="encoding">编码格式,默认为Encoding.Default</param>
-        /// <returns></returns>
-        private static async Task<List<string>> GetContenFormFileAsync(string filePath,
-            Encoding encoding = null)
-        {
-            return await GetFileContentByLine(filePath, false, encoding);
-        }
+    /// <summary>
+    /// 获取文件内容（每行读取）
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="encoding">编码格式,默认为Encoding.Default</param>
+    /// <returns></returns>
+    private static async Task<List<string>> GetContenFormFileAsync(string filePath,
+        Encoding encoding = null) => await GetFileContentByLine(filePath, false, encoding);
 
-        /// <summary>
-        /// 获取文件内容（每行读取）
-        /// </summary>
-        /// <param name="filePath">本地文件绝对地址</param>
-        /// <param name="isSync">是否同步</param>
-        /// <param name="encoding">编码格式,默认为Encoding.UTF8</param>
-        /// <returns></returns>
-        private static async Task<List<string>> GetFileContentByLine(string filePath, bool isSync,
+    /// <summary>
+    /// 获取文件内容（每行读取）
+    /// </summary>
+    /// <param name="filePath">本地文件绝对地址</param>
+    /// <param name="isSync">是否同步</param>
+    /// <param name="encoding">编码格式,默认为Encoding.UTF8</param>
+    /// <returns></returns>
+    private static async Task<List<string>> GetFileContentByLine(string filePath, bool isSync,
             Encoding encoding = null)
+    {
+        List<string> result = new List<string>();
+        try
         {
-            List<string> result = new List<string>();
-            try
+            if (!File.Exists(filePath))
+                return result;
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                if (!File.Exists(filePath))
-                    return result;
-                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                using (StreamReader reader = new StreamReader(fs, encoding ?? Encoding.UTF8))
                 {
-                    using (StreamReader reader = new StreamReader(fs, encoding ?? Encoding.UTF8))
+                    bool isEnd = true;
+                    while (isEnd)
                     {
-                        bool isEnd = true;
-                        while (isEnd)
+                        var content = isSync ? reader.ReadLine() : await reader.ReadLineAsync();
+                        if (content is null)
                         {
-                            var content = isSync ? reader.ReadLine() : await reader.ReadLineAsync();
-                            if (content is null)
-                            {
-                                isEnd = false;
-                                continue;
-                            }
-
-                            result.Add(content);
+                            isEnd = false;
+                            continue;
                         }
+
+                        result.Add(content);
                     }
                 }
             }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
-
-            return result;
         }
+        catch (System.Exception ex)
+        {
+            throw ex;
+        }
+
+        return result;
+    }
 
     #endregion
 #elif NET40
@@ -569,10 +547,7 @@ public class FileCommon
     /// </summary>
     /// <param name="path">要搜索的目录的相对或绝对路径</param>
     /// <returns></returns>
-    public static string[] GetFiles(string path)
-    {
-        return Directory.GetFiles(path);
-    }
+    public static string[] GetFiles(string path) => Directory.GetFiles(path);
 
     /// <summary>
     /// 根据通配符搜索文件下的所有地址信息，可选择查询所有层级的或者当前层级的
@@ -582,10 +557,7 @@ public class FileCommon
     /// <param name="searchOption">默认当前文件夹下 TopDirectoryOnly，若查询包含所有子目录为AllDirectories</param>
     /// <returns></returns>
     public static string[] GetFiles(string path, string searchPattern,
-        SearchOption searchOption = SearchOption.TopDirectoryOnly)
-    {
-        return Directory.GetFiles(path, searchPattern, searchOption);
-    }
+        SearchOption searchOption = SearchOption.TopDirectoryOnly) => Directory.GetFiles(path, searchPattern, searchOption);
 
     #endregion
 
@@ -595,10 +567,7 @@ public class FileCommon
     /// 检测指定文件是否存在,如果存在则返回true。
     /// </summary>
     /// <param name="filePath">文件的绝对路径</param>
-    public static bool IsExistFile(string filePath)
-    {
-        return File.Exists(filePath);
-    }
+    public static bool IsExistFile(string filePath) => File.Exists(filePath);
 
     #endregion
 
@@ -625,7 +594,7 @@ public class FileCommon
         fileName = fileName.Replace("/", "\\");
         if (fileName.IndexOf("\\", StringComparison.Ordinal) > -1)
             CreateDirectory(directory);
-        using (StreamWriter sw = new System.IO.StreamWriter(Path.Combine(directory, fileName), false, encoding))
+        using (StreamWriter sw = new StreamWriter(Path.Combine(directory, fileName), false, encoding))
         {
             sw.Write(content);
             sw.Close();

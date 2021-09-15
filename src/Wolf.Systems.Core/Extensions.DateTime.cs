@@ -54,7 +54,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">日期时间</param>
         /// <param name="dateMode">显示模式</param>
         /// <returns>0-9种模式的日期</returns>
-        public static string FormatDate(this DateTimeOffset dateTime, FormatDateType dateMode = FormatDateType.Full) => dateTime.Date.FormatDate(dateMode);
+        public static string FormatDate(this DateTimeOffset dateTime, FormatDateType dateMode = FormatDateType.Full)
+            => dateTime.Date.FormatDate(dateMode);
 
         #endregion
 
@@ -178,7 +179,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">指定时间，如果为null，则默认当前时间</param>
         /// <param name="timeKey">时间Key</param>
         /// <returns></returns>
-        public static DateTime Get(this DateTime? dateTime, TimeType timeKey) => (dateTime ?? DateTime.Now).Get(timeKey);
+        public static DateTime Get(this DateTime? dateTime, TimeType timeKey)
+            => (dateTime ?? DateTime.Now).Get(timeKey);
 
         /// <summary>
         /// 得到月初/月末/本周一/本周日/本季初/本季末/年初/年末时间
@@ -186,7 +188,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">指定时间，如果为null，则默认当前时间</param>
         /// <param name="timeKey">时间Key</param>
         /// <returns></returns>
-        public static DateTimeOffset Get(this DateTimeOffset? dateTime, TimeType timeKey) => (dateTime ?? DateTimeOffset.Now).Get(timeKey);
+        public static DateTimeOffset Get(this DateTimeOffset? dateTime, TimeType timeKey)
+            => (dateTime ?? DateTimeOffset.Now).Get(timeKey);
 
         /// <summary>
         /// 得到月初/月末/本周一/本周日/本季初/本季末/年初/年末时间
@@ -206,7 +209,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">指定时间</param>
         /// <param name="timeKey">时间Key</param>
         /// <returns></returns>
-        public static DateTimeOffset Get(this DateTimeOffset dateTime, TimeType timeKey) => dateTime.DateTime.Get(timeKey);
+        public static DateTimeOffset Get(this DateTimeOffset dateTime, TimeType timeKey)
+            => dateTime.DateTime.Get(timeKey);
 
         #endregion
 
@@ -232,7 +236,8 @@ namespace Wolf.Systems.Core
         /// <param name="timeType">时间类型</param>
         /// <param name="duration">时长，允许为负数,为正时：指定时间后持续时间，为负时：指定时间前持续时间</param>
         /// <returns></returns>
-        public static DateTime GetSpecifiedTimeAfter(this DateTime? dateTime, TimeUnit timeType, int duration) => (dateTime ?? DateTime.Now).GetSpecifiedTimeAfter(timeType, duration);
+        public static DateTime GetSpecifiedTimeAfter(this DateTime? dateTime, TimeUnit timeType, int duration)
+            => (dateTime ?? DateTime.Now).GetSpecifiedTimeAfter(timeType, duration);
 
         /// <summary>
         /// 得到指定的时间后
@@ -241,8 +246,8 @@ namespace Wolf.Systems.Core
         /// <param name="timeUnit">时间类型</param>
         /// <param name="duration">时长，允许为负数,为正时：指定时间后持续时间，为负时：指定时间前持续时间</param>
         /// <returns></returns>
-        public static DateTimeOffset GetSpecifiedTimeAfter(this DateTimeOffset? dateTimeOffset, TimeUnit timeUnit,
-            int duration) => (dateTimeOffset ?? DateTimeOffset.Now).GetSpecifiedTimeAfter(timeUnit, duration);
+        public static DateTimeOffset GetSpecifiedTimeAfter(this DateTimeOffset? dateTimeOffset, TimeUnit timeUnit, int duration)
+            => (dateTimeOffset ?? DateTimeOffset.Now).GetSpecifiedTimeAfter(timeUnit, duration);
 
         /// <summary>
         /// 得到指定的时间后
@@ -267,25 +272,16 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
-        public static DateTimeOffset ConvertToDateTimeOffset(this DateTime dateTime) => dateTime.ToUniversalTime() <= DateTimeOffset.MinValue.UtcDateTime
-                ? DateTimeOffset.MinValue
-                : new DateTimeOffset(dateTime);
+        public static DateTimeOffset ConvertToDateTimeOffset(this DateTime dateTime) =>
+            dateTime.ToUniversalTime() <= DateTimeOffset.MinValue.UtcDateTime ? DateTimeOffset.MinValue : new DateTimeOffset(dateTime);
 
         /// <summary>
         /// 转换为DateTimeOffset
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
-        public static DateTimeOffset ConvertToDateTimeOffset(this DateTime? dateTime) => (dateTime ?? DateTime.Now).ConvertToDateTimeOffset();
-
-        /// <summary>
-        /// 转换为DateTimeOffset
-        /// </summary>
-        /// <param name="dateTime"></param>
-        /// <param name="defaultDateTimeOffset">默认值</param>
-        /// <returns></returns>
-        public static DateTimeOffset ConvertToDateTimeOffset(this DateTime? dateTime,
-            DateTimeOffset defaultDateTimeOffset) => dateTime ?? defaultDateTimeOffset;
+        public static DateTimeOffset ConvertToDateTimeOffset(this DateTime? dateTime)
+            => (dateTime ?? DateTime.Now).ConvertToDateTimeOffset();
 
         /// <summary>
         /// 转换为DateTimeOffset
@@ -293,8 +289,17 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime"></param>
         /// <param name="defaultDateTimeOffset">默认值</param>
         /// <returns></returns>
-        public static DateTimeOffset? ConvertToDateTimeOffset(this DateTime? dateTime,
-            DateTimeOffset? defaultDateTimeOffset) => dateTime ?? defaultDateTimeOffset;
+        public static DateTimeOffset ConvertToDateTimeOffset(this DateTime? dateTime, DateTimeOffset defaultDateTimeOffset)
+            => dateTime ?? defaultDateTimeOffset;
+
+        /// <summary>
+        /// 转换为DateTimeOffset
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <param name="defaultDateTimeOffset">默认值</param>
+        /// <returns></returns>
+        public static DateTimeOffset? ConvertToDateTimeOffset(this DateTime? dateTime, DateTimeOffset? defaultDateTimeOffset)
+            => dateTime ?? defaultDateTimeOffset;
 
         #endregion
 
@@ -611,14 +616,15 @@ namespace Wolf.Systems.Core
         /// 阴历转阳历
         /// </summary>
         /// <param name="dateTime">阴历日期</param>
-        public static DateTime GetLunarYearDate(this DateTime dateTime) => TimeCommon.GetLunarYearDate(dateTime.Year, dateTime.Month, dateTime.Day,
-                TimeCommon.IsLeapYear(dateTime.Year));
+        public static DateTime GetLunarYearDate(this DateTime dateTime)
+            => TimeCommon.GetLunarYearDate(dateTime.Year, dateTime.Month, dateTime.Day, TimeCommon.IsLeapYear(dateTime.Year));
 
         /// <summary>
         /// 阴历转阳历
         /// </summary>
         /// <param name="dateTimeOffset">阴历日期</param>
-        public static DateTime GetLunarYearDate(this DateTimeOffset dateTimeOffset) => dateTimeOffset.DateTime.GetLunarYearDate();
+        public static DateTime GetLunarYearDate(this DateTimeOffset dateTimeOffset)
+            => dateTimeOffset.DateTime.GetLunarYearDate();
 
         #endregion
 
@@ -679,20 +685,12 @@ namespace Wolf.Systems.Core
         public static long ToUnixTimestamp(this DateTime target, TimestampType timestampType,
             DateTimeKind dateTimeKind = DateTimeKind.Utc)
         {
-            if (timestampType == TimestampType.MilliSecond)
+            if (timestampType != TimestampType.Second && timestampType != TimestampType.MilliSecond)
             {
-                return (TimeZoneInfo.ConvertTimeToUtc(target).Ticks - TimeZoneInfo
-                           .ConvertTimeToUtc(new DateTime(1970, 1, 1, 0, 0, 0, 0, dateTimeKind)).Ticks) /
-                       10000; //除10000调整为13位
+                throw new NotSupportedException("不支持的时间戳类型");
             }
-
-            if (timestampType == TimestampType.Second)
-            {
-                return (long)(TimeZoneInfo.ConvertTimeToUtc(target) - new DateTime(1970, 1, 1, 0, 0, 0, dateTimeKind))
-                    .TotalSeconds;
-            }
-
-            throw new BusinessException("不支持的类型", ErrorCode.ParamError);
+            var timeSpan = TimeZoneInfo.ConvertTimeToUtc(target) - new DateTime(1970, 1, 1, 0, 0, 0, dateTimeKind);
+            return (long)(timestampType == TimestampType.MilliSecond ? timeSpan.TotalMilliseconds : timeSpan.TotalSeconds);
         }
 
         /// <summary>
@@ -702,8 +700,8 @@ namespace Wolf.Systems.Core
         /// <param name="timestampType">时间戳类型：10位或者13位</param>
         /// <param name="dateTimeKind"></param>
         /// <returns></returns>
-        public static long ToUnixTimestamp(this DateTimeOffset target, TimestampType timestampType,
-            DateTimeKind dateTimeKind = DateTimeKind.Utc) => target.DateTime.ToUnixTimestamp(timestampType, dateTimeKind);
+        public static long ToUnixTimestamp(this DateTimeOffset target, TimestampType timestampType, DateTimeKind dateTimeKind = DateTimeKind.Utc)
+            => target.DateTime.ToUnixTimestamp(timestampType, dateTimeKind);
 
         #endregion
 
@@ -732,8 +730,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTimeOffset">时间</param>
         /// <param name="nationality">国家，默认为中国</param>
         /// <returns></returns>
-        public static int GetWeekIndexOfMonth(this DateTimeOffset dateTimeOffset,
-            Nationality nationality = Nationality.China) => dateTimeOffset.DateTime.GetWeekIndexOfMonth(nationality);
+        public static int GetWeekIndexOfMonth(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.China)
+            => dateTimeOffset.DateTime.GetWeekIndexOfMonth(nationality);
 
         #endregion
 
@@ -757,7 +755,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTimeOffset"></param>
         /// <param name="nationality">国家，默认为中国</param>
         /// <returns></returns>
-        public static string GetDayName(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.China) => dateTimeOffset.DateTime.GetDayName(nationality);
+        public static string GetDayName(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.China)
+            => dateTimeOffset.DateTime.GetDayName(nationality);
 
         #endregion
 
@@ -771,7 +770,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">时间</param>
         /// <param name="nationality">国家，默认中国等</param>
         /// <returns></returns>
-        public static int GetDayOfWeek(this DateTime dateTime, Nationality nationality = Nationality.China) => dateTime.DayOfWeek.GetDayOfWeek(nationality);
+        public static int GetDayOfWeek(this DateTime dateTime, Nationality nationality = Nationality.China)
+            => dateTime.DayOfWeek.GetDayOfWeek(nationality);
 
         /// <summary>
         /// 根据日期得到序号，支持国家
@@ -781,7 +781,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTimeOffset">时间</param>
         /// <param name="nationality">国家，默认中国等</param>
         /// <returns></returns>
-        public static int GetDayOfWeek(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.China) => dateTimeOffset.DateTime.GetDayOfWeek(nationality);
+        public static int GetDayOfWeek(this DateTimeOffset dateTimeOffset, Nationality nationality = Nationality.China)
+            => dateTimeOffset.DateTime.GetDayOfWeek(nationality);
 
         /// <summary>
         /// 根据DayOfWeek得到序号，支持国家
@@ -820,7 +821,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">时间1</param>
         /// <param name="dateTime2">时间2</param>
         /// <returns></returns>
-        public static bool IsInSameYear(this DateTime dateTime, DateTime dateTime2) => dateTime.Year == dateTime2.Year;
+        public static bool IsInSameYear(this DateTime dateTime, DateTime dateTime2)
+            => dateTime.Year == dateTime2.Year;
 
         /// <summary>
         /// 判断是同一年
@@ -828,7 +830,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTimeOffset1">时间1</param>
         /// <param name="dateTimeOffset2">时间2</param>
         /// <returns></returns>
-        public static bool IsInSameYear(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2) => dateTimeOffset1.Year == dateTimeOffset2.Year;
+        public static bool IsInSameYear(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2)
+            => dateTimeOffset1.Year == dateTimeOffset2.Year;
 
         #endregion
 
@@ -840,7 +843,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime">时间1</param>
         /// <param name="dateTime2">时间2</param>
         /// <returns></returns>
-        public static bool IsInSameMonth(this DateTime dateTime, DateTime dateTime2) => dateTime.Year == dateTime2.Year && dateTime.Month == dateTime2.Month;
+        public static bool IsInSameMonth(this DateTime dateTime, DateTime dateTime2)
+            => dateTime.Year == dateTime2.Year && dateTime.Month == dateTime2.Month;
 
         /// <summary>
         /// 判断是同一年的同一月
@@ -848,7 +852,8 @@ namespace Wolf.Systems.Core
         /// <param name="dateTimeOffset1">时间1</param>
         /// <param name="dateTimeOffset2">时间2</param>
         /// <returns></returns>
-        public static bool IsInSameMonth(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2) => dateTimeOffset1.Year == dateTimeOffset2.Year && dateTimeOffset1.Month == dateTimeOffset2.Month;
+        public static bool IsInSameMonth(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2)
+            => dateTimeOffset1.Year == dateTimeOffset2.Year && dateTimeOffset1.Month == dateTimeOffset2.Month;
 
         #endregion
 
@@ -863,9 +868,9 @@ namespace Wolf.Systems.Core
         /// <param name="dateTime2">时间2</param>
         /// <param name="nationality">国家,默认是中国</param>
         /// <returns></returns>
-        public static bool IsInSameWeek(this DateTime dateTime, DateTime dateTime2,
-            Nationality nationality = Nationality.China) => dateTime.AddDays(-(int)dateTime.GetDayOfWeek(nationality)).Date ==
-                   dateTime2.AddDays(-(int)dateTime2.GetDayOfWeek(nationality)).Date;
+        public static bool IsInSameWeek(this DateTime dateTime, DateTime dateTime2, Nationality nationality = Nationality.China)
+            => dateTime.AddDays(-(int)dateTime.GetDayOfWeek(nationality)).Date
+            == dateTime2.AddDays(-(int)dateTime2.GetDayOfWeek(nationality)).Date;
 
         /// <summary>
         /// 判断是同一年的同一月的同一周
@@ -876,9 +881,9 @@ namespace Wolf.Systems.Core
         /// <param name="dateTimeOffset2">时间2</param>
         /// <param name="nationality">国家,默认是中国</param>
         /// <returns></returns>
-        public static bool IsInSameWeek(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2,
-            Nationality nationality = Nationality.China) => dateTimeOffset1.AddDays(-(int)dateTimeOffset1.GetDayOfWeek(nationality)).Date ==
-                   dateTimeOffset2.AddDays(-(int)dateTimeOffset2.GetDayOfWeek(nationality)).Date;
+        public static bool IsInSameWeek(this DateTimeOffset dateTimeOffset1, DateTimeOffset dateTimeOffset2, Nationality nationality = Nationality.China)
+            => dateTimeOffset1.AddDays(-(int)dateTimeOffset1.GetDayOfWeek(nationality)).Date
+            == dateTimeOffset2.AddDays(-(int)dateTimeOffset2.GetDayOfWeek(nationality)).Date;
 
         #endregion
 
@@ -1026,14 +1031,16 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="birthday">日期</param>
         /// <returns></returns>
-        public static Constellation? GetConstellationFromBirthday(this DateTime? birthday) => birthday?.GetConstellationFromBirthday();
+        public static Constellation? GetConstellationFromBirthday(this DateTime? birthday)
+            => birthday?.GetConstellationFromBirthday();
 
         /// <summary>
         /// 根据日期得到星座信息
         /// </summary>
         /// <param name="dateTimeOffset">日期</param>
         /// <returns></returns>
-        public static Constellation? GetConstellationFromBirthday(this DateTimeOffset? dateTimeOffset) => dateTimeOffset?.GetConstellationFromBirthday();
+        public static Constellation? GetConstellationFromBirthday(this DateTimeOffset? dateTimeOffset)
+            => dateTimeOffset?.GetConstellationFromBirthday();
 
         /// <summary>
         /// 根据日期得到星座信息

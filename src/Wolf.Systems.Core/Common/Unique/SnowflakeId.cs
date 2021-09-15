@@ -61,12 +61,28 @@ public class SnowflakeId
     private static SnowflakeId _snowflakeId;
 
     private readonly object _lock = new object();
+
     private static readonly object SLock = new object();
 
     /// <summary>
     /// 上次生成ID的时间截
     /// </summary>
     private long _lastTimestamp = -1L;
+
+    /// <summary>
+    /// 工作机器ID(0~31)
+    /// </summary>
+    public long WorkerId { get; protected set; }
+
+    /// <summary>
+    /// 数据中心ID(0~31)
+    /// </summary>
+    public long DatacenterId { get; protected set; }
+
+    /// <summary>
+    /// 毫秒内序列(0~4095)
+    /// </summary>
+    public long Sequence { get; internal set; }
 
     /// <summary>
     ///
@@ -87,21 +103,6 @@ public class SnowflakeId
         if (datacenterId > MaxDatacenterId || datacenterId < 0)
             throw new ArgumentException($"datacenter Id can't be greater than {MaxDatacenterId} or less than 0");
     }
-
-    /// <summary>
-    /// 工作机器ID(0~31)
-    /// </summary>
-    public long WorkerId { get; protected set; }
-
-    /// <summary>
-    /// 数据中心ID(0~31)
-    /// </summary>
-    public long DatacenterId { get; protected set; }
-
-    /// <summary>
-    /// 毫秒内序列(0~4095)
-    /// </summary>
-    public long Sequence { get; internal set; }
 
     /// <summary>
     /// 获取默认的雪花id对象

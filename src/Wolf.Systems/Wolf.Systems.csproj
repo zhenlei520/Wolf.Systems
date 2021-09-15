@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Title>调整异常信息的返回参数名</Title>
     <Description>调整异常信息的返回参数名</Description>
     <PackageTags>Wolf.Systems Systems Commmon</PackageTags>

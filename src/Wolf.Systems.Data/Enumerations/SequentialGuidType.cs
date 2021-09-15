@@ -5,7 +5,7 @@ namespace Wolf.Systems.Data.Enumerations;
 /// <summary>
 ///
 /// </summary>
-public class SequentialGuidType : Wolf.Systems.Enumerations.SequentialGuidType
+public class SequentialGuidType : Systems.Enumerations.SequentialGuidType
 {
     /// <summary>
     /// Used by MySql and PostgreSql.

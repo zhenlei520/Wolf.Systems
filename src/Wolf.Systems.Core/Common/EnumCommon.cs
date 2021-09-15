@@ -1,6 +1,8 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using Wolf.Systems.Core.Internal.Configuration;
+
 namespace Wolf.Systems.Core.Common;
 
 /// <summary>
@@ -116,7 +118,9 @@ public static class EnumCommon
     /// <typeparam name="T">得到自定义描述</typeparam>
     /// <typeparam name="TEnum">枚举类型</typeparam>
     /// <returns></returns>
-    public static T GetCustomerObj<T, TEnum>(object member) where T : Attribute => GetCustomerObj<T>(TypeCommon.GetType<TEnum>(), member);
+    public static T GetCustomerObj<T, TEnum>(object member)
+        where T : Attribute
+        => GetCustomerObj<T>(TypeCommon.GetType<TEnum>(), member);
 
     /// <summary>
     /// 得到自定义描述
@@ -147,7 +151,8 @@ public static class EnumCommon
     /// <param name="member">成员名或者枚举值，例如：Gender中有Boy=1,则传入Boy或者1可获得Gender.Boy</param>
     /// <typeparam name="TEnum">枚举类型</typeparam>
     /// <returns></returns>
-    public static TEnum Parse<TEnum>(object member) where TEnum : System.Enum
+    public static TEnum Parse<TEnum>(object member)
+        where TEnum : System.Enum
     {
         if (TryParse(member, out TEnum value))
         {
@@ -208,7 +213,7 @@ public static class EnumCommon
 #if NET40
         isEnum = type.IsEnum;
 #elif !NET40
-            isEnum = type.IsEnum();
+        isEnum = type.IsEnum();
 #endif
         if (type == null || member == null || !isEnum)
             return Const.Empty;
@@ -235,7 +240,9 @@ public static class EnumCommon
     /// <param name="member">枚举类型</param>
     /// <typeparam name="TEnum">成员名或者枚举值，例如：Gender中有Boy=1,则传入Boy或者1或者Gender.Boy可获得其value</typeparam>
     /// <returns></returns>
-    public static int? GetValue<TEnum>(object member) where TEnum : struct => GetValue(TypeCommon.GetType<TEnum>(), member);
+    public static int? GetValue<TEnum>(object member)
+        where TEnum : struct
+        => GetValue(TypeCommon.GetType<TEnum>(), member);
 
     /// <summary>
     /// 获取枚举的成员值
@@ -248,7 +255,7 @@ public static class EnumCommon
 #if NET40
         isEnum = type.IsEnum;
 #elif !NET40
-            isEnum = type.IsEnum();
+        isEnum = type.IsEnum();
 #endif
         if (type == null || member == null || !isEnum)
             return null;

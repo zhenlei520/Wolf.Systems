@@ -640,8 +640,8 @@ namespace Wolf.Systems.Core
             {
                 if (value == null)
                     return null;
-                System.ComponentModel.NullableConverter nullableConverter =
-                    new System.ComponentModel.NullableConverter(conversionType);
+                NullableConverter nullableConverter =
+                    new NullableConverter(conversionType);
                 conversionType = nullableConverter.UnderlyingType;
             }
 

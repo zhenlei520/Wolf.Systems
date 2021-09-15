@@ -87,7 +87,7 @@ public abstract class Enumeration<T1, T2> : IComparable
     /// <returns></returns>
     public static T FromValue<T>(T1 value) where T : Enumeration<T1, T2>
     {
-        var matchingItem = Parse<T, T1>(value, "value", item => item.Id.Equals(value));
+        var matchingItem = Parse<T, T1>(item => item.Id.Equals(value));
         return matchingItem;
     }
 
@@ -99,11 +99,11 @@ public abstract class Enumeration<T1, T2> : IComparable
     /// <returns></returns>
     public static T FromDisplayName<T>(string displayName) where T : Enumeration<T1, T2>
     {
-        var matchingItem = Parse<T, string>(displayName, "display name", item => item.Name.Equals(displayName));
+        var matchingItem = Parse<T, string>(item => item.Name.Equals(displayName));
         return matchingItem;
     }
 
-    private static T Parse<T, TK>(TK value, string description, Func<T, bool> predicate)
+    private static T Parse<T, TK>(Func<T, bool> predicate)
         where T : Enumeration<T1, T2>
     {
         var matchingItem = GetAll<T>().FirstOrDefault(predicate);
