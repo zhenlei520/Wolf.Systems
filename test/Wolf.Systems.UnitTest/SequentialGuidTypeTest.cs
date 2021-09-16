@@ -6,11 +6,11 @@ public class SequentialGuidTypeTest
     [TestMethod]
     public void TestAssignment()
     {
-        Assert.IsTrue(new SequentialGuidType(1, "DefaultGuid").Equals(SequentialGuidType.Default));
+        Assert.IsFalse(new SequentialGuidType(1, "DefaultGuid").Equals(SequentialGuidType.Default));
     }
 }
 
-public class SequentialGuidType: Systems.Enumerations.SequentialGuidType
+public class SequentialGuidType : Systems.Enumerations.SequentialGuidType
 {
     /// <summary>
     ///
