@@ -1,20 +1,21 @@
 using System;
 
-namespace Wolf.Systems.Abstracts;
-
-/// <summary>
-///
-/// </summary>
-public interface IGuidGeneratorProvider
+namespace Wolf.Systems.Abstracts
 {
     /// <summary>
-    /// 类型
+    ///
     /// </summary>
-    int Type { get; }
+    public interface IGuidGeneratorProvider
+    {
+        /// <summary>
+        /// 类型
+        /// </summary>
+        int Type { get; }
 
-    /// <summary>
-    /// 得到Guid
-    /// </summary>
-    /// <returns></returns>
-    Guid Create();
+        /// <summary>
+        /// 得到Guid
+        /// </summary>
+        /// <returns></returns>
+        Guid Create();
+    }
 }
