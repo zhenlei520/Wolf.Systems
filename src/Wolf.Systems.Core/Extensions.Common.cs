@@ -1,12 +1,15 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System;
+using System.Linq;
+
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// 公共方法
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// 公共方法
+    /// </summary>
+    public partial class Extensions
     {
         #region 安全获取值，当值为null时，不会抛出异常
 

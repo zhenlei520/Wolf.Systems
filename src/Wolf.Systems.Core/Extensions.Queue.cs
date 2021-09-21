@@ -1,12 +1,14 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
+
+using System.Collections.Generic;
 
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// Queue扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// Queue扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region Queue转List
 

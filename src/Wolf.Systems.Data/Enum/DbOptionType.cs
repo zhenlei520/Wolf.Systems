@@ -1,19 +1,22 @@
-// Copyright (c) zhenlei520 All rights reserved.
+﻿// Copyright (c) zhenlei520 All rights reserved.
 
-namespace Wolf.Systems.Data.Enum;
+using System.ComponentModel;
 
-/// <summary>
-/// 数据库操作类型
-/// </summary>
-public enum DbOptionType
+namespace Wolf.Systems.Data.Enum
 {
     /// <summary>
-    ///
+    /// 数据库操作类型
     /// </summary>
-    [Description("写")] Write = 1,
+    public enum DbOptionType
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("写")] Write = 1,
 
-    /// <summary>
-    ///
-    /// </summary>
-    [Description("读")] Read = 2
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("读")] Read = 2
+    }
 }

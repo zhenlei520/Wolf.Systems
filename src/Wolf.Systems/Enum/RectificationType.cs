@@ -1,20 +1,23 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-namespace Wolf.Systems.Enum;
+using System.ComponentModel;
 
-/// <summary>
-/// 取整方式
-/// </summary>
-public enum RectificationType
+namespace Wolf.Systems.Enum
 {
     /// <summary>
-    /// 向上取整
+    /// 取整方式
     /// </summary>
-    [Description("向上取整")] Celling = 1,
+    public enum RectificationType
+    {
+        /// <summary>
+        /// 向上取整
+        /// </summary>
+        [Description("向上取整")] Celling = 1,
 
-    /// <summary>
-    /// 向下取整
-    /// </summary>
-    [Description("向下取整")] Floor = 2,
+        /// <summary>
+        /// 向下取整
+        /// </summary>
+        [Description("向下取整")] Floor = 2,
+    }
 }

@@ -4,7 +4,10 @@
 #if NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
+using System;
+using System.Diagnostics;
 using Wolf.Systems.ComponentModel;
+using Wolf.Systems.Enum;
 
 namespace Wolf.Systems.Core.Common.Systems
 {

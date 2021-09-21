@@ -1,5 +1,11 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
+
+using System.Collections.Generic;
+using System.Linq;
+using Wolf.Systems.Core.Configuration;
+using Wolf.Systems.Enum;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core
 {
@@ -30,7 +36,7 @@ namespace Wolf.Systems.Core
 
             if (pageIndex - 1 < 0)
             {
-                throw new BusinessException("页码必须大于等于1",ErrorCode.ParamError);
+                throw new BusinessException("页码必须大于等于1", ErrorCode.ParamError);
             }
 
             query = query.Skip((pageIndex - 1) * pageSize).ToList();

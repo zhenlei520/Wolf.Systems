@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -18,5 +18,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Wolf.Systems.Core\Wolf.Systems.Core.csproj" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <Compile Update="Extensions.TypeTest.cs">
+      <DependentUpon>ExtensionsTest.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

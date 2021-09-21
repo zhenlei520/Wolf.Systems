@@ -2,7 +2,9 @@
 
 // ReSharper disable once CheckNamespace
 
+using System.Collections.Generic;
 using Wolf.Systems.Core.Configuration;
+using Wolf.Systems.Data.Abstractions;
 
 // ReSharper disable once CheckNamespace
 namespace Wolf.Systems.Core

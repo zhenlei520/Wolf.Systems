@@ -1,16 +1,23 @@
-namespace Wolf.Systems.Core;
+using System.Threading.Tasks;
 
-/// <summary>
-/// Task扩展
-/// </summary>
-public partial class Extensions
+namespace Wolf.Systems.Core
 {
     /// <summary>
-    /// 得到同步结果
+    /// Task扩展
     /// </summary>
-    /// <returns></returns>
-    public static TResult GetResultSync<TResult>(this Task<TResult> task)
+    public partial class Extensions
     {
-        return task.ConfigureAwait(false).GetAwaiter().GetResult();
+        /// <summary>
+        /// 得到同步结果
+        /// </summary>
+        /// <returns></returns>
+        public static TResult GetResultSync<TResult>(this Task<TResult> task)
+        {
+#if NET40
+            return task.Result;
+#elif !NET40
+            return task.ConfigureAwait(false).GetAwaiter().GetResult();
+#endif
+        }
     }
 }

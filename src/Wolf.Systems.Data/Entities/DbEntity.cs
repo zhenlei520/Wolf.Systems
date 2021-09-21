@@ -1,10 +1,13 @@
 // Copyright (c) zhenlei520 All rights reserved.
 
-namespace Wolf.Systems.Data.Entities;
+using Wolf.Systems.Data.Abstractions;
 
-/// <summary>
-///
-/// </summary>
-public class DbEntity : IDbEntity
+namespace Wolf.Systems.Data.Entities
 {
+    /// <summary>
+    ///
+    /// </summary>
+    public class DbEntity : IDbEntity
+    {
+    }
 }

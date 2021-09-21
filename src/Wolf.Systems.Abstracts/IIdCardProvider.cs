@@ -1,3 +1,5 @@
+using System;
+
 namespace Wolf.Systems.Abstracts;
 
 /// <summary>

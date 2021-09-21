@@ -1,63 +1,53 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-namespace Wolf.Systems.Core.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
-/// <summary>
-///
-/// </summary>
-public class TypeCommon
+namespace Wolf.Systems.Core.Common
 {
-    #region 获取类型
-
     /// <summary>
-    /// 获取类型
+    ///
     /// </summary>
-    /// <typeparam name="T">类型</typeparam>
-    public static Type GetType<T>() => GetType(typeof(T));
-
-    /// <summary>
-    /// 获取类型
-    /// </summary>
-    /// <param name="type">类型</param>
-    public static Type GetType(Type type) => Nullable.GetUnderlyingType(type) ?? type;
-
-    #endregion
-
-    #region 查询继承type的接口与实现类集合
-
-    /// <summary>
-    /// 查询继承type的接口与实现类集合
-    /// </summary>
-    /// <param name="assemblies"></param>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    public static List<KeyValuePair<Type, Type>> GetInterfaceAndImplementationType(Type type, params Assembly[] assemblies)
+    public class TypeCommon
     {
-        if (assemblies == null || assemblies.Length == 0)
-            throw new ArgumentNullException(nameof(assemblies));
+        #region 查询继承type的接口与实现类集合
 
-        var fulleName = type.Namespace + type.Name;
-        var list = assemblies
-            .SelectMany(x =>
-                x.GetTypes().Where(y => y.GetInterfaces().Any(z => (z.Namespace + z.Name).Equals(fulleName))))
-            .ToList();
-
-        var typeList = new List<KeyValuePair<Type, Type>>();
-        foreach (var interfaceType in list.Where(x => x.IsInterface))
+        /// <summary>
+        /// 查询继承type的接口与实现类集合
+        /// </summary>
+        /// <param name="assemblies"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static List<KeyValuePair<Type, Type>> GetInterfaceAndImplementationType(Type type, params Assembly[] assemblies)
         {
-            var interfaceTypeFullName = interfaceType.Namespace + interfaceType.Name;
+            if (assemblies == null || assemblies.Length == 0)
+                throw new ArgumentNullException(nameof(assemblies));
 
-            list.Where(x =>
-                !x.IsInterface && x.GetInterfaces().Any(z =>
-                    (z.Namespace + z.Name).Equals(interfaceTypeFullName))).ToList().ForEach(implementationType =>
+            var fulleName = type.Namespace + type.Name;
+            var list = assemblies
+                .SelectMany(x =>
+                    x.GetTypes().Where(y => y.GetInterfaces().Any(z => (z.Namespace + z.Name).Equals(fulleName))))
+                .ToList();
+
+            var typeList = new List<KeyValuePair<Type, Type>>();
+            foreach (var interfaceType in list.Where(x => x.IsInterface))
             {
-                typeList.Add(new KeyValuePair<Type, Type>(interfaceType, implementationType));
-            });
+                var interfaceTypeFullName = interfaceType.Namespace + interfaceType.Name;
+
+                list.Where(x =>
+                    !x.IsInterface && x.GetInterfaces().Any(z =>
+                        (z.Namespace + z.Name).Equals(interfaceTypeFullName))).ToList().ForEach(implementationType =>
+                {
+                    typeList.Add(new KeyValuePair<Type, Type>(interfaceType, implementationType));
+                });
+            }
+
+            return typeList;
         }
 
-        return typeList;
+        #endregion
     }
-
-    #endregion
 }

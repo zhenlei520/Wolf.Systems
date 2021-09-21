@@ -1,12 +1,16 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Wolf.Systems.Core
 {
-  /// <summary>
-  /// int扩展
-  /// </summary>
-  public partial class Extensions
+    /// <summary>
+    /// int扩展
+    /// </summary>
+    public partial class Extensions
     {
         #region 判断param的值是否在枚举中
 

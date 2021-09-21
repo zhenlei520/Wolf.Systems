@@ -1,35 +1,40 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-namespace Wolf.Systems.Core.Common;
+using System;
+using System.ComponentModel;
+using System.Data;
 
-/// <summary>
-///
-/// </summary>
-public static class DataTableCommon
+namespace Wolf.Systems.Core.Common
 {
-    #region 创建空表记录
-
     /// <summary>
-    /// 创建空表记录
+    ///
     /// </summary>
-    /// <param name="tableName">表名，默认为空（如果为空，则以当前类名为表名）</param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static DataTable CreateEmptyTable<T>(string tableName = "") where T : class
+    public static class DataTableCommon
     {
-        Type entityType = typeof(T);
-        string name = ObjectCommon.SafeObject(tableName.IsNullOrEmpty(), () => entityType.Name, () => tableName);
-        DataTable table = new DataTable(name);
-        PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+        #region 创建空表记录
 
-        foreach (PropertyDescriptor prop in properties)
+        /// <summary>
+        /// 创建空表记录
+        /// </summary>
+        /// <param name="tableName">表名，默认为空（如果为空，则以当前类名为表名）</param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static DataTable CreateEmptyTable<T>(string tableName = "") where T : class
         {
-            table.Columns.Add(prop.Name, prop.PropertyType);
+            Type entityType = typeof(T);
+            string name = ObjectCommon.SafeObject(tableName.IsNullOrEmpty(), () => entityType.Name, () => tableName);
+            DataTable table = new (name);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+
+            foreach (PropertyDescriptor prop in properties)
+            {
+                table.Columns.Add(prop.Name, prop.PropertyType);
+            }
+
+            return table;
         }
 
-        return table;
+        #endregion
     }
-
-    #endregion
 }

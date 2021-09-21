@@ -1,23 +1,26 @@
-namespace Wolf.Systems.UnitTest;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-[TestClass]
-public class SequentialGuidTypeTest
+namespace Wolf.Systems.UnitTest
 {
-    [TestMethod]
-    public void TestAssignment()
+    [TestClass]
+    public class SequentialGuidTypeTest
     {
-        Assert.IsFalse(new SequentialGuidType(1, "DefaultGuid").Equals(SequentialGuidType.Default));
+        [TestMethod]
+        public void TestAssignment()
+        {
+            Assert.IsFalse(new SequentialGuidType(1, "DefaultGuid").Equals(SequentialGuidType.Default));
+        }
     }
-}
 
-public class SequentialGuidType : Systems.Enumerations.SequentialGuidType
-{
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="name">描述</param>
-    public SequentialGuidType(int id, string name) : base(id, name)
+    public class SequentialGuidType : Systems.Enumerations.SequentialGuidType
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name">描述</param>
+        public SequentialGuidType(int id, string name) : base(id, name)
+        {
+        }
     }
 }

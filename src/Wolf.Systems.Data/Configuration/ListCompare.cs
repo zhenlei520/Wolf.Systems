@@ -1,5 +1,10 @@
-// Copyright (c) zhenlei520 All rights reserved.
+﻿// Copyright (c) zhenlei520 All rights reserved.
 
+using System.Collections.Generic;
+using System.Linq;
+using Wolf.Systems.Data.Abstractions;
+
+// ReSharper disable once CheckNamespace
 namespace Wolf.Systems.Core.Configuration
 {
     /// <summary>

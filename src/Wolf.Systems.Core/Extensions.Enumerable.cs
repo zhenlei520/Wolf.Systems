@@ -1,7 +1,18 @@
 // Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
+using Wolf.Systems.Core.Common;
+using Wolf.Systems.Core.Configuration;
 using Wolf.Systems.Core.Internal.Configuration;
+using Wolf.Systems.Enum;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core
 {
@@ -430,39 +441,39 @@ namespace Wolf.Systems.Core
 #if !NET40
         #region 键值对集合转化为对象
 
-        /// <summary>
-        /// 键值对集合转化为对象
-        /// </summary>
-        /// <param name="keyValuePairs">键值对集合</param>
-        /// <returns></returns>
-        public static T ConvertToObject<T>(this IEnumerable<KeyValuePair<string, object>> keyValuePairs) where T : new()
+    /// <summary>
+    /// 键值对集合转化为对象
+    /// </summary>
+    /// <param name="keyValuePairs">键值对集合</param>
+    /// <returns></returns>
+    public static T ConvertToObject<T>(this IEnumerable<KeyValuePair<string, object>> keyValuePairs) where T : new()
+    {
+        if (keyValuePairs.IsNull())
         {
-            if (keyValuePairs.IsNull())
-            {
-                return default(T);
-            }
-
-            var md = new T();
-            foreach (var d in keyValuePairs)
-            {
-                try
-                {
-                    var value = d.Value;
-                    var property = md.GetType().GetProperty(d.Key);
-                    if (property != null && property.CanWrite)
-                    {
-                        var res = Convert.ChangeType(value, property.PropertyType);
-                        property.SetValue(md, res);
-                    }
-                }
-                catch (System.Exception e)
-                {
-                    // ignored
-                }
-            }
-
-            return md;
+            return default(T);
         }
+
+        var md = new T();
+        foreach (var d in keyValuePairs)
+        {
+            try
+            {
+                var value = d.Value;
+                var property = md.GetType().GetProperty(d.Key);
+                if (property != null && property.CanWrite)
+                {
+                    var res = Convert.ChangeType(value, property.PropertyType);
+                    property.SetValue(md, res);
+                }
+            }
+            catch (System.Exception e)
+            {
+                // ignored
+            }
+        }
+
+        return md;
+    }
 
         #endregion
 
@@ -471,21 +482,21 @@ namespace Wolf.Systems.Core
 #if !NET40
         #region 创建动态对象
 
-        /// <summary>
-        /// 创建动态对象
-        /// </summary>
-        /// <param name="keyValuePairs"></param>
-        /// <returns></returns>
-        public static object ConvertToObject(this IEnumerable<KeyValuePair<string, object>> keyValuePairs)
+    /// <summary>
+    /// 创建动态对象
+    /// </summary>
+    /// <param name="keyValuePairs"></param>
+    /// <returns></returns>
+    public static object ConvertToObject(this IEnumerable<KeyValuePair<string, object>> keyValuePairs)
+    {
+        dynamic obj = new System.Dynamic.ExpandoObject();
+        foreach (KeyValuePair<string, object> item in keyValuePairs)
         {
-            dynamic obj = new System.Dynamic.ExpandoObject();
-            foreach (KeyValuePair<string, object> item in keyValuePairs)
-            {
-                ((IDictionary<string, object>) obj).Add(item.Key, item.Value);
-            }
-
-            return obj;
+            ((IDictionary<string, object>)obj).Add(item.Key, item.Value);
         }
+
+        return obj;
+    }
 
         #endregion
 #endif
