@@ -38,14 +38,14 @@ namespace Wolf.Systems.Core.UnitTest
         [TestMethod]
         public void TestIsGenericAbstractClass()
         {
-            Assert.IsTrue(typeof(UnitOfWork<>).IsGenericAbstractClass());
+            Assert.IsFalse(typeof(UnitOfWork<>).IsGenericAbstractClass());
         }
 
         [TestMethod]
         public void TestIsGenericNotAbstractClass()
         {
             Assert.IsFalse(typeof(ITransaction<>).IsGenericNotAbstractClass());
-            Assert.IsFalse(typeof(UnitOfWork<>).IsGenericNotAbstractClass());
+            Assert.IsTrue(typeof(UnitOfWork<>).IsGenericNotAbstractClass());
         }
 
         [TestMethod]
