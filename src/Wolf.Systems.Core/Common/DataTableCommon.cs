@@ -1,4 +1,4 @@
-// Copyright (c) zhenlei520 All rights reserved.
+﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -24,7 +24,7 @@ namespace Wolf.Systems.Core.Common
         {
             Type entityType = typeof(T);
             string name = ObjectCommon.SafeObject(tableName.IsNullOrEmpty(), () => entityType.Name, () => tableName);
-            DataTable table = new (name);
+            DataTable table = new DataTable(name);
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
 
             foreach (PropertyDescriptor prop in properties)

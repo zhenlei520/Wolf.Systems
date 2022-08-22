@@ -1,4 +1,4 @@
-// Copyright (c) zhenlei520 All rights reserved.
+﻿// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
@@ -17,15 +17,15 @@ namespace Wolf.Systems.Core.Provider.Week
         /// <summary>
         ///
         /// </summary>
-        private readonly List<KeyValuePair<int, string>> _map = new()
+        private readonly List<KeyValuePair<int, string>> _map = new List<KeyValuePair<int,string>>()
         {
-            new (1, "星期一"),
-            new (2, "星期二"),
-            new(3, "星期三"),
-            new (4, "星期四"),
-            new (5, "星期五"),
-            new (6, "星期六"),
-            new (7, "星期日")
+            new KeyValuePair<int,string>(1, "星期一"),
+            new KeyValuePair<int,string>(2, "星期二"),
+            new KeyValuePair<int,string>(3, "星期三"),
+            new KeyValuePair<int,string>(4, "星期四"),
+            new KeyValuePair<int,string>(5, "星期五"),
+            new KeyValuePair<int,string>(6, "星期六"),
+            new KeyValuePair<int,string>(7, "星期日")
         };
 
         /// <summary>
