@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
@@ -13,6 +13,16 @@ namespace Wolf.Systems.Core.Configuration
     public class ListCompare<T> where T : struct
     {
         /// <summary>
+        /// 原列表
+        /// </summary>
+        private IEnumerable<T> SourceList { get; }
+
+        /// <summary>
+        /// 新列表
+        /// </summary>
+        private IEnumerable<T> OptList { get; }
+
+        /// <summary>
         /// 初始化列表比较结果
         /// </summary>
         /// <param name="sourceList">原列表</param>
@@ -22,16 +32,6 @@ namespace Wolf.Systems.Core.Configuration
             SourceList = sourceList ?? new List<T>();
             OptList = optList ?? new List<T>();
         }
-
-        /// <summary>
-        /// 原列表
-        /// </summary>
-        private IEnumerable<T> SourceList { get; }
-
-        /// <summary>
-        /// 新列表
-        /// </summary>
-        private IEnumerable<T> OptList { get; }
 
         #region 创建列表
 

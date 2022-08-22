@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -13,28 +13,6 @@ namespace Wolf.Systems.Core.Common
     /// </summary>
     public class TypeCommon
     {
-        #region 获取类型
-
-        /// <summary>
-        /// 获取类型
-        /// </summary>
-        /// <typeparam name="T">类型</typeparam>
-        public static Type GetType<T>()
-        {
-            return GetType(typeof(T));
-        }
-
-        /// <summary>
-        /// 获取类型
-        /// </summary>
-        /// <param name="type">类型</param>
-        public static Type GetType(Type type)
-        {
-            return Nullable.GetUnderlyingType(type) ?? type;
-        }
-
-        #endregion
-
         #region 查询继承type的接口与实现类集合
 
         /// <summary>
@@ -43,8 +21,11 @@ namespace Wolf.Systems.Core.Common
         /// <param name="assemblies"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static List<KeyValuePair<Type, Type>> GetInterfaceAndImplementationType(Assembly[] assemblies, Type type)
+        public static List<KeyValuePair<Type, Type>> GetInterfaceAndImplementationType(Type type, params Assembly[] assemblies)
         {
+            if (assemblies == null || assemblies.Length == 0)
+                throw new ArgumentNullException(nameof(assemblies));
+
             var fulleName = type.Namespace + type.Name;
             var list = assemblies
                 .SelectMany(x =>

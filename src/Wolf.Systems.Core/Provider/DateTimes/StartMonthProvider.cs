@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -22,19 +22,13 @@ namespace Wolf.Systems.Core.Provider.DateTimes
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public DateTime GetResult(DateTime date)
-        {
-            return date.AddDays(1 - date.Day); //本月月初
-        }
+        public DateTime GetResult(DateTime date) => date.AddDays(1 - date.Day); //本月月初
 
         /// <summary>
         /// 得到结果
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public DateTimeOffset GetResult(DateTimeOffset date)
-        {
-            return date.AddDays(1 - date.Day); //本月月初
-        }
+        public DateTimeOffset GetResult(DateTimeOffset date) => date.AddDays(1 - date.Day); //本月月初
     }
 }

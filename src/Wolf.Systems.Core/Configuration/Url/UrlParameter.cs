@@ -1,10 +1,11 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Core.Internal.Configuration;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core.Configuration.Url
 {
@@ -21,10 +22,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// <summary>
         ///
         /// </summary>
-        public UrlParameter()
-        {
-            _params = new Dictionary<string, object>();
-        }
+        public UrlParameter() => _params = new Dictionary<string, object>();
 
         /// <summary>
         ///
@@ -50,12 +48,9 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// 初始化参数生成器
         /// </summary>
         /// <param name="dictionary">字典</param>
-        public UrlParameter(IDictionary<string, object> dictionary)
-        {
-            _params = dictionary == null
+        public UrlParameter(IDictionary<string, object> dictionary) => _params = dictionary == null
                 ? new Dictionary<string, object>()
                 : new Dictionary<string, object>(dictionary);
-        }
 
         /// <summary>
         /// 添加参数
@@ -63,7 +58,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// <param name="param">参数</param>
         /// <param name="isOverride">存在是否覆盖，默认覆盖</param>
         /// <returns></returns>
-        public UrlParameter Add(List<KeyValuePair<string,string>>param, bool isOverride = true)
+        public UrlParameter Add(List<KeyValuePair<string, string>> param, bool isOverride = true)
         {
             param?.ForEach(item =>
             {
@@ -93,27 +88,18 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// <summary>
         /// 获取键值对集合
         /// </summary>
-        public IEnumerable<KeyValuePair<string, object>> Get()
-        {
-            return _params;
-        }
+        public IEnumerable<KeyValuePair<string, object>> Get() => _params;
 
         /// <summary>
         /// 清空
         /// </summary>
-        public void Clear()
-        {
-            _params.Clear();
-        }
+        public void Clear() => _params.Clear();
 
         /// <summary>
         /// 移除参数
         /// </summary>
         /// <param name="key">键</param>
-        public bool Remove(string key)
-        {
-            return _params.Remove(key);
-        }
+        public bool Remove(string key) => _params.Remove(key);
 
         /// <summary>
         /// 获取值
@@ -122,10 +108,10 @@ namespace Wolf.Systems.Core.Configuration.Url
         public object GetValue(string key)
         {
             if (string.IsNullOrEmpty(key))
-                return string.Empty;
+                return Const.Empty;
             if (_params.ContainsKey(key))
                 return _params[key];
-            return string.Empty;
+            return Const.Empty;
         }
 
         /// <summary>
@@ -154,7 +140,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// <returns></returns>
         public string GetQueryResult(bool isSort = false, bool isUrlEncode = false, Encoding encoding = null)
         {
-            StringBuilder stringBuilder=new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             foreach (var param in GetDictionary(isSort, isUrlEncode, encoding))
                 stringBuilder.Append(param.Key + "=" + param.Value + "&");
             string result = stringBuilder.ToString().Trim();

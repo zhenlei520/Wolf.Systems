@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Wolf.Systems.Core.Internal.Configuration;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core
 {
@@ -32,9 +32,9 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static string ToUppers(this string parameter)
         {
-            if (string.IsNullOrEmpty(parameter))
+            if (parameter.IsNullOrEmpty())
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             return parameter.ToUpper();
@@ -51,9 +51,9 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static string ToLowers(this string parameter)
         {
-            if (string.IsNullOrEmpty(parameter))
+            if (parameter.IsNullOrEmpty())
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             return parameter.ToLower();
@@ -73,8 +73,8 @@ namespace Wolf.Systems.Core
         /// <param name="value">值</param>
         public static string FirstLowerCase(this string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                return string.Empty;
+            if (value.IsNullOrWhiteSpace())
+                return Const.Empty;
             return $"{value.Substring(0, 1).ToLower()}{value.Substring(1)}";
         }
 
@@ -89,7 +89,7 @@ namespace Wolf.Systems.Core
         public static string FirstUpperCase(this string value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                return string.Empty;
+                return Const.Empty;
             return $"{value.Substring(0, 1).ToUpper()}{value.Substring(1)}";
         }
 
@@ -108,10 +108,8 @@ namespace Wolf.Systems.Core
         /// <param name="regex">正则表达式</param>
         /// <param name="newStr">替换后的值</param>
         /// <returns></returns>
-        public static string ReplaceRegex(this string str, string regex, string newStr)
-        {
-            return ReplaceRegex(str, regex, RegexOptions.None, newStr);
-        }
+        public static string ReplaceRegex(this string str, string regex, string newStr) =>
+            ReplaceRegex(str, regex, RegexOptions.None, newStr);
 
         /// <summary>
         ///
@@ -121,11 +119,8 @@ namespace Wolf.Systems.Core
         /// <param name="options"></param>
         /// <param name="newStr">替换后的值</param>
         /// <returns></returns>
-        public static string ReplaceRegex(this string str, string regex, RegexOptions options, string newStr)
-        {
-            Regex reg = new Regex(regex, options);
-            return reg.Replace(str, newStr);
-        }
+        public static string ReplaceRegex(this string str, string regex, RegexOptions options, string newStr) =>
+            new Regex(regex, options).Replace(str, newStr);
 
         #endregion
 
@@ -145,7 +140,7 @@ namespace Wolf.Systems.Core
                 return new List<T>();
             }
 
-            string[] strArray = str.Split(new[] {splitStr},
+            string[] strArray = str.Split(new[] { splitStr },
                 isReplaceSpace ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
             return strArray.ChangeType<T>().ToList();
         }
@@ -164,7 +159,7 @@ namespace Wolf.Systems.Core
                 return new List<T>();
             }
 
-            string[] strArray = str.Split(new[] {splitStr},
+            string[] strArray = str.Split(new[] { splitStr },
                 isReplaceSpace ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
             return strArray.ChangeType<T>().ToList();
         }
@@ -263,10 +258,8 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         // ReSharper disable once InconsistentNaming
         public static int LastIndexOfNumber(this string parameter, char character, int number = 1,
-            int defaultIndexof = -1)
-        {
-            return IndexOfNumber(parameter, character, parameter.Split(character).Length - number, defaultIndexof);
-        }
+            int defaultIndexof = -1) => IndexOfNumber(parameter, character, parameter.Split(character).Length - number,
+            defaultIndexof);
 
         #endregion
 
@@ -307,7 +300,7 @@ namespace Wolf.Systems.Core
         {
             if (param.IsNullOrWhiteSpace())
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             if (index > param.Length - 1)
@@ -352,7 +345,7 @@ namespace Wolf.Systems.Core
                 return 0;
             }
 
-            System.Text.ASCIIEncoding ascii = new System.Text.ASCIIEncoding();
+            ASCIIEncoding ascii = new ASCIIEncoding();
             int tempLen = 0;
             byte[] s = ascii.GetBytes(param);
             foreach (var t in s)
@@ -464,7 +457,7 @@ namespace Wolf.Systems.Core
         public static string Truncate(this string param, int maxLength)
         {
             if (param.IsNullOrWhiteSpace() || maxLength == 0)
-                return string.Empty;
+                return Const.Empty;
             if (param.Length <= maxLength)
                 return param;
             return param.Substring(0, maxLength);
@@ -495,7 +488,7 @@ namespace Wolf.Systems.Core
             var index = isContainerTo
                 ? text.IndexOf(from, stringComparison)
                 : text.IndexOf(from, stringComparison) + from.Length;
-            return index < 0 ? string.Empty : text.Substring(index);
+            return index < 0 ? Const.Empty : text.Substring(index);
         }
 
         /// <summary>
@@ -510,11 +503,11 @@ namespace Wolf.Systems.Core
             StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
         {
             if (string.IsNullOrEmpty(text))
-                return string.Empty;
+                return Const.Empty;
             var index = isContainerTo == false
                 ? text.IndexOf(to, stringComparison)
                 : text.IndexOf(to, stringComparison) + to.Length;
-            return index < 0 ? string.Empty : text.Substring(0, index);
+            return index < 0 ? Const.Empty : text.Substring(0, index);
         }
 
         #endregion
@@ -526,10 +519,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="para">待转换参数</param>
         /// <returns></returns>
-        public static byte[] ConvertToByteArray(this string para)
-        {
-            return para.ConvertToByteArray(Encoding.UTF8);
-        }
+        public static byte[] ConvertToByteArray(this string para) => para.ConvertToByteArray(Encoding.UTF8);
 
         /// <summary>
         /// String转换为Byte数组
@@ -563,7 +553,7 @@ namespace Wolf.Systems.Core
 
             if (array.IsNull() || array.Length < index - 1)
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
             return array[index].SafeString();
@@ -584,7 +574,7 @@ namespace Wolf.Systems.Core
         {
             StringSplitOptions stringSplitOptions =
                 isReplaceEmpty ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None;
-            return str.SafeString().Split(new[] {splitString}, stringSplitOptions);
+            return str.SafeString().Split(new[] { splitString }, stringSplitOptions);
         }
 
         #endregion
@@ -625,10 +615,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="target">待加密字符串</param>
         /// <returns></returns>
-        public static string UrlEncode(this string target)
-        {
-            return HttpUtility.UrlEncode(target);
-        }
+        public static string UrlEncode(this string target) => HttpUtility.UrlEncode(target);
 
         /// <summary>
         /// Url编码
@@ -636,10 +623,8 @@ namespace Wolf.Systems.Core
         /// <param name="target">待加密字符串</param>
         /// <param name="encoding">编码类型</param>
         /// <returns></returns>
-        public static string UrlEncode(this string target, Encoding encoding)
-        {
-            return HttpUtility.UrlEncode(target, encoding);
-        }
+        public static string UrlEncode(this string target, Encoding encoding) =>
+            HttpUtility.UrlEncode(target, encoding);
 
         #endregion
 
@@ -650,10 +635,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="target">待解密字符串</param>
         /// <returns></returns>
-        public static string UrlDecode(this string target)
-        {
-            return HttpUtility.UrlDecode(target);
-        }
+        public static string UrlDecode(this string target) => HttpUtility.UrlDecode(target);
 
         /// <summary>
         /// Url解码
@@ -661,10 +643,8 @@ namespace Wolf.Systems.Core
         /// <param name="target">待解密字符串</param>
         /// <param name="encoding">编码类型</param>
         /// <returns></returns>
-        public static string UrlDecode(this string target, Encoding encoding)
-        {
-            return HttpUtility.UrlDecode(target, encoding);
-        }
+        public static string UrlDecode(this string target, Encoding encoding) =>
+            HttpUtility.UrlDecode(target, encoding);
 
         #endregion
 
@@ -675,10 +655,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="target">待加密字符串</param>
         /// <returns></returns>
-        public static string AttributeEncode(this string target)
-        {
-            return HttpUtility.HtmlAttributeEncode(target);
-        }
+        public static string AttributeEncode(this string target) => HttpUtility.HtmlAttributeEncode(target);
 
         #endregion
 
@@ -689,10 +666,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="target">待加密字符串</param>
         /// <returns></returns>
-        public static string HtmlEncode(this string target)
-        {
-            return HttpUtility.HtmlDecode(target);
-        }
+        public static string HtmlEncode(this string target) => HttpUtility.HtmlDecode(target);
 
         #endregion
 
@@ -703,10 +677,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="target">待解密字符串</param>
         /// <returns></returns>
-        public static string HtmlDecode(this string target)
-        {
-            return HttpUtility.HtmlDecode(target);
-        }
+        public static string HtmlDecode(this string target) => HttpUtility.HtmlDecode(target);
 
         #endregion
 
@@ -731,7 +702,8 @@ namespace Wolf.Systems.Core
             byte[] bts = Encoding.Unicode.GetBytes(str);
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < bts.Length; i += 2)
-                stringBuilder.Append("\\u" + bts[i + 1].ToString("x").PadLeft(2, '0') + bts[i].ToString("x").PadLeft(2, '0'));
+                stringBuilder.Append("\\u" + bts[i + 1].ToString("x").PadLeft(2, '0') +
+                                     bts[i].ToString("x").PadLeft(2, '0'));
             return stringBuilder.ToString();
         }
 
@@ -757,8 +729,8 @@ namespace Wolf.Systems.Core
             StringBuilder stringBuilder = new StringBuilder();
             foreach (Match m in mc)
             {
-                bts[0] = (byte) int.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
-                bts[1] = (byte) int.Parse(m.Groups[1].Value, NumberStyles.HexNumber);
+                bts[0] = (byte)int.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
+                bts[1] = (byte)int.Parse(m.Groups[1].Value, NumberStyles.HexNumber);
                 stringBuilder.Append(Encoding.Unicode.GetString(bts));
             }
 
@@ -776,10 +748,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
-        public static byte[] ConvertToBase64ByteArray(this string str)
-        {
-            return Convert.FromBase64String(str);
-        }
+        public static byte[] ConvertToBase64ByteArray(this string str) => Convert.FromBase64String(str);
 
         #endregion
 
@@ -869,10 +838,10 @@ namespace Wolf.Systems.Core
         {
             if (original.IsNullOrWhiteSpace() && isRefEmpty)
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
-            return string.Concat(prefix, original ?? string.Empty);
+            return string.Concat(prefix, original ?? Const.Empty);
         }
 
         #endregion
@@ -890,10 +859,10 @@ namespace Wolf.Systems.Core
         {
             if (original.IsNullOrWhiteSpace() && isRefEmpty)
             {
-                return string.Empty;
+                return Const.Empty;
             }
 
-            return string.Concat(original ?? string.Empty, suffix);
+            return string.Concat(original ?? Const.Empty, suffix);
         }
 
         #endregion
@@ -1193,10 +1162,7 @@ namespace Wolf.Systems.Core
         /// <param name="str"></param>
         /// <param name="regex"></param>
         /// <returns></returns>
-        public static bool Test(this string str, string regex)
-        {
-            return str.Test(regex, RegexOptions.None);
-        }
+        public static bool Test(this string str, string regex) => str.Test(regex, RegexOptions.None);
 
         /// <summary>
         /// 判断正则表达式是否匹配到
@@ -1295,10 +1261,7 @@ namespace Wolf.Systems.Core
         /// <summary>
         /// 是否为IP
         /// </summary>
-        public static bool IsIp(this string str)
-        {
-            return new Regex(RegexConst.Ip, RegexOptions.IgnoreCase).IsMatch(str);
-        }
+        public static bool IsIp(this string str) => new Regex(RegexConst.Ip, RegexOptions.IgnoreCase).IsMatch(str);
 
         #endregion
 
@@ -1382,50 +1345,6 @@ namespace Wolf.Systems.Core
             return false;
         }
 
-        /// <summary>
-        /// 判断精度是否正确
-        /// </summary>
-        /// <param name="str">带匹配的字符串</param>
-        /// <param name="maxScale">最大保留小数位数</param>
-        /// <returns></returns>
-        public static bool IsMaxScale(this double str, int maxScale)
-        {
-            return str.ToString(CultureInfo.InvariantCulture).IsMaxScale(maxScale);
-        }
-
-        /// <summary>
-        /// 判断精度是否正确
-        /// </summary>
-        /// <param name="str">带匹配的字符串</param>
-        /// <param name="maxScale">最大保留小数位数</param>
-        /// <returns></returns>
-        public static bool IsMaxScale(this int str, int maxScale)
-        {
-            return str.ToString(CultureInfo.InvariantCulture).IsMaxScale(maxScale);
-        }
-
-        /// <summary>
-        /// 判断精度是否正确
-        /// </summary>
-        /// <param name="str">带匹配的字符串</param>
-        /// <param name="maxScale">最大保留小数位数</param>
-        /// <returns></returns>
-        public static bool IsMaxScale(this decimal str, int maxScale)
-        {
-            return str.ToString(CultureInfo.InvariantCulture).IsMaxScale(maxScale);
-        }
-
-        /// <summary>
-        /// 判断精度是否正确
-        /// </summary>
-        /// <param name="str">带匹配的字符串</param>
-        /// <param name="maxScale">最大保留小数位数</param>
-        /// <returns></returns>
-        public static bool IsMaxScale(this float str, int maxScale)
-        {
-            return str.ToString(CultureInfo.InvariantCulture).IsMaxScale(maxScale);
-        }
-
         #endregion
 
         #region 是否内网ip
@@ -1489,10 +1408,7 @@ namespace Wolf.Systems.Core
         /// <param name="begin">开始</param>
         /// <param name="end">结束</param>
         /// <returns></returns>
-        private static bool IsInner(long userIp, long begin, long end)
-        {
-            return userIp >= begin && userIp <= end;
-        }
+        private static bool IsInner(long userIp, long begin, long end) => userIp >= begin && userIp <= end;
 
         #endregion
 
@@ -1811,20 +1727,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmpty(this string str)
-        {
-            return string.IsNullOrEmpty(str);
-        }
+        public static bool IsNullOrEmpty(this string str) => string.IsNullOrEmpty(str);
 
         /// <summary>
         /// Indicates whether the specified string is null or an
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool IsNullOrWhiteSpace(this string str)
-        {
-            return string.IsNullOrWhiteSpace(str);
-        }
+        public static bool IsNullOrWhiteSpace(this string str) => string.IsNullOrWhiteSpace(str);
 
         #endregion
 
@@ -1838,10 +1748,8 @@ namespace Wolf.Systems.Core
         /// <param name="str">待校验的字符串</param>
         /// <param name="regex">正则表达式</param>
         /// <returns></returns>
-        public static List<KeyValuePair<string, string[]>> Match(this string str, string regex)
-        {
-            return str.Match(regex, RegexOptions.None);
-        }
+        public static List<KeyValuePair<string, string[]>> Match(this string str, string regex) =>
+            str.Match(regex, RegexOptions.None);
 
         /// <summary>
         /// 正则匹配，得到匹配到的字符串集合
@@ -1852,7 +1760,7 @@ namespace Wolf.Systems.Core
         /// <returns></returns>
         public static List<KeyValuePair<string, string[]>> Match(this string str, string regex, RegexOptions options)
         {
-            int startat = (uint) (options & RegexOptions.RightToLeft) > 0U ? str.Length : 0;
+            int startat = (uint)(options & RegexOptions.RightToLeft) > 0U ? str.Length : 0;
             return str.Match(regex, options, startat);
         }
 

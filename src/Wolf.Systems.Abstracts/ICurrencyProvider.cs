@@ -1,4 +1,4 @@
-﻿namespace Wolf.Systems.Abstracts
+namespace Wolf.Systems.Abstracts
 {
     /// <summary>
     /// 货币

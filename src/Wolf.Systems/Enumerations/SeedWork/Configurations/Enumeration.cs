@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -56,7 +56,6 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         public static IEnumerable<T> GetAll<T>() where T : Enumeration<T1, T2>
         {
             var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
-
             return fields.Select(f => f.GetValue(null)).Cast<T>();
         }
 
@@ -92,7 +91,7 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         /// <returns></returns>
         public static T FromValue<T>(T1 value) where T : Enumeration<T1, T2>
         {
-            var matchingItem = Parse<T, T1>(value, "value", item => item.Id.Equals(value));
+            var matchingItem = Parse<T, T1>(item => item.Id.Equals(value));
             return matchingItem;
         }
 
@@ -104,11 +103,11 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         /// <returns></returns>
         public static T FromDisplayName<T>(string displayName) where T : Enumeration<T1, T2>
         {
-            var matchingItem = Parse<T, string>(displayName, "display name", item => item.Name.Equals(displayName));
+            var matchingItem = Parse<T, string>(item => item.Name.Equals(displayName));
             return matchingItem;
         }
 
-        private static T Parse<T, TK>(TK value, string description, Func<T, bool> predicate)
+        private static T Parse<T, TK>(Func<T, bool> predicate)
             where T : Enumeration<T1, T2>
         {
             var matchingItem = GetAll<T>().FirstOrDefault(predicate);
@@ -120,7 +119,7 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public int CompareTo(object other) => Id.CompareTo(((Enumeration<T1, T2>) other).Id);
+        public int CompareTo(object other) => Id.CompareTo(((Enumeration<T1, T2>)other).Id);
 
         #region 重写HashCode方法
 
@@ -129,7 +128,7 @@ namespace Wolf.Systems.Enumerations.SeedWork.Configurations
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        internal static int GetHashCode( string str)
+        internal static int GetHashCode(string str)
         {
             unchecked
             {

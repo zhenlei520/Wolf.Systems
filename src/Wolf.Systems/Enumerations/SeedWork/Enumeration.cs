@@ -14,19 +14,14 @@ namespace Wolf.Systems.Enumerations.SeedWork
         /// <summary>
         /// 
         /// </summary>
-        public Enumeration()
-        {
-
-        }
+        public Enumeration() { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name">描述</param>
-        protected Enumeration(int id, string name) : base(id, name)
-        {
-        }
+        protected Enumeration(int id, string name) : base(id, name) { }
 
         /// <summary>
         ///

@@ -1,4 +1,4 @@
-﻿namespace Wolf.Systems.Abstracts
+namespace Wolf.Systems.Abstracts
 {
     /// <summary>
     /// 随机数字生成器

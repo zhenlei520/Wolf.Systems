@@ -1,9 +1,10 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
 using System.Text;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Core.Internal.Configuration;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core.Configuration.Url
 {
@@ -12,46 +13,6 @@ namespace Wolf.Systems.Core.Configuration.Url
     /// </summary>
     public class Url
     {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="host">域</param>
-        /// <param name="url">完整的url地址</param>
-        public Url(string host, string url) : this(GetFullPath(host, url))
-        {
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="url">完整的url地址</param>
-        public Url(string url)
-        {
-            if (url.IsNullOrWhiteSpace())
-                throw new BusinessException("url is not empty");
-            if (!url.StartsWith("http://") && !url.StartsWith("https://"))
-            {
-                throw new System.Exception("Please enter the correct url");
-            }
-
-            var uri = new Uri(url);
-            Host = uri.Host;
-            Authority = uri.Authority;
-            Scheme = uri.Scheme.ToLowers();
-            IsHttps = Scheme.Equals("https", StringComparison.CurrentCultureIgnoreCase);
-            PathAndQuery = uri.PathAndQuery;
-            Path = PathAndQuery.Split('?').GetSafeString(0).Trim();
-            RequestUrl = url.Split('?').GetSafeString(0).Trim();
-            if (url.Split('?').Length > 1)
-            {
-                UrlParameter = new UrlParameter(url.Split('?').GetSafeString(1).Trim());
-            }
-            else
-            {
-                UrlParameter = new UrlParameter();
-            }
-        }
-
         /// <summary>
         /// 域
         /// </summary>
@@ -102,6 +63,46 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// </summary>
         public bool IsHttps { get; }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="host">域</param>
+        /// <param name="url">完整的url地址</param>
+        public Url(string host, string url) : this(GetFullPath(host, url))
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="url">完整的url地址</param>
+        public Url(string url)
+        {
+            if (url.IsNullOrWhiteSpace())
+                throw new BusinessException("url is not empty");
+            if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+            {
+                throw new System.Exception("Please enter the correct url");
+            }
+
+            var uri = new Uri(url);
+            Host = uri.Host;
+            Authority = uri.Authority;
+            Scheme = uri.Scheme.ToLowers();
+            IsHttps = Scheme.Equals("https", StringComparison.CurrentCultureIgnoreCase);
+            PathAndQuery = uri.PathAndQuery;
+            Path = PathAndQuery.Split('?').GetSafeString(0).Trim();
+            RequestUrl = url.Split('?').GetSafeString(0).Trim();
+            if (url.Split('?').Length > 1)
+            {
+                UrlParameter = new UrlParameter(url.Split('?').GetSafeString(1).Trim());
+            }
+            else
+            {
+                UrlParameter = new UrlParameter();
+            }
+        }
+
         #region 得到请求参数
 
         /// <summary>
@@ -112,10 +113,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// <param name="isUrlEncode">是否url编码</param>
         /// <param name="encoding">编码格式，默认UTF8</param>
         /// <returns></returns>
-        public string GetQueryResult(bool isSort = false, bool isUrlEncode = false, Encoding encoding = null)
-        {
-            return UrlParameter.GetQueryResult(isSort, isUrlEncode, encoding);
-        }
+        public string GetQueryResult(bool isSort = false, bool isUrlEncode = false, Encoding encoding = null) => UrlParameter.GetQueryResult(isSort, isUrlEncode, encoding);
 
         #endregion
 
@@ -134,10 +132,10 @@ namespace Wolf.Systems.Core.Configuration.Url
             var queryParam = GetQueryResult(isSort, isUrlEncode, encoding);
             if (!string.IsNullOrEmpty(queryParam))
             {
-                return $"{RequestUrl.Replace(FullAuthority, "")}?{queryParam}";
+                return $"{RequestUrl.Replace(FullAuthority, Const.Empty)}?{queryParam}";
             }
 
-            return $"{RequestUrl.Replace(FullAuthority, "")}";
+            return $"{RequestUrl.Replace(FullAuthority, Const.Empty)}";
         }
 
         #endregion
@@ -172,10 +170,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         /// 格式：{host}/api/user?参数1=参数值&参数2=参数值
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return GetFullQueryPath(false, false, Encoding.UTF8, true);
-        }
+        public override string ToString() => GetFullQueryPath(false, false, Encoding.UTF8, true);
 
         #region private methods
 
@@ -209,7 +204,7 @@ namespace Wolf.Systems.Core.Configuration.Url
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                return "";
+                return Const.Empty;
             }
 
             if (url.StartsWith("//"))

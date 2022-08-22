@@ -15,6 +15,4 @@
     <DocumentationFile>bin\Release\Wolf.Systems.Abstracts.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
-  </ItemGroup>
 </Project>

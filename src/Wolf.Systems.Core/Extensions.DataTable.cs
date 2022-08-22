@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -125,10 +125,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="table">DataTable</param>
         /// <returns>是否有数据行</returns>
-        public static bool HasRows(this DataTable table)
-        {
-            return table.Rows.Count > 0;
-        }
+        public static bool HasRows(this DataTable table) => table.Rows.Count > 0;
 
         #endregion
 

@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -15,15 +15,12 @@ namespace Wolf.Systems.Core.Provider.Unique
         /// <summary>
         ///
         /// </summary>
-        public int Type => (int) SequentialGuidType.Default.Id;
+        public int Type => SequentialGuidType.Default.Id;
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        public Guid Create()
-        {
-            return Guid.NewGuid();
-        }
+        public Guid Create() => Guid.NewGuid();
     }
 }

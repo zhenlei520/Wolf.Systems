@@ -22,9 +22,6 @@ namespace Wolf.Systems.ComponentModel
         /// 版本信息
         /// </summary>
         /// <param name="version"></param>
-        public EVersionAttribute(string version)
-        {
-            _version = version;
-        }
+        public EVersionAttribute(string version) => _version = version;
     }
 }

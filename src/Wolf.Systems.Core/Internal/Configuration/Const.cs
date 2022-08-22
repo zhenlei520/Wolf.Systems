@@ -1,12 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-namespace Wolf.Systems.Core.Configuration
+namespace Wolf.Systems.Core.Internal.Configuration
 {
     /// <summary>
     /// 常量
     /// </summary>
-    public static class Const
+    internal static class Const
     {
         /// <summary>
         /// 汉字及拼音首字母
@@ -29,5 +29,10 @@ namespace Wolf.Systems.Core.Configuration
         /// 数字
         /// </summary>
         public const string Numbers = "0123456789";
+
+        /// <summary>
+        /// 空
+        /// </summary>
+        public static string Empty { get; private set; } = string.Empty;
     }
 }

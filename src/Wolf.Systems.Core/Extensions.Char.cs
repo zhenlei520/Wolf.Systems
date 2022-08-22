@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Wolf.Systems.Core.Internal.Configuration;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core
 {
@@ -26,9 +26,9 @@ namespace Wolf.Systems.Core
         public static char ConvertToDbc(this char value)
         {
             if (value == 12288)
-                value = (char) 32;
+                value = (char)32;
             if (value > 65280 && value < 65375)
-                value = (char) (value - 65248);
+                value = (char)(value - 65248);
             return value;
         }
 
@@ -43,9 +43,9 @@ namespace Wolf.Systems.Core
         public static char ConvertToSbc(this char value)
         {
             if (value == 32)
-                value = (char) 12288;
+                value = (char)12288;
             if (value < 127)
-                value = (char) (value + 65248);
+                value = (char)(value + 65248);
             return value;
         }
 
@@ -70,11 +70,8 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="param">待转换的char集合</param>
         /// <returns></returns>
-        public static string ConvertToString(this List<char> param)
-        {
-            return param.Aggregate(new StringBuilder(param.Count), (sb, c) => sb.Append(c))
+        public static string ConvertToString(this List<char> param) => param.Aggregate(new StringBuilder(param.Count), (sb, c) => sb.Append(c))
                 .ToString();
-        }
 
         #endregion
 
@@ -104,10 +101,7 @@ namespace Wolf.Systems.Core
         /// <param name="errCode">错误码</param>
         /// <returns></returns>
         public static string GetContentByEncryption(this char? symbol, int number = 6,
-            int? errCode = null)
-        {
-            return GetContentByEncryption(symbol?.SafeString(), number, errCode);
-        }
+            int? errCode = null) => GetContentByEncryption(symbol?.SafeString(), number, errCode);
 
         /// <summary>
         /// 加密显示以*表示
@@ -126,7 +120,7 @@ namespace Wolf.Systems.Core
 
             if (number < 0)
             {
-                throw new BusinessException<int>("number必须为正整数", errCode ?? (int) ErrorCode.TypeError);
+                throw new BusinessException<int>("number必须为正整数", errCode ?? (int)ErrorCode.TypeError);
             }
 
             StringBuilder result = new StringBuilder();

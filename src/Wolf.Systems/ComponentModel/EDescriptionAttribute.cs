@@ -22,9 +22,6 @@ namespace Wolf.Systems.ComponentModel
         /// 自定义描述信息
         /// </summary>
         /// <param name="describe"></param>
-        public EDescriptionAttribute(string describe)
-        {
-            _describe = describe;
-        }
+        public EDescriptionAttribute(string describe) => _describe = describe;
     }
 }

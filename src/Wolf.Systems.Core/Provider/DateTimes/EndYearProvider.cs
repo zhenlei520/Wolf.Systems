@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -22,20 +22,13 @@ namespace Wolf.Systems.Core.Provider.DateTimes
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public DateTime GetResult(DateTime date)
-        {
-            return new DateTime(date.Year, 12, 31); //本年年末
-        }
+        public DateTime GetResult(DateTime date) => new DateTime(date.Year, 12, 31); //本年年末
 
         /// <summary>
         /// 得到结果
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public DateTimeOffset GetResult(DateTimeOffset date)
-        {
-            var dateTime = new DateTime(date.Year, 12, 31); //本年年末
-            return new DateTimeOffset(dateTime, date.Offset);
-        }
+        public DateTimeOffset GetResult(DateTimeOffset date) => new DateTimeOffset(new DateTime(date.Year, 12, 31), date.Offset);
     }
 }

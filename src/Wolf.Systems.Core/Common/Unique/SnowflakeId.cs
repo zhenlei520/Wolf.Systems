@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -63,12 +63,28 @@ namespace Wolf.Systems.Core.Common.Unique
         private static SnowflakeId _snowflakeId;
 
         private readonly object _lock = new object();
+
         private static readonly object SLock = new object();
 
         /// <summary>
         /// 上次生成ID的时间截
         /// </summary>
         private long _lastTimestamp = -1L;
+
+        /// <summary>
+        /// 工作机器ID(0~31)
+        /// </summary>
+        public long WorkerId { get; protected set; }
+
+        /// <summary>
+        /// 数据中心ID(0~31)
+        /// </summary>
+        public long DatacenterId { get; protected set; }
+
+        /// <summary>
+        /// 毫秒内序列(0~4095)
+        /// </summary>
+        public long Sequence { get; internal set; }
 
         /// <summary>
         ///
@@ -91,21 +107,6 @@ namespace Wolf.Systems.Core.Common.Unique
         }
 
         /// <summary>
-        /// 工作机器ID(0~31)
-        /// </summary>
-        public long WorkerId { get; protected set; }
-
-        /// <summary>
-        /// 数据中心ID(0~31)
-        /// </summary>
-        public long DatacenterId { get; protected set; }
-
-        /// <summary>
-        /// 毫秒内序列(0~4095)
-        /// </summary>
-        public long Sequence { get; internal set; }
-
-        /// <summary>
         /// 获取默认的雪花id对象
         /// </summary>
         /// <returns></returns>
@@ -124,14 +125,14 @@ namespace Wolf.Systems.Core.Common.Unique
                     Environment.GetEnvironmentVariable("Request_WORKERID", EnvironmentVariableTarget.Machine),
                     out var workerId))
                 {
-                    workerId = random.Next((int) MaxWorkerId);
+                    workerId = random.Next((int)MaxWorkerId);
                 }
 
                 if (!int.TryParse(
                     Environment.GetEnvironmentVariable("Request_DATACENTERID", EnvironmentVariableTarget.Machine),
                     out var datacenterId))
                 {
-                    datacenterId = random.Next((int) MaxDatacenterId);
+                    datacenterId = random.Next((int)MaxDatacenterId);
                 }
 
                 return _snowflakeId = new SnowflakeId(workerId, datacenterId);
@@ -142,7 +143,7 @@ namespace Wolf.Systems.Core.Common.Unique
         /// 获得下一个ID
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="Exception"></exception>
+        /// <exception cref="Exceptions"></exception>
         public virtual long NextId()
         {
             lock (_lock)

@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
@@ -11,6 +11,21 @@ namespace Wolf.Systems.Core.Configuration
     /// </summary>
     public class Page<T> : IPage<T>
     {
+        /// <summary>
+        /// 总条数
+        /// </summary>
+        public int RowCount { get; set; }
+
+        /// <summary>
+        /// 当前页数据集合
+        /// </summary>
+        public IEnumerable<T> Data { get; set; }
+
+        /// <summary>
+        /// 扩展Data
+        /// </summary>
+        public object ExtendedData { get; set; }
+
         /// <summary>
         ///
         /// </summary>
@@ -31,20 +46,5 @@ namespace Wolf.Systems.Core.Configuration
             Data = data;
             ExtendedData = extendedData;
         }
-
-        /// <summary>
-        /// 总条数
-        /// </summary>
-        public int RowCount { get; set; }
-
-        /// <summary>
-        /// 当前页数据集合
-        /// </summary>
-        public IEnumerable<T> Data { get; set; }
-
-        /// <summary>
-        /// 扩展Data
-        /// </summary>
-        public object ExtendedData { get; set; }
     }
 }

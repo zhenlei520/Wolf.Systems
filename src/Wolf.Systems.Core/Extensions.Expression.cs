@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -29,7 +29,7 @@ namespace Wolf.Systems.Core
             Func<Expression, Expression, Expression> merge)
         {
             // build parameter map (from parameters of second to parameters of first)
-            var map = first.Parameters.Select((f, i) => new {f, s = second.Parameters[i]}).SafeToDictionary(p => p.s, p => p.f);
+            var map = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] }).SafeToDictionary(p => p.s, p => p.f);
 
             // replace parameters in the second lambda expression with parameters from the first
             var secondBody = ParameterRebinder.ReplaceParameters(map, second.Body);
@@ -136,7 +136,7 @@ namespace Wolf.Systems.Core
                     }
 
                     MethodCallExpression resultExp = Expression.Call(typeof(Queryable), methodName,
-                        new Type[] {typeof(T), pi.PropertyType}, iquerable.Expression, le);
+                        new Type[] { typeof(T), pi.PropertyType }, iquerable.Expression, le);
                     source = iquerable.Provider.CreateQuery<T>(resultExp);
                 }
             });

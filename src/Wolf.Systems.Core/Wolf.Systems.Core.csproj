@@ -119,9 +119,13 @@
     <Compile Update="Extensions.Validate.cs">
       <DependentUpon>Extensions.cs</DependentUpon>
     </Compile>
+    <Compile Update="Extensions.Task.cs">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' != 'net40' ">
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
   </ItemGroup>
+
 </Project>

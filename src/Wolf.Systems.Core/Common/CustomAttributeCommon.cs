@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -25,11 +25,8 @@ namespace Wolf.Systems.Core.Common
             Func<T, TSource> attributeValueAction,
             string name = null)
             where T : Attribute
-            where TSource : IComparable
-        {
-            return Configuration.CustomAttribute<T, TSource>.GetAttributeValue(sourceType,
+            where TSource : IComparable => Configuration.CustomAttribute<T, TSource>.GetAttributeValue(sourceType,
                 attributeValueAction, name);
-        }
 
         #endregion
     }

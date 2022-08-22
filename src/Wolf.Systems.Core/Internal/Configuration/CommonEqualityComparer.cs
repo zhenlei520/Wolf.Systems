@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -42,19 +42,13 @@ namespace Wolf.Systems.Core.Internal.Configuration
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public bool Equals(T x, T y)
-        {
-            return _comparer.Equals(_keySelector(x), _keySelector(y));
-        }
+        public bool Equals(T x, T y) => _comparer.Equals(_keySelector(x), _keySelector(y));
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int GetHashCode(T obj)
-        {
-            return _comparer.GetHashCode(_keySelector(obj));
-        }
+        public int GetHashCode(T obj) => _comparer.GetHashCode(_keySelector(obj));
     }
 }

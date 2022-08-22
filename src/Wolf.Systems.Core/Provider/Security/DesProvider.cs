@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.IO;
@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core.Provider.Security
 {
@@ -18,12 +18,12 @@ namespace Wolf.Systems.Core.Provider.Security
         /// <summary>
         /// 默认Iv
         /// </summary>
-        private static byte[] Iv = {0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF};
+        private static byte[] Iv = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
 
         /// <summary>
         /// 加密方式
         /// </summary>
-        public int Type => (int) SecurityType.Des;
+        public int Type => (int)SecurityType.Des;
 
         /// <summary>
         /// Des加密

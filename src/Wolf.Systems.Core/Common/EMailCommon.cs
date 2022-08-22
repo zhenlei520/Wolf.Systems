@@ -1,5 +1,6 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
+
 using System.Net.Mail;
 
 namespace Wolf.Systems.Core.Common
@@ -28,7 +29,7 @@ namespace Wolf.Systems.Core.Common
             // 创建一个附件对象
             //objMailAttachment = new Attachment("f:\\世界杯赛程.rtf");//发送邮件的附件
             // 创建邮件消息
-            var objMailMessage = new MailMessage {From = new MailAddress(pMailAddress)};
+            var objMailMessage = new MailMessage { From = new MailAddress(pMailAddress) };
             //发送者的邮箱地址
 
             objMailMessage.To.Add(pToMail); //目的邮件地址
@@ -47,8 +48,8 @@ namespace Wolf.Systems.Core.Common
                 Credentials = new System.Net.NetworkCredential(objMailMessage.From.Address, pPwd),
                 DeliveryMethod = SmtpDeliveryMethod.Network
             }; //网络上的代理服务器
-            //设置发件人身份的信息
-            //smtpClient.Host = "smtp." + objMailMessage.From.Host;
+               //设置发件人身份的信息
+               //smtpClient.Host = "smtp." + objMailMessage.From.Host;
             try
             {
                 smtpClient.Send(objMailMessage);

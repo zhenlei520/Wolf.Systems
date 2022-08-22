@@ -1,7 +1,8 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
+using System.Security.Cryptography;
 using System.Text;
 using Wolf.Systems.Abstracts;
 
@@ -20,10 +21,7 @@ namespace Wolf.Systems.Core.Provider.Random
         /// <summary>
         /// 初始化随机数字生成器
         /// </summary>
-        public RandomNumberGeneratorProvider()
-        {
-            _random = new System.Random();
-        }
+        public RandomNumberGeneratorProvider() => _random = new System.Random();
 
         #region 生成随机数字
 
@@ -78,8 +76,8 @@ namespace Wolf.Systems.Core.Provider.Random
         private int GetRandomSeed()
         {
             byte[] bytes = new byte[4];
-            System.Security.Cryptography.RNGCryptoServiceProvider rng =
-                new System.Security.Cryptography.RNGCryptoServiceProvider();
+            RNGCryptoServiceProvider rng =
+                new RNGCryptoServiceProvider();
             rng.GetBytes(bytes);
             return BitConverter.ToInt32(bytes, 0);
         }

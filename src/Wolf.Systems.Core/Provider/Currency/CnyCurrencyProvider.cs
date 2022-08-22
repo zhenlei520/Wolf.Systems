@@ -1,8 +1,9 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
 using Wolf.Systems.Abstracts;
+using Wolf.Systems.Core.Internal.Configuration;
 
 namespace Wolf.Systems.Core.Provider.Currency
 {
@@ -14,7 +15,7 @@ namespace Wolf.Systems.Core.Provider.Currency
         /// <summary>
         /// 货币类型
         /// </summary>
-        public int CurrencyType => (int) Enum.CurrencyType.Cny;
+        public int CurrencyType => (int)Enum.CurrencyType.Cny;
 
         /// <summary>
         /// 数值类型转货币
@@ -25,18 +26,18 @@ namespace Wolf.Systems.Core.Provider.Currency
         {
             string str1 = "零壹贰叁肆伍陆柒捌玖"; //0-9所对应的汉字
             string str2 = "万仟佰拾亿仟佰拾万仟佰拾元角分"; //数字位所对应的汉字
-            string str3 = ""; //从原num值中取出的值
-            string str4 = ""; //数字的字符串形式
-            string str5 = ""; //人民币大写金额形式
+            string str3 = Const.Empty; //从原num值中取出的值
+            string str4 = Const.Empty; //数字的字符串形式
+            string str5 = Const.Empty; //人民币大写金额形式
             int i; //循环变量
             int j; //num的值乘以100的字符串长度
-            string ch1 = ""; //数字的汉语读法
-            string ch2 = ""; //数字位的汉字读法
+            string ch1 = Const.Empty; //数字的汉语读法
+            string ch2 = Const.Empty; //数字位的汉字读法
             int nzero = 0; //用来计算连续的零值是几个
             int temp; //从原num值中取出的值
 
             param = Math.Round(Math.Abs(param), 2); //将num取绝对值并四舍五入取2位小数
-            str4 = ((long) (param * 100)).ToString(); //将num乘100并转换成字符串形式
+            str4 = ((long)(param * 100)).ToString(); //将num乘100并转换成字符串形式
             j = str4.Length; //找出最高位
             if (j > 15)
             {
@@ -55,8 +56,8 @@ namespace Wolf.Systems.Core.Provider.Currency
                     //当所取位数不为元、万、亿、万亿上的数字时
                     if (str3 == "0")
                     {
-                        ch1 = "";
-                        ch2 = "";
+                        ch1 = Const.Empty;
+                        ch2 = Const.Empty;
                         nzero = nzero + 1;
                     }
                     else
@@ -96,20 +97,20 @@ namespace Wolf.Systems.Core.Provider.Currency
                         {
                             if (str3 == "0" && nzero >= 3)
                             {
-                                ch1 = "";
-                                ch2 = "";
+                                ch1 = Const.Empty;
+                                ch2 = Const.Empty;
                                 nzero = nzero + 1;
                             }
                             else
                             {
                                 if (j >= 11)
                                 {
-                                    ch1 = "";
+                                    ch1 = Const.Empty;
                                     nzero = nzero + 1;
                                 }
                                 else
                                 {
-                                    ch1 = "";
+                                    ch1 = Const.Empty;
                                     ch2 = str2.Substring(i, 1);
                                     nzero = nzero + 1;
                                 }

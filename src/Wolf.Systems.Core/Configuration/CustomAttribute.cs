@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -13,8 +13,8 @@ namespace Wolf.Systems.Core.Configuration
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TSource"></typeparam>
     public class CustomAttribute<T, TSource>
-        where T : Attribute
-        where TSource : IComparable
+          where T : Attribute
+          where TSource : IComparable
     {
         /// <summary>
         ///
@@ -112,7 +112,7 @@ namespace Wolf.Systems.Core.Configuration
                 }
             }
 
-            return attribute == null ? default(TSource) : attributeValueAction((T) attribute);
+            return attribute == null ? default(TSource) : attributeValueAction((T)attribute);
         }
 
         #endregion

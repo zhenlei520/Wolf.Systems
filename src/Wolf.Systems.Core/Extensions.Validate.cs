@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -20,10 +20,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDouble(this object parameter)
-        {
-            return parameter.ConvertToDouble().IsNull() == false;
-        }
+        public static bool IsDouble(this object parameter) => parameter.ConvertToDouble().IsNull() == false;
 
         #endregion
 
@@ -34,10 +31,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDecimal(this object parameter)
-        {
-            return parameter.ConvertToDecimal().IsNull() == false;
-        }
+        public static bool IsDecimal(this object parameter) => parameter.ConvertToDecimal().IsNull() == false;
 
         #endregion
 
@@ -48,10 +42,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsLong(this object parameter)
-        {
-            return parameter.ConvertToLong().IsNull() == false;
-        }
+        public static bool IsLong(this object parameter) => parameter.ConvertToLong().IsNull() == false;
 
         #endregion
 
@@ -62,10 +53,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsInt(this object parameter)
-        {
-            return parameter.ConvertToInt().IsNull() == false;
-        }
+        public static bool IsInt(this object parameter) => parameter.ConvertToInt().IsNull() == false;
 
         #endregion
 
@@ -76,10 +64,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsShort(this object parameter)
-        {
-            return parameter.ConvertToShort().IsNull() == false;
-        }
+        public static bool IsShort(this object parameter) => parameter.ConvertToShort().IsNull() == false;
 
         #endregion
 
@@ -90,10 +75,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsGuid(this object parameter)
-        {
-            return parameter.ConvertToGuid().IsNull() == false;
-        }
+        public static bool IsGuid(this object parameter) => parameter.ConvertToGuid().IsNull() == false;
 
         #endregion
 
@@ -104,10 +86,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsChar(this object parameter)
-        {
-            return parameter.ConvertToChar().IsNull() == false;
-        }
+        public static bool IsChar(this object parameter) => parameter.ConvertToChar().IsNull() == false;
 
         #endregion
 
@@ -118,10 +97,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsFloat(this object parameter)
-        {
-            return parameter.ConvertToFloat().IsNull() == false;
-        }
+        public static bool IsFloat(this object parameter) => parameter.ConvertToFloat().IsNull() == false;
 
         #endregion
 
@@ -132,10 +108,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsDateTime(this object parameter)
-        {
-            return parameter.ConvertToDateTime().IsNull() == false;
-        }
+        public static bool IsDateTime(this object parameter) => parameter.ConvertToDateTime().IsNull() == false;
 
         #endregion
 
@@ -146,10 +119,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsByte(this object parameter)
-        {
-            return parameter.ConvertToByte().IsNull() == false;
-        }
+        public static bool IsByte(this object parameter) => parameter.ConvertToByte().IsNull() == false;
 
         #endregion
 
@@ -160,10 +130,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsSByte(this object parameter)
-        {
-            return parameter.ConvertToSByte().IsNull() == false;
-        }
+        public static bool IsSByte(this object parameter) => parameter.ConvertToSByte().IsNull() == false;
 
         #endregion
 
@@ -174,10 +141,7 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static bool IsBool(this object parameter)
-        {
-            return parameter.ConvertToBool().IsNull() == false;
-        }
+        public static bool IsBool(this object parameter) => parameter.ConvertToBool().IsNull() == false;
 
         #endregion
 
@@ -225,20 +189,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="param1">参数1</param>
         /// <param name="param2">参数2</param>
-        public static bool GreaterThan<T>(this T param1, T param2) where T : IComparable
-        {
-            return param1.CompareTo(param2) > 0;
-        }
+        public static bool GreaterThan<T>(this T param1, T param2) where T : IComparable => param1.CompareTo(param2) > 0;
 
         /// <summary>
         /// 参数1大于等于参数2
         /// </summary>
         /// <param name="param1">参数1</param>
         /// <param name="param2">参数2</param>
-        public static bool GreaterThanOrEqualTo<T>(this T param1, T param2) where T : IComparable
-        {
-            return param1.CompareTo(param2) == 0 || param1.CompareTo(param2) > 0;
-        }
+        public static bool GreaterThanOrEqualTo<T>(this T param1, T param2) where T : IComparable => param1.CompareTo(param2) == 0 || param1.CompareTo(param2) > 0;
 
         #endregion
 
@@ -249,20 +207,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="param1">参数1</param>
         /// <param name="param2">参数2</param>
-        public static bool LessThan<T>(this T param1, T param2) where T : IComparable
-        {
-            return param1.CompareTo(param2) < 0;
-        }
+        public static bool LessThan<T>(this T param1, T param2) where T : IComparable => param1.CompareTo(param2) < 0;
 
         /// <summary>
         /// 参数1小于等于参数2
         /// </summary>
         /// <param name="param1">参数1</param>
         /// <param name="param2">参数2</param>
-        public static bool LessThanOrEqualTo<T>(this T param1, T param2) where T : IComparable
-        {
-            return param1.CompareTo(param2) == 0 || param1.CompareTo(param2) < 0;
-        }
+        public static bool LessThanOrEqualTo<T>(this T param1, T param2) where T : IComparable => param1.CompareTo(param2) == 0 || param1.CompareTo(param2) < 0;
 
         #endregion
 
@@ -287,7 +239,7 @@ namespace Wolf.Systems.Core
             !source.IsNull() && !list.IsNull() && list.All(t => t.CompareTo(source) != 0);
 
         /// <summary>
-        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
+        /// 是否全部在指定列表内
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -299,11 +251,19 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
+            foreach (var item in sourceList)
+            {
+                if (item.IsNotIn(list))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
-        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
+        /// 是否全部在指定列表内
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -315,7 +275,15 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
+            foreach (var item in sourceList)
+            {
+                if (item.IsNotIn(list))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -337,7 +305,7 @@ namespace Wolf.Systems.Core
             !source.IsNull() && !list.IsNull() && list.All(t => t.CompareTo(source) != 0);
 
         /// <summary>
-        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
+        /// 是否全部在指定列表内
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -349,11 +317,19 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
+            foreach (var item in sourceList)
+            {
+                if (item.IsNotIn(list))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
-        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
+        /// 是否全部在指定列表内
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -365,7 +341,15 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
+            foreach (var item in sourceList)
+            {
+                if (item.IsNotIn(list))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -387,7 +371,7 @@ namespace Wolf.Systems.Core
             !source.IsNull() && !list.IsNull() && list.All(t => t.CompareTo(source) != 0);
 
         /// <summary>
-        /// 是否全部在指定列表内 sourceList是list的子集或者sourceList与list相等
+        /// 是否全部在指定列表内
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sourceList">数据源</param>
@@ -399,7 +383,15 @@ namespace Wolf.Systems.Core
                 return false;
             }
 
-            return sourceList.All(x => list.Any(y => y.CompareTo(x) == 0));
+            foreach (var item in sourceList)
+            {
+                if (item.IsNotIn(list))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -459,55 +451,35 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static bool IsNull(this object obj)
-        {
-            return obj == null;
-        }
+        public static bool IsNull(this object obj) => obj == null;
 
         /// <summary>
         /// 是否null或者DBNull
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static bool IsNullOrDbNull(this object obj)
-        {
-            return obj == null || obj is DBNull;
-        }
+        public static bool IsNullOrDbNull(this object obj) => obj == null || obj is DBNull;
 
         /// <summary>
         /// 是否为Null或者空或者DbNull
         /// </summary>
         /// <param name="value">待验证的对象</param>
         /// <returns></returns>
-        public static bool IsNullOrEmptyOrDbNull(this object value)
-        {
-            return value.IsNullOrDbNull() || value.ToString().IsNullOrEmpty();
-        }
+        public static bool IsNullOrEmptyOrDbNull(this object value) => value.IsNullOrDbNull() || value.ToString().IsNullOrEmpty();
 
         /// <summary>
         /// 是否为Null或者空以字符串或者DbNull
         /// </summary>
         /// <param name="value">待验证的对象</param>
         /// <returns></returns>
-        public static bool IsNullOrWhiteSpaceOrDbNull(this object value)
-        {
-            return value.IsNullOrDbNull() || value.ToString().IsNullOrWhiteSpace();
-        }
+        public static bool IsNullOrWhiteSpaceOrDbNull(this object value) => value.IsNullOrDbNull() || value.ToString().IsNullOrWhiteSpace();
 
         /// <summary>
         /// 是否为Null或者空以字符串
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsNullOrWhiteSpace(this object value)
-        {
-            if (value.IsNull())
-            {
-                return true;
-            }
-
-            return value.ToString().IsNullOrWhiteSpace();
-        }
+        public static bool IsNullOrWhiteSpace(this object value) => value.IsNull() || value.ToString().IsNullOrWhiteSpace();
 
         #endregion
     }

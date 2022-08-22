@@ -1,11 +1,11 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Diagnostics;
 #if NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
+using System;
+using System.Diagnostics;
 using Wolf.Systems.ComponentModel;
 using Wolf.Systems.Enum;
 
@@ -16,15 +16,21 @@ namespace Wolf.Systems.Core.Common.Systems
     /// </summary>
     public static class EnvironmentCommon
     {
+        static EnvironmentCommon()
+        {
+            GetOs = new OsInfo();
+            GetRun = new RunInfo();
+        }
+
         /// <summary>
         /// 操作系统信息
         /// </summary>
-        public static OsInfo GetOs => new OsInfo();
+        public static OsInfo GetOs { get; }
 
         /// <summary>
         /// 得到运行环境
         /// </summary>
-        public static RunInfo GetRun => new RunInfo();
+        public static RunInfo GetRun { get; }
 
         /// <summary>
         /// 操作系统信息
@@ -143,7 +149,7 @@ namespace Wolf.Systems.Core.Common.Systems
 #endif
 
 #if NETFRAMEWORK
-                return ".NET Framework "+Environment.Version.ToString();
+                return ".NET Framework " + Environment.Version.ToString();
 #endif
             }
         }

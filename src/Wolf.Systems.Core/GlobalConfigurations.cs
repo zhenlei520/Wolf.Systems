@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
@@ -14,8 +14,6 @@ using Wolf.Systems.Core.Provider.Unique;
 using Wolf.Systems.Core.Provider.Week;
 using Wolf.Systems.Enum;
 using Wolf.Systems.Enumerations;
-
-// ReSharper disable VirtualMemberCallInConstructor
 
 namespace Wolf.Systems.Core
 {
@@ -56,10 +54,7 @@ namespace Wolf.Systems.Core
         /// 设置全局配置
         /// </summary>
         /// <param name="globalConfigurations"></param>
-        protected virtual void SetGlobalConfigurations(GlobalConfigurations globalConfigurations)
-        {
-            Instance = globalConfigurations;
-        }
+        protected virtual void SetGlobalConfigurations(GlobalConfigurations globalConfigurations) => Instance = globalConfigurations;
 
         #endregion
 
@@ -95,10 +90,7 @@ namespace Wolf.Systems.Core
         /// 得到加密提供者集合
         /// </summary>
         /// <returns></returns>
-        public List<ISecurityProvider> GetSecurityProviders()
-        {
-            return SecurityProviders?.ToList() ?? new List<ISecurityProvider>();
-        }
+        public List<ISecurityProvider> GetSecurityProviders() => SecurityProviders?.ToList() ?? new List<ISecurityProvider>();
 
         #endregion
 
@@ -109,20 +101,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="securityType">加密方式</param>
         /// <returns></returns>
-        public ISecurityProvider GetSecurityProvider(int securityType)
-        {
-            return GetSecurityProviders().FirstOrDefault(x => x.Type == securityType);
-        }
+        public ISecurityProvider GetSecurityProvider(int securityType) => GetSecurityProviders().FirstOrDefault(x => x.Type == securityType);
 
         /// <summary>
         /// 得到加密提供者
         /// </summary>
         /// <param name="securityType">加密方式</param>
         /// <returns></returns>
-        public ISecurityProvider GetSecurityProvider(SecurityType securityType)
-        {
-            return GetSecurityProvider((int) securityType);
-        }
+        public ISecurityProvider GetSecurityProvider(SecurityType securityType) => GetSecurityProvider((int)securityType);
 
         #endregion
 
@@ -132,15 +118,12 @@ namespace Wolf.Systems.Core
         /// 重置加密提供者为初始状态
         /// </summary>
         /// <returns></returns>
-        protected virtual void ResetSecurityProviders()
+        protected virtual void ResetSecurityProviders() => SecurityProviders = new List<ISecurityProvider>()
         {
-            SecurityProviders = new List<ISecurityProvider>()
-            {
-                new AesProvider(),
-                new DesProvider(),
-                new JsAesProvider()
-            };
-        }
+            new AesProvider(),
+            new DesProvider(),
+            new JsAesProvider()
+        };
 
         #endregion
 
@@ -150,10 +133,7 @@ namespace Wolf.Systems.Core
         /// 清空加密提供者
         /// </summary>
         /// <returns></returns>
-        protected virtual void ClearSecurityProviders()
-        {
-            SecurityProviders = new List<ISecurityProvider>();
-        }
+        protected virtual void ClearSecurityProviders() => SecurityProviders = new List<ISecurityProvider>();
 
         #endregion
 
@@ -191,10 +171,7 @@ namespace Wolf.Systems.Core
         /// 得到星期提供者集合
         /// </summary>
         /// <returns></returns>
-        public List<IWeekProvider> GetWeekProviders()
-        {
-            return WeekProviders?.ToList() ?? new List<IWeekProvider>();
-        }
+        public List<IWeekProvider> GetWeekProviders() => WeekProviders?.ToList() ?? new List<IWeekProvider>();
 
         #endregion
 
@@ -205,20 +182,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="nationality">国家</param>
         /// <returns></returns>
-        public IWeekProvider GetWeekProvider(int nationality)
-        {
-            return GetWeekProviders().FirstOrDefault(x => x.Nationality == nationality);
-        }
+        public IWeekProvider GetWeekProvider(int nationality) => GetWeekProviders().FirstOrDefault(x => x.Nationality == nationality);
 
         /// <summary>
         /// 得到加密提供者
         /// </summary>
         /// <param name="nationality">国家</param>
         /// <returns></returns>
-        public IWeekProvider GetWeekProvider(Nationality nationality)
-        {
-            return GetWeekProvider((int) nationality);
-        }
+        public IWeekProvider GetWeekProvider(Nationality nationality) => GetWeekProvider((int)nationality);
 
         #endregion
 
@@ -228,13 +199,10 @@ namespace Wolf.Systems.Core
         /// 重置星期提供者为初始状态
         /// </summary>
         /// <returns></returns>
-        protected virtual void ResetWeekProviders()
+        protected virtual void ResetWeekProviders() => WeekProviders = new List<IWeekProvider>()
         {
-            WeekProviders = new List<IWeekProvider>()
-            {
-                new ChinaWeekProvider()
-            };
-        }
+            new ChinaWeekProvider()
+        };
 
         #endregion
 
@@ -244,10 +212,7 @@ namespace Wolf.Systems.Core
         /// 清空星期提供者
         /// </summary>
         /// <returns></returns>
-        protected virtual void ClearWeekProviders()
-        {
-            WeekProviders = new List<IWeekProvider>();
-        }
+        protected virtual void ClearWeekProviders() => WeekProviders = new List<IWeekProvider>();
 
         #endregion
 
@@ -285,10 +250,7 @@ namespace Wolf.Systems.Core
         /// 得到时间提供者集合
         /// </summary>
         /// <returns></returns>
-        public List<IDateTimeProvider> GetDateTimeProviders()
-        {
-            return DateTimeProviders?.ToList() ?? new List<IDateTimeProvider>();
-        }
+        public List<IDateTimeProvider> GetDateTimeProviders() => DateTimeProviders?.ToList() ?? new List<IDateTimeProvider>();
 
         #endregion
 
@@ -299,20 +261,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="type">时间类型</param>
         /// <returns></returns>
-        public IDateTimeProvider GetDateTimeProvider(int type)
-        {
-            return GetDateTimeProviders().FirstOrDefault(x => x.Type == type);
-        }
+        public IDateTimeProvider GetDateTimeProvider(int type) => GetDateTimeProviders().FirstOrDefault(x => x.Type == type);
 
         /// <summary>
         /// 得到时间提供者
         /// </summary>
         /// <param name="type">时间类型</param>
         /// <returns></returns>
-        public IDateTimeProvider GetDateTimeProvider(TimeType type)
-        {
-            return GetDateTimeProvider((int) type);
-        }
+        public IDateTimeProvider GetDateTimeProvider(TimeType type) => GetDateTimeProvider((int)type);
 
         #endregion
 
@@ -322,20 +278,17 @@ namespace Wolf.Systems.Core
         /// 重置时间提供者为初始状态
         /// </summary>
         /// <returns></returns>
-        protected virtual void ResetDateTimeProviders()
+        protected virtual void ResetDateTimeProviders() => DateTimeProviders = new List<IDateTimeProvider>()
         {
-            DateTimeProviders = new List<IDateTimeProvider>()
-            {
-                new StartMonthProvider(),
-                new EndMonthProvider(),
-                new StartWeekProvider(),
-                new EndWeekProvider(),
-                new StartQuarterProvider(),
-                new EndQuarterProvider(),
-                new StartYearProvider(),
-                new EndYearProvider()
-            };
-        }
+            new StartMonthProvider(),
+            new EndMonthProvider(),
+            new StartWeekProvider(),
+            new EndWeekProvider(),
+            new StartQuarterProvider(),
+            new EndQuarterProvider(),
+            new StartYearProvider(),
+            new EndYearProvider()
+        };
 
         #endregion
 
@@ -345,10 +298,7 @@ namespace Wolf.Systems.Core
         /// 清空时间提供者
         /// </summary>
         /// <returns></returns>
-        protected virtual void ClearDateTimeProviders()
-        {
-            DateTimeProviders = new List<IDateTimeProvider>();
-        }
+        protected virtual void ClearDateTimeProviders() => DateTimeProviders = new List<IDateTimeProvider>();
 
         #endregion
 
@@ -386,10 +336,7 @@ namespace Wolf.Systems.Core
         /// 得到指定时间提供者集合
         /// </summary>
         /// <returns></returns>
-        public List<ISpecifiedTimeAfterProvider> GetSpecifiedTimeAfterProviders()
-        {
-            return SpecifiedTimeAfterProviders?.ToList() ?? new List<ISpecifiedTimeAfterProvider>();
-        }
+        public List<ISpecifiedTimeAfterProvider> GetSpecifiedTimeAfterProviders() => SpecifiedTimeAfterProviders?.ToList() ?? new List<ISpecifiedTimeAfterProvider>();
 
         #endregion
 
@@ -400,20 +347,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="type">时间类型</param>
         /// <returns></returns>
-        public ISpecifiedTimeAfterProvider GetSpecifiedTimeAfterProvider(int type)
-        {
-            return GetSpecifiedTimeAfterProviders().FirstOrDefault(x => x.Type == type);
-        }
+        public ISpecifiedTimeAfterProvider GetSpecifiedTimeAfterProvider(int type) => GetSpecifiedTimeAfterProviders().FirstOrDefault(x => x.Type == type);
 
         /// <summary>
         /// 得到指定时间提供者
         /// </summary>
         /// <param name="type">时间类型</param>
         /// <returns></returns>
-        public ISpecifiedTimeAfterProvider GetSpecifiedTimeAfterProvider(TimeUnit type)
-        {
-            return GetSpecifiedTimeAfterProvider((int) type);
-        }
+        public ISpecifiedTimeAfterProvider GetSpecifiedTimeAfterProvider(TimeUnit type) => GetSpecifiedTimeAfterProvider((int)type);
 
         #endregion
 
@@ -423,22 +364,19 @@ namespace Wolf.Systems.Core
         /// 重置指定时间提供者为初始状态
         /// </summary>
         /// <returns></returns>
-        protected virtual void ResetSpecifiedTimeAfterProviders()
+        protected virtual void ResetSpecifiedTimeAfterProviders() => SpecifiedTimeAfterProviders = new List<ISpecifiedTimeAfterProvider>()
         {
-            SpecifiedTimeAfterProviders = new List<ISpecifiedTimeAfterProvider>()
-            {
-                new TickProvider(),
-                new MilliSecondProvider(),
-                new SecondProvider(),
-                new MinutesProvider(),
-                new HourProvider(),
-                new DayProvider(),
-                new WeeksProvider(),
-                new MonthProvider(),
-                new QuarterProvider(),
-                new YearProvider()
-            };
-        }
+            new TickProvider(),
+            new MilliSecondProvider(),
+            new SecondProvider(),
+            new MinutesProvider(),
+            new HourProvider(),
+            new DayProvider(),
+            new WeeksProvider(),
+            new MonthProvider(),
+            new QuarterProvider(),
+            new YearProvider()
+        };
 
         #endregion
 
@@ -448,10 +386,7 @@ namespace Wolf.Systems.Core
         /// 清空指定时间提供者
         /// </summary>
         /// <returns></returns>
-        protected virtual void ClearSpecifiedTimeAfterProviders()
-        {
-            SpecifiedTimeAfterProviders = new List<ISpecifiedTimeAfterProvider>();
-        }
+        protected virtual void ClearSpecifiedTimeAfterProviders() => SpecifiedTimeAfterProviders = new List<ISpecifiedTimeAfterProvider>();
 
         #endregion
 
@@ -489,10 +424,7 @@ namespace Wolf.Systems.Core
         /// 得到指定货币转换器提供者集合
         /// </summary>
         /// <returns></returns>
-        public List<ICurrencyProvider> GetCurrencyProviders()
-        {
-            return CurrencyProviders?.ToList() ?? new List<ICurrencyProvider>();
-        }
+        public List<ICurrencyProvider> GetCurrencyProviders() => CurrencyProviders?.ToList() ?? new List<ICurrencyProvider>();
 
         #endregion
 
@@ -503,20 +435,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="type">时间类型</param>
         /// <returns></returns>
-        public ICurrencyProvider GetCurrencyProvider(int type)
-        {
-            return GetCurrencyProviders().FirstOrDefault(x => x.CurrencyType == type);
-        }
+        public ICurrencyProvider GetCurrencyProvider(int type) => GetCurrencyProviders().FirstOrDefault(x => x.CurrencyType == type);
 
         /// <summary>
         /// 得到指定时间提供者
         /// </summary>
         /// <param name="currencyType">货币类型</param>
         /// <returns></returns>
-        public ICurrencyProvider GetCurrencyProvider(CurrencyType currencyType)
-        {
-            return GetCurrencyProvider((int) currencyType);
-        }
+        public ICurrencyProvider GetCurrencyProvider(CurrencyType currencyType) => GetCurrencyProvider((int)currencyType);
 
         #endregion
 
@@ -526,13 +452,10 @@ namespace Wolf.Systems.Core
         /// 重置指定时间提供者为初始状态
         /// </summary>
         /// <returns></returns>
-        protected virtual void ResetCurrencyProviders()
+        protected virtual void ResetCurrencyProviders() => CurrencyProviders = new List<ICurrencyProvider>()
         {
-            CurrencyProviders = new List<ICurrencyProvider>()
-            {
-                new CnyCurrencyProvider(),
-            };
-        }
+            new CnyCurrencyProvider(),
+        };
 
         #endregion
 
@@ -542,10 +465,7 @@ namespace Wolf.Systems.Core
         /// 清空指定时间提供者
         /// </summary>
         /// <returns></returns>
-        protected virtual void ClearCurrencyProviders()
-        {
-            CurrencyProviders = new List<ICurrencyProvider>();
-        }
+        protected virtual void ClearCurrencyProviders() => CurrencyProviders = new List<ICurrencyProvider>();
 
         #endregion
 
@@ -583,10 +503,7 @@ namespace Wolf.Systems.Core
         /// 得到指定唯一标识提供者集合
         /// </summary>
         /// <returns></returns>
-        public List<IGuidGeneratorProvider> GetGuidGenerators()
-        {
-            return GuidGenerators?.ToList() ?? new List<IGuidGeneratorProvider>();
-        }
+        public List<IGuidGeneratorProvider> GetGuidGenerators() => GuidGenerators?.ToList() ?? new List<IGuidGeneratorProvider>();
 
         #endregion
 
@@ -597,20 +514,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="type">唯一标识类型</param>
         /// <returns></returns>
-        public IGuidGeneratorProvider GetGuidGeneratorProvider(int type)
-        {
-            return GetGuidGenerators().FirstOrDefault(x => x.Type == type);
-        }
+        public IGuidGeneratorProvider GetGuidGeneratorProvider(int type) => GetGuidGenerators().FirstOrDefault(x => x.Type == type);
 
         /// <summary>
         /// 得到唯一标识提供者
         /// </summary>
         /// <param name="sequentialGuidType">唯一标识类型</param>
         /// <returns></returns>
-        public IGuidGeneratorProvider GetGuidGeneratorProvider(SequentialGuidType sequentialGuidType)
-        {
-            return GetGuidGeneratorProvider(sequentialGuidType.Id);
-        }
+        public IGuidGeneratorProvider GetGuidGeneratorProvider(SequentialGuidType sequentialGuidType) => GetGuidGeneratorProvider(sequentialGuidType.Id);
 
         #endregion
 
@@ -620,13 +531,10 @@ namespace Wolf.Systems.Core
         /// 重置唯一标识提供者为初始状态
         /// </summary>
         /// <returns></returns>
-        protected virtual void ResetGuidGeneratorProviders()
+        protected virtual void ResetGuidGeneratorProviders() => GuidGenerators = new List<IGuidGeneratorProvider>()
         {
-            GuidGenerators = new List<IGuidGeneratorProvider>()
-            {
-                new GuidProvider()
-            };
-        }
+            new GuidProvider()
+        };
 
         #endregion
 
@@ -636,10 +544,7 @@ namespace Wolf.Systems.Core
         /// 清空唯一标识提供者
         /// </summary>
         /// <returns></returns>
-        protected virtual void ClearGuidGeneratorProviders()
-        {
-            GuidGenerators = new List<IGuidGeneratorProvider>();
-        }
+        protected virtual void ClearGuidGeneratorProviders() => GuidGenerators = new List<IGuidGeneratorProvider>();
 
         #endregion
 
@@ -677,10 +582,7 @@ namespace Wolf.Systems.Core
         /// 得到指定身份证身份提供者集合
         /// </summary>
         /// <returns></returns>
-        public List<IIdCardProvider> GetIdCardProviders()
-        {
-            return IdCardProviders?.ToList() ?? new List<IIdCardProvider>();
-        }
+        public List<IIdCardProvider> GetIdCardProviders() => IdCardProviders?.ToList() ?? new List<IIdCardProvider>();
 
         #endregion
 
@@ -691,20 +593,14 @@ namespace Wolf.Systems.Core
         /// </summary>
         /// <param name="nationality">国家</param>
         /// <returns></returns>
-        public IIdCardProvider GetIdCardProvider(int nationality)
-        {
-            return GetIdCardProviders().FirstOrDefault(x => x.Nationality == nationality);
-        }
+        public IIdCardProvider GetIdCardProvider(int nationality) => GetIdCardProviders().FirstOrDefault(x => x.Nationality == nationality);
 
         /// <summary>
         /// 得到身份证身份提供者
         /// </summary>
         /// <param name="nationality">国家</param>
         /// <returns></returns>
-        public IIdCardProvider GetIdCardProvider(Nationality nationality)
-        {
-            return GetIdCardProvider((int) nationality);
-        }
+        public IIdCardProvider GetIdCardProvider(Nationality nationality) => GetIdCardProvider((int)nationality);
 
         #endregion
 
@@ -714,13 +610,10 @@ namespace Wolf.Systems.Core
         /// 重置身份证身份提供者为初始状态
         /// </summary>
         /// <returns></returns>
-        protected virtual void ResetIdCardProviders()
+        protected virtual void ResetIdCardProviders() => IdCardProviders = new List<IIdCardProvider>()
         {
-            IdCardProviders = new List<IIdCardProvider>()
-            {
-                new ChinaIdCardProvider(),
-            };
-        }
+            new ChinaIdCardProvider(),
+        };
 
         #endregion
 
@@ -730,10 +623,7 @@ namespace Wolf.Systems.Core
         /// 清空身份证身份提供者
         /// </summary>
         /// <returns></returns>
-        protected virtual void ClearIdCardProviders()
-        {
-            IdCardProviders = new List<IIdCardProvider>();
-        }
+        protected virtual void ClearIdCardProviders() => IdCardProviders = new List<IIdCardProvider>();
 
         #endregion
 

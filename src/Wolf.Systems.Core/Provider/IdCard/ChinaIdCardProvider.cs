@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -16,7 +16,7 @@ namespace Wolf.Systems.Core.Provider.IdCard
         /// <summary>
         /// 国家
         /// </summary>
-        public int Nationality => (int) Enum.Nationality.China;
+        public int Nationality => (int)Enum.Nationality.China;
 
         #region 是否身份证
 
@@ -113,7 +113,7 @@ namespace Wolf.Systems.Core.Provider.IdCard
                 var animal = TimeCommon.GetAnimal(birthday.Value.Year);
                 if (animal != null)
                 {
-                    return (int) animal;
+                    return (int)animal;
                 }
             }
 
@@ -123,7 +123,6 @@ namespace Wolf.Systems.Core.Provider.IdCard
         #endregion
 
         #region 得到生日信息
-
 
         /// <summary>
         /// 得到生日信息
@@ -163,7 +162,7 @@ namespace Wolf.Systems.Core.Provider.IdCard
             int? gender = (cardNo.Length == 15 ? cardNo.Substring(14, 1) : cardNo.Substring(16, 1)).ConvertToInt(null);
             if (gender == null)
             {
-                return  null;
+                return null;
             }
 
             return gender % 2 == 0 ? (int)Gender.Girl : (int)Gender.Boy;
@@ -184,10 +183,10 @@ namespace Wolf.Systems.Core.Provider.IdCard
             {
                 if (!cardNo.IsNullOrWhiteSpace())
                 {
-                    var constellation= GetBirthday(cardNo).GetConstellationFromBirthday();
+                    var constellation = GetBirthday(cardNo).GetConstellationFromBirthday();
                     if (constellation != null)
                     {
-                        return (int) constellation;
+                        return (int)constellation;
                     }
                 }
             }

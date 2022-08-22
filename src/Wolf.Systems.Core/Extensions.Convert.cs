@@ -1,8 +1,9 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -39,10 +40,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj">待转换参数</param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static char? ConvertToChar(this object obj, char? defaultVal = null)
-        {
-            return obj.ConvertToChar(() => defaultVal);
-        }
+        public static char? ConvertToChar(this object obj, char? defaultVal = null) => obj.ConvertToChar(() => defaultVal);
 
         /// <summary>
         /// obj转Char
@@ -85,10 +83,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj">待转换参数</param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static Guid? ConvertToGuid(this object obj, Guid? defaultVal = null)
-        {
-            return obj.ConvertToGuid(() => defaultVal);
-        }
+        public static Guid? ConvertToGuid(this object obj, Guid? defaultVal = null) => obj.ConvertToGuid(() => defaultVal);
 
         /// <summary>
         /// obj转Guid
@@ -131,10 +126,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static short? ConvertToShort(this object obj, short? defaultVal = null)
-        {
-            return obj.ConvertToShort(() => defaultVal);
-        }
+        public static short? ConvertToShort(this object obj, short? defaultVal = null) => obj.ConvertToShort(() => defaultVal);
 
         /// <summary>
         /// obj转Int
@@ -177,10 +169,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static int? ConvertToInt(this object obj, int? defaultVal = null)
-        {
-            return obj.ConvertToInt(() => defaultVal);
-        }
+        public static int? ConvertToInt(this object obj, int? defaultVal = null) => obj.ConvertToInt(() => defaultVal);
 
         /// <summary>
         /// obj转Int
@@ -223,10 +212,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static long? ConvertToLong(this object obj, long? defaultVal = null)
-        {
-            return obj.ConvertToLong(() => defaultVal);
-        }
+        public static long? ConvertToLong(this object obj, long? defaultVal = null) => obj.ConvertToLong(() => defaultVal);
 
         /// <summary>
         /// obj转long
@@ -269,10 +255,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static decimal? ConvertToDecimal(this object obj, decimal? defaultVal = null)
-        {
-            return obj.ConvertToDecimal(() => defaultVal);
-        }
+        public static decimal? ConvertToDecimal(this object obj, decimal? defaultVal = null) => obj.ConvertToDecimal(() => defaultVal);
 
         /// <summary>
         /// obj转decimal
@@ -315,10 +298,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static double? ConvertToDouble(this object obj, double? defaultVal = null)
-        {
-            return obj.ConvertToDouble(() => defaultVal);
-        }
+        public static double? ConvertToDouble(this object obj, double? defaultVal = null) => obj.ConvertToDouble(() => defaultVal);
 
         /// <summary>
         /// obj转Int
@@ -361,10 +341,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static float? ConvertToFloat(this object obj, float? defaultVal = null)
-        {
-            return obj.ConvertToFloat(() => defaultVal);
-        }
+        public static float? ConvertToFloat(this object obj, float? defaultVal = null) => obj.ConvertToFloat(() => defaultVal);
 
         /// <summary>
         /// obj转float
@@ -407,10 +384,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static DateTime? ConvertToDateTime(this object obj, DateTime? defaultVal = null)
-        {
-            return obj.ConvertToDateTime(() => defaultVal);
-        }
+        public static DateTime? ConvertToDateTime(this object obj, DateTime? defaultVal = null) => obj.ConvertToDateTime(() => defaultVal);
 
         /// <summary>
         /// obj转dateTime
@@ -453,10 +427,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static DateTimeOffset? ConvertToDateTimeOffset(this object obj, DateTimeOffset? defaultVal = null)
-        {
-            return obj.ConvertToDateTimeOffset(() => defaultVal);
-        }
+        public static DateTimeOffset? ConvertToDateTimeOffset(this object obj, DateTimeOffset? defaultVal = null) => obj.ConvertToDateTimeOffset(() => defaultVal);
 
         /// <summary>
         /// obj转DateTimeOffset
@@ -499,10 +470,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static byte? ConvertToByte(this object obj, byte? defaultVal = null)
-        {
-            return obj.ConvertToByte(() => defaultVal);
-        }
+        public static byte? ConvertToByte(this object obj, byte? defaultVal = null) => obj.ConvertToByte(() => defaultVal);
 
         /// <summary>
         /// obj转Int
@@ -569,10 +537,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static sbyte? ConvertToSByte(this object obj, sbyte? defaultVal = null)
-        {
-            return obj.ConvertToSByte(() => defaultVal);
-        }
+        public static sbyte? ConvertToSByte(this object obj, sbyte? defaultVal = null) => obj.ConvertToSByte(() => defaultVal);
 
         /// <summary>
         /// obj转sbyte
@@ -638,10 +603,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns></returns>
-        public static bool? ConvertToBool(this object obj, bool? defaultVal = null)
-        {
-            return obj.ConvertToBool(() => defaultVal);
-        }
+        public static bool? ConvertToBool(this object obj, bool? defaultVal = null) => obj.ConvertToBool(() => defaultVal);
 
         /// <summary>
         /// obj转bool
@@ -683,8 +645,8 @@ namespace Wolf.Systems.Core
             {
                 if (value == null)
                     return null;
-                System.ComponentModel.NullableConverter nullableConverter =
-                    new System.ComponentModel.NullableConverter(conversionType);
+                NullableConverter nullableConverter =
+                    new NullableConverter(conversionType);
                 conversionType = nullableConverter.UnderlyingType;
             }
 
@@ -701,10 +663,7 @@ namespace Wolf.Systems.Core
         /// <param name="obj">源数据</param>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public static T ChangeType<T>(this object obj)
-        {
-            return (T) Convert.ChangeType(obj, typeof(T));
-        }
+        public static T ChangeType<T>(this object obj) => (T)Convert.ChangeType(obj, typeof(T));
 
         /// <summary>
         /// 更改源参数类型集合（适用于简单的类型转换，序列化反序列化不适用）
@@ -712,10 +671,7 @@ namespace Wolf.Systems.Core
         /// <param name="objList">源数据集合</param>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public static IEnumerable<T> ChangeType<T>(this IEnumerable<object> objList)
-        {
-            return from s in objList select ChangeType<T>(s);
-        }
+        public static IEnumerable<T> ChangeType<T>(this IEnumerable<object> objList) => from s in objList select ChangeType<T>(s);
 
         /// <summary>
         /// 更改源参数类型集合（适用于简单的类型转换，序列化反序列化不适用）
@@ -723,10 +679,7 @@ namespace Wolf.Systems.Core
         /// <param name="objArray">源数据集合</param>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public static IEnumerable<T> ChangeType<T>(params object[] objArray)
-        {
-            return objArray.ToList().ChangeType<T>();
-        }
+        public static IEnumerable<T> ChangeType<T>(params object[] objArray) => from s in objArray select ChangeType<T>(s);
 
         #endregion
     }

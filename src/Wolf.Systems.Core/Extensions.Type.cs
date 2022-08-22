@@ -1,10 +1,12 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core
 {
@@ -94,17 +96,166 @@ namespace Wolf.Systems.Core
 #if !NET40
         #region 判断是否枚举
 
-        /// <summary>
-        /// 判断是否枚举
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static bool IsEnum(this Type type)
-        {
-            return type.GetTypeInfo().IsEnum;
-        }
+    /// <summary>
+    /// 判断是否枚举
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static bool IsEnum(this Type type) => type.GetTypeInfo().IsEnum;
 
         #endregion
 #endif
+
+        #region 判断是list集合
+
+        public static bool IsList(this object obj) => obj is IList || obj.IsGenericList();
+
+        #endregion
+
+        #region 判断是泛型集合
+
+        /// <summary>
+        /// 判断是泛型集合
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool IsGenericList(this object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return IsGenericList(obj.GetType());
+        }
+
+        /// <summary>
+        /// 判断Type是泛型List<T>集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool IsGenericList<T>(this object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return IsGenericList<T>(obj.GetType());
+        }
+
+        /// <summary>
+        /// 判断Type是泛型List集合
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <returns></returns>
+        public static bool IsGenericList(this Type type) => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>);
+
+        /// <summary>
+        /// 判断Type是泛型List<T>集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsGenericList<T>(this Type type) => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<T>);
+
+        #endregion
+
+        #region 判断可以构建泛型类
+
+        /// <summary>
+        /// 判断可以构建泛型类
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsGeneric(this Type type)
+        {
+#if !NET40
+            return type.GetTypeInfo().IsGenericTypeDefinition;
+#elif NET40
+            return type.IsGenericTypeDefinition;
+#endif
+
+        }
+
+        /// <summary>
+        /// 判断可以构建泛型类且当前类是接口
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsGenericInterface(this Type type) => type.IsGeneric() && type.IsInterface;
+
+        /// <summary>
+        /// 判断可以构建泛型类且当前是普通类（包含普通类与抽象类）
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsGenericClass(this Type type) => type.IsGeneric() && type.IsClass;
+
+        /// <summary>
+        /// 判断可以构建泛型类且当前是非抽象类
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsGenericNotAbstractClass(this Type type) => type.IsGeneric() && !type.IsAbstract;
+
+        /// <summary>
+        /// 判断可以构建泛型类且当前是抽象类
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsGenericAbstractClass(this Type type) => type.IsGeneric() && type.IsAbstract;
+
+        #endregion
+
+        #region 得到继承当前类的所有实现
+
+        public static IEnumerable<Type> GetTypes(this Type type, params Assembly[] assemblies)
+        {
+            if (assemblies == null || assemblies.Length == 0) return new List<Type>();
+            return type.GetTypes(assemblies.SelectMany(assembly => assembly.GetTypes()).ToArray());
+        }
+
+        public static List<Type> GetTypeList(this Type type, params Assembly[] assemblies)
+        {
+            if (assemblies == null || assemblies.Length == 0) return new List<Type>();
+            var typeEnumerable = type.GetTypes(assemblies);
+            if (typeEnumerable is List<Type> list)
+            {
+                return list;
+            }
+            return typeEnumerable.ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public static IEnumerable<Type> GetTypes(this Type type, params Type[] types)
+        {
+            if (types == null || types.Length == 0) return new List<Type>();
+            return types.Where(t => type.IsAssignableFrom(t));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public static List<Type> GetTypeList(this Type type, params Type[] types)
+        {
+            var typeEnumerable = type.GetTypes(types);
+            if (typeEnumerable is List<Type> list)
+            {
+                return list;
+            }
+            return typeEnumerable.ToList();
+        }
+
+        #endregion
     }
 }

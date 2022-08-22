@@ -1,12 +1,13 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Wolf.Systems.Core.Internal.Configuration;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core.Common
 {
@@ -102,10 +103,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="type">类型</param>
         /// <param name="member">成员名、值、实例均可</param>
         /// <returns>枚举想的描述信息。</returns>
-        public static string GetDescription(Type type, object member)
-        {
-            return GetCustomerObj<DescriptionAttribute>(type, member)?.Description;
-        }
+        public static string GetDescription(Type type, object member) => GetCustomerObj<DescriptionAttribute>(type, member)?.Description;
 
         /// <summary>
         /// 返回枚举项的描述信息。
@@ -113,10 +111,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="member">成员名、值、实例均可</param>
         /// <typeparam name="TEnum">枚举类型</typeparam>
         /// <returns>枚举想的描述信息。</returns>
-        public static string GetDescription<TEnum>(object member)
-        {
-            return GetDescription(TypeCommon.GetType<TEnum>(), member);
-        }
+        public static string GetDescription<TEnum>(object member) => GetDescription(typeof(TEnum), member);
 
         #endregion
 
@@ -129,10 +124,9 @@ namespace Wolf.Systems.Core.Common
         /// <typeparam name="T">得到自定义描述</typeparam>
         /// <typeparam name="TEnum">枚举类型</typeparam>
         /// <returns></returns>
-        public static T GetCustomerObj<T, TEnum>(object member) where T : Attribute
-        {
-            return GetCustomerObj<T>(TypeCommon.GetType<TEnum>(), member);
-        }
+        public static T GetCustomerObj<T, TEnum>(object member)
+            where T : Attribute
+            => GetCustomerObj<T>(typeof(TEnum), member);
 
         /// <summary>
         /// 得到自定义描述
@@ -163,7 +157,8 @@ namespace Wolf.Systems.Core.Common
         /// <param name="member">成员名或者枚举值，例如：Gender中有Boy=1,则传入Boy或者1可获得Gender.Boy</param>
         /// <typeparam name="TEnum">枚举类型</typeparam>
         /// <returns></returns>
-        public static TEnum Parse<TEnum>(object member) where TEnum : System.Enum
+        public static TEnum Parse<TEnum>(object member)
+            where TEnum : System.Enum
         {
             if (TryParse(member, out TEnum value))
             {
@@ -191,14 +186,14 @@ namespace Wolf.Systems.Core.Common
                 throw new ArgumentNullException(nameof(member));
             }
 
-            value = (TEnum) System.Enum.Parse(TypeCommon.GetType<TEnum>(), memberStr, true);
+            value = (TEnum)System.Enum.Parse(typeof(TEnum), memberStr, true);
             var enumValue = value.ConvertToInt(null);
             if (enumValue == null)
             {
                 return false;
             }
 
-            return enumValue.Value.IsExist(TypeCommon.GetType<TEnum>());
+            return enumValue.Value.IsExist(typeof(TEnum));
         }
 
         #endregion
@@ -211,10 +206,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="member">枚举类型</param>
         /// <typeparam name="TEnum">成员名或者枚举值，例如：Gender中有Boy=1,则传入Boy或者1或者Gender.Boy可获得其key</typeparam>
         /// <returns></returns>
-        public static string GetKey<TEnum>(object member)
-        {
-            return GetKey(TypeCommon.GetType<TEnum>(), member);
-        }
+        public static string GetKey<TEnum>(object member) => GetKey(typeof(TEnum), member);
 
         /// <summary>
         /// 获取成员名
@@ -227,10 +219,10 @@ namespace Wolf.Systems.Core.Common
 #if NET40
             isEnum = type.IsEnum;
 #elif !NET40
-            isEnum = type.IsEnum();
+        isEnum = type.IsEnum();
 #endif
             if (type == null || member == null || !isEnum)
-                return string.Empty;
+                return Const.Empty;
             if (member.IsInt())
             {
                 return System.Enum.GetName(type, member.ConvertToInt(0));
@@ -254,10 +246,9 @@ namespace Wolf.Systems.Core.Common
         /// <param name="member">枚举类型</param>
         /// <typeparam name="TEnum">成员名或者枚举值，例如：Gender中有Boy=1,则传入Boy或者1或者Gender.Boy可获得其value</typeparam>
         /// <returns></returns>
-        public static int? GetValue<TEnum>(object member) where TEnum : struct
-        {
-            return GetValue(TypeCommon.GetType<TEnum>(), member);
-        }
+        public static int? GetValue<TEnum>(object member)
+            where TEnum : struct
+            => GetValue(typeof(TEnum), member);
 
         /// <summary>
         /// 获取枚举的成员值
@@ -270,7 +261,7 @@ namespace Wolf.Systems.Core.Common
 #if NET40
             isEnum = type.IsEnum;
 #elif !NET40
-            isEnum = type.IsEnum();
+        isEnum = type.IsEnum();
 #endif
             if (type == null || member == null || !isEnum)
                 return null;

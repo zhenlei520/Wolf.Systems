@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -23,10 +23,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// 获得Assembly版本号
         /// </summary>
         /// <returns></returns>
-        public static string GetAssemblyVersion()
-        {
-            return $"{AssemblyFileVersion.FileMajorPart}.{AssemblyFileVersion.FileMinorPart}";
-        }
+        public static string GetAssemblyVersion() => $"{AssemblyFileVersion.FileMajorPart}.{AssemblyFileVersion.FileMinorPart}";
 
         #endregion
 
@@ -36,10 +33,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// 获得Assembly产品版权
         /// </summary>
         /// <returns></returns>
-        public static string GetAssemblyCopyright()
-        {
-            return AssemblyFileVersion.LegalCopyright;
-        }
+        public static string GetAssemblyCopyright() => AssemblyFileVersion.LegalCopyright;
 
         #endregion
 
@@ -71,10 +65,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// <param name="type"></param>
         /// <param name="noPublic">是否不公开的</param>
         /// <returns></returns>
-        public static object CreateInstance(this Type type, bool noPublic = false)
-        {
-            return Assembly.GetAssembly(type).CreateInstance(type.ToString(), noPublic);
-        }
+        public static object CreateInstance(this Type type, bool noPublic = false) => Assembly.GetAssembly(type).CreateInstance(type.ToString(), noPublic);
 
         #endregion
 
@@ -86,10 +77,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// <param name="fullName">完整的类名地址：命名空间.类名</param>
         /// <param name="package">包名</param>
         /// <returns></returns>
-        public static Type GetType(string fullName, string package)
-        {
-            return Type.GetType($"{fullName},{package}");
-        }
+        public static Type GetType(string fullName, string package) => Type.GetType($"{fullName},{package}");
 
         #endregion
 
@@ -99,11 +87,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// 得到调用者信息
         /// </summary>
         /// <returns></returns>
-        public static Type GetReflectedInfo()
-        {
-            MethodBase method = new StackTrace().GetFrame(1).GetMethod();
-            return method.ReflectedType;
-        }
+        public static Type GetReflectedInfo() => new StackTrace().GetFrame(1).GetMethod().ReflectedType;
 
         #endregion
 
@@ -134,10 +118,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// </summary>
         /// <param name="assemblyStringList">程序集的强名称集合</param>
         /// <returns></returns>
-        public static IEnumerable<Assembly> Load(params string[] assemblyStringList)
-        {
-            return Load(assemblyStringList.ToList());
-        }
+        public static IEnumerable<Assembly> Load(params string[] assemblyStringList) => Load(assemblyStringList.ToList());
 
         #endregion
 
@@ -166,10 +147,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// </summary>
         /// <param name="assemblyFileList">程序集所在的绝对路径集合</param>
         /// <returns></returns>
-        public static IEnumerable<Assembly> LoadFrom(params string[] assemblyFileList)
-        {
-            return LoadFrom(assemblyFileList.ToList());
-        }
+        public static IEnumerable<Assembly> LoadFrom(params string[] assemblyFileList) => LoadFrom(assemblyFileList.ToList());
 
         #endregion
 
@@ -198,10 +176,7 @@ namespace Wolf.Systems.Core.Common.Systems
         /// </summary>
         /// <param name="assemblyFileList">程序集所在的绝对路径集合</param>
         /// <returns></returns>
-        public static IEnumerable<Assembly> LoadFile(params string[] assemblyFileList)
-        {
-            return LoadFile(assemblyFileList.ToList());
-        }
+        public static IEnumerable<Assembly> LoadFile(params string[] assemblyFileList) => LoadFile(assemblyFileList.ToList());
 
         #endregion
     }

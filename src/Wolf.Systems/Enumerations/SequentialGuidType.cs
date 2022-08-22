@@ -1,11 +1,11 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 
 namespace Wolf.Systems.Enumerations
 {
     /// <summary>
     /// 有序的Guid方式
     /// </summary>
-    public class SequentialGuidType : Enumerations.SeedWork.Enumeration
+    public class SequentialGuidType : SeedWork.Enumeration
     {
         /// <summary>
         /// 默认Guid
@@ -17,8 +17,6 @@ namespace Wolf.Systems.Enumerations
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name">描述</param>
-        protected SequentialGuidType(int id, string name) : base(id, name)
-        {
-        }
+        protected SequentialGuidType(int id, string name) : base(id, name) { }
     }
 }

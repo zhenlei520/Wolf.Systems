@@ -1,10 +1,9 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
 
 namespace Wolf.Systems.Core.Common
 {
@@ -26,7 +25,7 @@ namespace Wolf.Systems.Core.Common
             var animal = GetCardProvider(nationality).GetAnimal(cardNo);
             if (animal != null)
             {
-                return (Animal) animal;
+                return (Animal)animal;
             }
 
             return null;
@@ -42,10 +41,7 @@ namespace Wolf.Systems.Core.Common
         /// <param name="cardNo">身份证号码</param>
         /// <param name="nationality">国家，默认中国</param>
         /// <returns></returns>
-        public static DateTime? GetBirthday(string cardNo, Nationality nationality = Nationality.China)
-        {
-            return GetCardProvider(nationality).GetBirthday(cardNo);
-        }
+        public static DateTime? GetBirthday(string cardNo, Nationality nationality = Nationality.China) => GetCardProvider(nationality).GetBirthday(cardNo);
 
         #endregion
 
@@ -59,10 +55,10 @@ namespace Wolf.Systems.Core.Common
         /// <returns></returns>
         public static Gender? GetGender(string cardNo, Nationality nationality = Nationality.China)
         {
-            var gender= GetCardProvider(nationality).GetGender(cardNo);
+            var gender = GetCardProvider(nationality).GetGender(cardNo);
             if (gender != null)
             {
-                return (Gender) gender;
+                return (Gender)gender;
             }
 
             return null;
@@ -80,10 +76,10 @@ namespace Wolf.Systems.Core.Common
         /// <returns></returns>
         public static Constellation? GetConstellation(string cardNo, Nationality nationality = Nationality.China)
         {
-            var constellation= GetCardProvider(nationality).GetConstellation(cardNo);
+            var constellation = GetCardProvider(nationality).GetConstellation(cardNo);
             if (constellation != null)
             {
-                return (Constellation) constellation;
+                return (Constellation)constellation;
             }
 
             return null;
@@ -100,11 +96,8 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <param name="nationality">国家</param>
         /// <returns></returns>
-        private static IIdCardProvider GetCardProvider(Nationality nationality)
-        {
-            return GlobalConfigurations.Instance.GetIdCardProvider(nationality) ??
-                   throw new BusinessException("不支持的身份证提供者");
-        }
+        private static IIdCardProvider GetCardProvider(Nationality nationality) => GlobalConfigurations.Instance.GetIdCardProvider(nationality) ??
+                   throw new NotImplementedException("不支持的身份证提供者");
 
         #endregion
 

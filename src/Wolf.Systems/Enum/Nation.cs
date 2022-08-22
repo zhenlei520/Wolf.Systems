@@ -28,7 +28,7 @@ namespace Wolf.Systems.Enum
         /// <summary>
         /// 藏族
         /// </summary>
-        [Description("藏族")] Zz =4,
+        [Description("藏族")] Zz = 4,
 
         /// <summary>
         /// 维吾尔族

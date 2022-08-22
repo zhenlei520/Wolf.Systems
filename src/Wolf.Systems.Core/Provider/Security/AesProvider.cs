@@ -1,11 +1,11 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Security.Cryptography;
 using System.Text;
 using Wolf.Systems.Abstracts;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core.Provider.Security
 {
@@ -18,7 +18,7 @@ namespace Wolf.Systems.Core.Provider.Security
         /// <summary>
         /// 加密方式
         /// </summary>
-        public int Type => (int) SecurityType.Aes;
+        public int Type => (int)SecurityType.Aes;
 
         #region Aes加密
 

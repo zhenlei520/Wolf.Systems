@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -20,10 +20,7 @@ namespace Wolf.Systems.Core.Common
         /// 浅拷贝
         /// </summary>
         /// <returns></returns>
-        public object Clone()
-        {
-            return MemberwiseClone();
-        }
+        public object Clone() => MemberwiseClone();
 
         #endregion
 
@@ -42,7 +39,7 @@ namespace Wolf.Systems.Core.Common
                 IFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(objectStream, t);
                 objectStream.Seek(0, SeekOrigin.Begin);
-                return (T) formatter.Deserialize(objectStream);
+                return (T)formatter.Deserialize(objectStream);
             }
         }
 
@@ -55,10 +52,7 @@ namespace Wolf.Systems.Core.Common
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T ShallowClone<T>()
-        {
-            return (T) Clone();
-        }
+        public T ShallowClone<T>() => (T)Clone();
 
         #endregion
     }

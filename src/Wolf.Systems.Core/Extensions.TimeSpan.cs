@@ -1,9 +1,9 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
 using Wolf.Systems.Enum;
-using Wolf.Systems.Exception;
+using Wolf.Systems.Exceptions;
 
 namespace Wolf.Systems.Core
 {
@@ -23,7 +23,7 @@ namespace Wolf.Systems.Core
         public static string FormatDate(this TimeSpan timeSpan,
             TimeSpanFormatDateType timeSpanFormatDateType = TimeSpanFormatDateType.Second)
         {
-            if (!((int) timeSpanFormatDateType).IsExist<TimeSpanFormatDateType>())
+            if (!((int)timeSpanFormatDateType).IsExist<TimeSpanFormatDateType>())
             {
                 throw new BusinessException("不支持的类型", ErrorCode.ParamError);
             }
@@ -41,7 +41,7 @@ namespace Wolf.Systems.Core
             }
 
             return string.Format(name, timeSpan.Days, timeSpan.Hours, timeSpan.Minutes,
-                timeSpan.Seconds,timeSpan.Milliseconds);
+                timeSpan.Seconds, timeSpan.Milliseconds);
         }
 
         #endregion

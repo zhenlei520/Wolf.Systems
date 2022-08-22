@@ -1,4 +1,4 @@
-﻿// Copyright (c) zhenlei520 All rights reserved.
+// Copyright (c) zhenlei520 All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -15,7 +15,7 @@ namespace Wolf.Systems.Core.Provider.DateTimes
         /// <summary>
         /// 类型
         /// </summary>
-        public int Type => (int) TimeType.StartWeek;
+        public int Type => (int)TimeType.StartWeek;
 
         /// <summary>
         /// 得到本周周一

@@ -25,9 +25,6 @@ namespace Wolf.Systems.ComponentModel
         /// 名称信息
         /// </summary>
         /// <param name="name"></param>
-        public ENameAttribute(string name)
-        {
-            _name = name;
-        }
+        public ENameAttribute(string name) => _name = name;
     }
 }

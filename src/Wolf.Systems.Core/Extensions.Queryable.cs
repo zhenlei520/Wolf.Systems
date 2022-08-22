@@ -25,10 +25,7 @@ namespace Wolf.Systems.Core
         /// <param name="query"></param>
         /// <param name="topN"></param>
         /// <returns></returns>
-        public static IQueryable<T> TopN<T>(this IQueryable<T> query, int topN)
-        {
-            return query.Take(topN);
-        }
+        public static IQueryable<T> TopN<T>(this IQueryable<T> query, int topN) => query.Take(topN);
 
         #endregion
 
@@ -82,7 +79,7 @@ namespace Wolf.Systems.Core
                     }
 
                     MethodCallExpression resultExp = Expression.Call(typeof(Queryable), methodName,
-                        new Type[] {typeof(T), pi.PropertyType}, source.Expression, le);
+                        new Type[] { typeof(T), pi.PropertyType }, source.Expression, le);
                     source = source.Provider.CreateQuery<T>(resultExp);
                 }
             });
