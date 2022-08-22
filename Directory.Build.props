@@ -1,10 +1,5 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <Import Project="build\version.props" />
-
-  <PropertyGroup>
     <PackageId>$(AssemblyName)</PackageId>
     <PackageIcon>packageIcon.png</PackageIcon>
     <Authors>zhenlei520</Authors>
