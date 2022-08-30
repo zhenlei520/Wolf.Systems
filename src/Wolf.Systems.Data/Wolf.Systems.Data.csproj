@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;netstandard2.0;netstandard2.1;</TargetFrameworks>
     <Title>调整基础data参数</Title>
     <Description>调整基础data参数</Description>
     <PackageProjectUrl>https://www.nuget.org/packages/$(AssemblyName)</PackageProjectUrl>

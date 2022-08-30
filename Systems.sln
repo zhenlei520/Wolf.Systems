@@ -28,6 +28,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolf.Systems.Core.UnitTest"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf.Systems.Data", "src\Wolf.Systems.Data\Wolf.Systems.Data.csproj", "{0E3B3EBC-29FA-4029-ABB2-C81A2C7E56E4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B9CE594A-4FFD-4E0C-B683-3602017BA9A1}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +74,7 @@ Global
 		{70ED9950-38D8-418D-AE86-782796DACAA5} = {CE855983-A583-46B5-8C08-9B6C7B92AF19}
 		{861FE39B-02B9-44C7-84A6-4BFA1DA6AD78} = {CE855983-A583-46B5-8C08-9B6C7B92AF19}
 		{0E3B3EBC-29FA-4029-ABB2-C81A2C7E56E4} = {147844EE-5826-47AD-A828-61BC20FE85A2}
+		{B9CE594A-4FFD-4E0C-B683-3602017BA9A1} = {80DF58E1-4CC0-40B2-8C58-33257CDD5486}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F83BDA5-E410-4A85-8094-1E3F69EFD466}
