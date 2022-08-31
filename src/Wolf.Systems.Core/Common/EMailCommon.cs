@@ -8,7 +8,7 @@ namespace Wolf.Systems.Core.Common
     /// <summary>
     /// 邮箱帮助类
     /// </summary>
-    public class EMailCommon
+    public static class EMailCommon
     {
         #region 发送邮件
 

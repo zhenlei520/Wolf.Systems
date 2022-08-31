@@ -6,7 +6,7 @@ namespace Wolf.Systems.Core.Common
     /// <summary>
     /// Gps帮助类
     /// </summary>
-    public class GpsCommon
+    public static class GpsCommon
     {
         #region 度分秒转度
 

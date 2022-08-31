@@ -65,7 +65,8 @@ namespace Wolf.Systems.Core.Common.Systems
         /// <param name="type"></param>
         /// <param name="noPublic">是否不公开的</param>
         /// <returns></returns>
-        public static object CreateInstance(this Type type, bool noPublic = false) => Assembly.GetAssembly(type).CreateInstance(type.ToString(), noPublic);
+        public static object CreateInstance(this Type type, bool noPublic = false)
+            => Assembly.GetAssembly(type).CreateInstance(type.ToString(), noPublic);
 
         #endregion
 
@@ -179,5 +180,30 @@ namespace Wolf.Systems.Core.Common.Systems
         public static IEnumerable<Assembly> LoadFile(params string[] assemblyFileList) => LoadFile(assemblyFileList.ToList());
 
         #endregion
+
+        #region 根据程序集获得类型
+
+        /// <summary>
+        /// 根据指定程序集获得当前程序集的所有类型
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        public static List<Type> GetAllType(this Assembly assembly)
+        {
+            return assembly.GetTypes().ToList();
+        }
+
+        /// <summary>
+        /// 获得程序集得集合中所有的类型
+        /// </summary>
+        /// <param name="assemblies"></param>
+        /// <returns></returns>
+        public static List<Type> GetAllType(this IEnumerable<Assembly> assemblies)
+        {
+            return assemblies.SelectMany(assembly => assembly.GetTypes()).ToList();
+        }
+
+        #endregion
+
     }
 }

@@ -11,7 +11,7 @@ namespace Wolf.Systems.Core.Common
     /// <summary>
     /// 时间扩展
     /// </summary>
-    public class TimeCommon
+    public static class TimeCommon
     {
         #region 把秒转换成分钟
 

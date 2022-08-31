@@ -37,9 +37,22 @@ namespace Wolf.Systems.Core.UnitTest
 
             var instanceExpress = Expression.Parameter(typeof(User), "e");
             var propertyExpress = Expression.Property(instanceExpress, nameof(User.Name));
+            var property2Express = Expression.Property(instanceExpress, nameof(User.Age));
 
             var assignString = Expression.Assign(propertyExpress, Expression.Constant("张三"));
-            Expression.Lambda<Action<User>>(assignString, instanceExpress).Compile()(user);
+            var assignAge = Expression.Assign(property2Express, Expression.Constant(13));
+
+            List<ParameterExpression> parameterExpressions = new List<ParameterExpression>()
+            {
+                instanceExpress
+            };
+
+            var block = Expression.Block(parameterExpressions,
+                assignString,
+                assignAge);
+            var s = Expression.Lambda<Action<User>>(block, instanceExpress).Compile();
+            s.Invoke(user);
+            // Expression.Lambda<Action<User>>(assignString, instanceExpress).Compile()(user);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Wolf.Systems.Core.Common
     /// <summary>
     /// 文件帮助类
     /// </summary>
-    public class FileCommon
+    public static class FileCommon
     {
         #region 得到文件md5
 

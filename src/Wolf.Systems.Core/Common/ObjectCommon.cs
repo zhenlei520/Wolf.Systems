@@ -8,7 +8,7 @@ namespace Wolf.Systems.Core.Common
     /// <summary>
     /// 对象帮助类
     /// </summary>
-    public class ObjectCommon
+    public static class ObjectCommon
     {
         #region 返回安全的结果
 

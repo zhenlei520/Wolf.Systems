@@ -5,49 +5,47 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Wolf.Systems.Core.Common.Systems;
 
 namespace Wolf.Systems.Core.Common
 {
     /// <summary>
     ///
     /// </summary>
-    public class TypeCommon
+    public static class TypeCommon
     {
-        #region 查询继承type的接口与实现类集合
+#if !NET40
+        #region 判断继承关系
 
         /// <summary>
-        /// 查询继承type的接口与实现类集合
+        /// 判断targetType是否继承type(支持泛型)
         /// </summary>
-        /// <param name="assemblies"></param>
         /// <param name="type"></param>
+        /// <param name="targetType"></param>
         /// <returns></returns>
-        public static List<KeyValuePair<Type, Type>> GetInterfaceAndImplementationType(Type type, params Assembly[] assemblies)
+        public static bool IsAssignableFrom(this Type type, Type targetType)
         {
-            if (assemblies == null || assemblies.Length == 0)
-                throw new ArgumentNullException(nameof(assemblies));
+            if (type.IsGenericType &&
+                type.GetTypeInfo().GenericTypeParameters.Length > 0 &&
+                targetType.IsGenericType &&
+                targetType.GetTypeInfo().GenericTypeParameters.Length > 0)
+                return targetType.GetInterfaces().Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == type);
 
-            var fulleName = type.Namespace + type.Name;
-            var list = assemblies
-                .SelectMany(x =>
-                    x.GetTypes().Where(y => y.GetInterfaces().Any(z => (z.Namespace + z.Name).Equals(fulleName))))
-                .ToList();
+            return type.IsAssignableFrom(targetType);
+        }
 
-            var typeList = new List<KeyValuePair<Type, Type>>();
-            foreach (var interfaceType in list.Where(x => x.IsInterface))
-            {
-                var interfaceTypeFullName = interfaceType.Namespace + interfaceType.Name;
-
-                list.Where(x =>
-                    !x.IsInterface && x.GetInterfaces().Any(z =>
-                        (z.Namespace + z.Name).Equals(interfaceTypeFullName))).ToList().ForEach(implementationType =>
-                {
-                    typeList.Add(new KeyValuePair<Type, Type>(interfaceType, implementationType));
-                });
-            }
-
-            return typeList;
+        /// <summary>
+        /// 判断targetType是否被type所继承(支持泛型)
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="targetType"></param>
+        /// <returns></returns>
+        public static bool IsAssignableTo(this Type type, Type targetType)
+        {
+            return IsAssignableFrom(targetType, type);
         }
 
         #endregion
+#endif
     }
 }
